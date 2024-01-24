@@ -8,10 +8,6 @@ JobTrack
 ## Planning
 ### Wireframing
 
-<!-- ![Components](images/components.png)
-![Landing](images/landing.png)
-![Landing Login](images/landing_login.png)
-![Homepage](images/homepage.png) -->
 ![Pages](images/pages.jpg)
 ![Components](images/components_.jpg)
 
