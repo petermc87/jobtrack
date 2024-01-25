@@ -1,8 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Button } from "react-bootstrap";
 
 export default function Home() {
   return (
-    <div>asdasdasd</div>
+    <div>
+      <Button>This Button</Button>
+    </div>
   );
 }

@@ -1,46 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Fredoka:wght@700&display=swap");
 
-  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Fredoka:wght@700&display=swap');
-
-@use './variables' as var;
+@use "./variables" as var;
 
 // Logo
 %logo {
-    color: var.$accent-blue;
-    font-size: var.$logo-size;
-    font-weight: var.$logo-weight;
-    font-family: 'Fredoka', sans-serif;
+  color: var.$accent-blue;
+  font-size: var.$logo-size;
+  font-weight: var.$logo-weight;
+  font-family: "Fredoka", sans-serif;
 }
 
 // Title
 %title {
-    color: var.$accent-blue;
-    font-size: var.$title-size;
-    font-weight: var.$title-weight;
-    font-family: Arial, Helvetica, sans-serif;
+  color: var.$accent-blue;
+  font-size: var.$title-size;
+  font-weight: var.$title-weight;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 
 // Heading 1
 %heading1 {
-    color: var.$accent-blue;
-    font-size: var.$heading1-size;
-    font-weight: var.$heading1-weight;
-    font-family: Arial, Helvetica, sans-serif;
+  color: var.$accent-blue;
+  font-size: var.$heading1-size;
+  font-weight: var.$heading1-weight;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 // Heading 2
 %heading2 {
-    color: var.$accent-blue;
-    font-size: var.$heading2-size;
-    font-weight: var.$heading2-weight;
-    font-family: Arial, Helvetica, sans-serif;
+  color: var.$accent-blue;
+  font-size: var.$heading2-size;
+  font-weight: var.$heading2-weight;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 
 // Paragraph
 %paragraph {
-    color: white;
-    font-size: var.$paragraph-size;
-    font-weight: var.$paragraph-weight;
-    font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: var.$paragraph-size;
+  font-weight: var.$paragraph-weight;
+  font-family: Arial, Helvetica, sans-serif;
 }
