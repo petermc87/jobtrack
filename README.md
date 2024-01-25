@@ -8,8 +8,9 @@ JobTrack
 ## Planning
 ### Wireframing
 
-![Pages](images/pages.jpg)
 ![Components](images/components_.jpg)
+![Pages](images/pages.jpg)
+
 
 
 ## Getting Started
