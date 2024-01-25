@@ -1,5 +1,8 @@
-body {
+@use "./utilities/variables" as var;
+
+* {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var.$black-gray;
 }

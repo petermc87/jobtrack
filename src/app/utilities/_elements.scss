@@ -1,9 +1,11 @@
-@use ".variables" as var;
+@use "./variables" as var;
 
 %loginButton {
   background-color: var.$accent-blue;
   border-radius: var.$action-radius;
   font-family: Arial, Helvetica, sans-serif;
+  color: var.$black-gray;
+  border-color: var.$accent-blue;
 }
 
 // %googleButton
