@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Fredoka:wght@700&display=swap");
-
 @use "./variables" as var;
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Fredoka:wght@700&display=swap");
 
 // Logo
 %logo {
@@ -15,7 +14,7 @@
   color: var.$accent-blue;
   font-size: var.$title-size;
   font-weight: var.$title-weight;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 // NOTE: please go to global.scss for standard heading and context text
