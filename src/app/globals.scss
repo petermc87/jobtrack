@@ -1,5 +1,26 @@
 @use "./utilities/variables" as var;
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Fredoka:wght@700&display=swap");
 
 * {
   background-color: var.$dark-gray;
+  color: var.$accent-blue;
+  p {
+    color: white;
+    font-size: var.$paragraph-size;
+    font-weight: var.$paragraph-weight;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  h1 {
+    color: var.$accent-blue;
+    font-size: var.$heading1-size;
+    font-weight: var.$heading1-weight;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  h2 {
+    color: var.$accent-blue;
+    font-size: var.$heading2-size;
+    font-weight: var.$heading2-weight;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 }
