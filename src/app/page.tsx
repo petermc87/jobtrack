@@ -1,13 +1,11 @@
-import { Button } from "react-bootstrap";
-
+import LoginButtonSignUpButton from "./components/LoginSignupButton/LoginSignupButton";
 import Logo from "./components/Logo/logo";
 import TitleText from "./components/TitleText/TitleText";
-import styles from "./page.module.scss";
 
 export default function Home() {
   return (
     <div>
-      <Button id={styles.loginButtonEl}>This Button</Button>
+      <LoginButtonSignUpButton buttonChoice={false} />
       <Logo />
       <TitleText text="An easy way to track your job applications" />
       <h1>Hello</h1>

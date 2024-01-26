@@ -1,0 +1,5 @@
+@use "../../utilities/elements";
+
+#loginButtonEl {
+  @extend %loginButton;
+}
