@@ -1,0 +1,6 @@
+@use "../../utilities/elements";
+
+#loginButtonEl {
+  @extend %loginButton;
+  padding: 0.3rem 1rem 0.3rem 1rem;
+}

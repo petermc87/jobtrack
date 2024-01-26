@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import styles from "./LoginSignupButton.module.scss";
+import styles from "./LoginSignupButtonModal.module.scss";
 
 // IMPORTANT: ex. of error TS2315 correction. Because this is a react-bootstrap
 // component, we have to declare the type as a var <ReactNode>, then pass it
