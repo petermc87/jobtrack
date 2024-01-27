@@ -1,5 +1,8 @@
 @use "../../utilities/fonts";
+@use "../../utilities/variables" as var;
 
 .logo {
   @extend %logo;
+  background: rgba(255, 255, 255, 0);
+  text-shadow: 0.9px 0.9px 0.7px var.$dark-gray;
 }

@@ -1,0 +1,14 @@
+$line: none;
+
+.NavWrapper {
+  //   z-index: +2;
+  border: $line black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
+}
