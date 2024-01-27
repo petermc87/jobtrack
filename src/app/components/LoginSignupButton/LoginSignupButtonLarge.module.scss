@@ -1,5 +1,8 @@
 @use "../../utilities/elements";
+$line: none;
 
 #loginButtonEl {
   @extend %loginButton;
+  width: 6rem;
+  border: $line gray;
 }
