@@ -1,7 +1,22 @@
 @use "../../utilities/fonts";
+@use "../../utilities/variables" as var;
 
 .title {
   @extend %title;
   margin-top: 20rem;
   padding: 0 1rem 0 1rem;
+  background-image: linear-gradient(
+    75deg,
+    rgb(11, 127, 109),
+    rgb(86, 244, 220),
+    rgb(11, 127, 109)
+  );
+  background-clip: text;
+  color: transparent;
 }
+
+// $blue-dark: #0b7f6d;
+// $blue-shady: #0eaf96;
+// $blue: #11e0c0;
+// $blue-bright: #33f1d3;
+// $blue-brightest: #62f5de;
