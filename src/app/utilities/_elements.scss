@@ -1,5 +1,15 @@
 @use "./variables" as var;
 
+// Unviersal Button Styles
+%buttonStyles {
+  color: var.$accent-blue;
+  border-radius: 50%;
+  width: fit-content;
+  height: fit-content;
+  height: 3rem;
+  width: 3rem;
+}
+
 %loginButton {
   background-color: var.$accent-blue;
   border-radius: var.$action-radius;
@@ -13,20 +23,20 @@
 
 // Chevron button general styling.
 %chevron {
-  color: var.$accent-blue;
-  border-radius: 50%;
-  width: fit-content;
-  height: fit-content;
-  height: 3rem;
-  width: 3rem;
-}
-
-%chevron:hover {
-  cursor: pointer;
-  color: var.$accent-green;
+  @extend %buttonStyles;
 }
 
 // %addButton
+%addButton {
+  @extend %buttonStyles;
+  width: 2rem;
+  height: 2rem;
+}
+
+%buttonStyles:hover {
+  cursor: pointer;
+  color: var.$accent-green;
+}
 
 // %inputField
 
