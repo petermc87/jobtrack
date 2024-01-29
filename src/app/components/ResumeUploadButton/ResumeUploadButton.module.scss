@@ -32,8 +32,10 @@ $padding: 0.5rem;
     white-space: nowrap;
     padding: 0.2rem 0 0.2rem 0;
     border-radius: 0.2rem;
+    background-color: var.$black-gray;
     p {
       margin: 0;
+      background-color: var.$black-gray;
     }
   }
 }
