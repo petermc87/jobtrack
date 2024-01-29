@@ -11,8 +11,9 @@
 
 // %googleButton
 
-// %smallCollapseButton --> FaChevronCircleDown React Icon styling
-%smallCollapseButton {
+// Chevron button general styling.
+%chevron {
+  color: var.$accent-blue;
   border-radius: 50%;
   width: fit-content;
   height: fit-content;
@@ -20,11 +21,10 @@
   width: 3rem;
 }
 
-// %largeCollapseButton
-
-// %smallHideButton
-
-// %largeHideButton
+%chevron:hover {
+  cursor: pointer;
+  color: var.$accent-green;
+}
 
 // %addButton
 

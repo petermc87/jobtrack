@@ -1,3 +1,4 @@
+import ExpandLarge from "./components/ExpandButtons/ExpandButtonLarge";
 import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
 import NavBar from "./components/NavBar/NavBar";
@@ -10,8 +11,10 @@ export default function Home() {
       <NavBar />
       <div className={styles.landingWrapper}>
         <TitleText text="An easy way to track your job applications" />
-        <ExpandSmall buttonChoice={false} />
         <ExpandSmall buttonChoice={true} />
+        <ExpandSmall buttonChoice={false} />
+        <ExpandLarge buttonChoice={true} />
+        <ExpandLarge buttonChoice={false} />
         <LoginSignupLarge buttonChoice={false} />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />

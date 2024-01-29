@@ -3,13 +3,12 @@
 
 $line: none;
 
-#buttonWrapper {
+.buttonWrapper {
   border: $line gray;
-  color: var.$accent-blue;
-  @extend %smallCollapseButton;
+  @extend %chevron;
 }
 
-#buttonWrapper:hover {
-  cursor: pointer;
-  color: var.$accent-green;
-}
+// .buttonWrapper:hover {
+//   cursor: pointer;
+//   color: var.$accent-green;
+// }

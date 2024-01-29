@@ -1,0 +1,9 @@
+@use "../../utilities/elements";
+@use "../../utilities/variables" as var;
+
+$line: none;
+
+.buttonWrapper {
+  border: $line red;
+  @extend %chevron;
+}
