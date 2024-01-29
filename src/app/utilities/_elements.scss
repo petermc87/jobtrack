@@ -11,7 +11,14 @@
 
 // %googleButton
 
-// %smallCollapseButton
+// %smallCollapseButton --> FaChevronCircleDown React Icon styling
+%smallCollapseButton {
+  border-radius: 50%;
+  width: fit-content;
+  height: fit-content;
+  height: 3rem;
+  width: 3rem;
+}
 
 // %largeCollapseButton
 

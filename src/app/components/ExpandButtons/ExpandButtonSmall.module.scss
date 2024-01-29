@@ -1,0 +1,15 @@
+@use "../../utilities/elements";
+@use "../../utilities/variables" as var;
+
+$line: none;
+
+#buttonWrapper {
+  border: $line gray;
+  color: var.$accent-blue;
+  @extend %smallCollapseButton;
+}
+
+#buttonWrapper:hover {
+  cursor: pointer;
+  color: var.$accent-green;
+}
