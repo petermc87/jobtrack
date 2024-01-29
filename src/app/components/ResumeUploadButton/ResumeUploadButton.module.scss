@@ -1,0 +1,80 @@
+@use "../../utilities/elements";
+@use "../../utilities/variables" as var;
+
+$line: none;
+$padding: 0.5rem;
+
+// Parent container.
+.buttonContainer {
+  border: $line red;
+  border: solid var.$accent-blue;
+  border-radius: 0.5rem;
+  background-color: var.$black-gray;
+}
+
+// View container
+.viewContainer {
+  border: $line green;
+  background-color: var.$black-gray;
+  border-bottom: solid var.$accent-blue;
+  border-width: var.$thin-seperator;
+  display: flex;
+  align-items: center;
+  padding: $padding 0 $padding 0;
+  text-align: center;
+
+  div {
+    border: $line gray;
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 0.2rem;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.viewContainer:hover {
+  cursor: pointer;
+  p {
+    color: var.$accent-green;
+  }
+  #eye {
+    color: var.$accent-green;
+  }
+}
+
+// Upload and download container
+.bottomContainer {
+  border: $line pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var.$black-gray;
+  padding: $padding 0 $padding 0;
+}
+
+// Individual button styling
+.buttonWrapper {
+  @extend %buttonStyles;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: var.$black-gray;
+}
+
+#upload {
+  border: $line blue;
+  border-radius: 0;
+}
+
+// View button (eye)
+#eye {
+  height: 2rem;
+  width: 2rem;
+
+  border: $line orange;
+  border-radius: 0;
+}

@@ -4,6 +4,7 @@ import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
 import NavBar from "./components/NavBar/NavBar";
 import RadioButton from "./components/RadioButton/RadioButton";
+import ResumeUpload from "./components/ResumeUploadButton/ResumeUploadButton";
 import TitleText from "./components/TitleText/TitleText";
 import styles from "./page.module.scss";
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
 
         <RadioButton buttonChoice={true} />
         <RadioButton buttonChoice={false} />
+        <ResumeUpload />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
