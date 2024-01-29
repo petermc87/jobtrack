@@ -1,16 +1,19 @@
 @use "../../utilities/fonts";
 @use "../../utilities/variables" as var;
 
+$size: 200%;
+
 .title {
   @extend %title;
   margin-top: 20rem;
   font-family: sans-serif;
-  $color-one: hsl(171, 86%, 46%);
-  $color-two: hsl(81, 83%, 46%);
+  $color-two: var.$accent-blue;
+  $color-one: var.$accent-green;
   // Background with a radial gradient transitioning from $color-one to $color-two, covering the entire element
   // NOTE: 0 0 is the initial position, 200% is the size of the gradient. It should cover an area
   // twice its width. 100% means cover all of its height.
-  background: radial-gradient(circle, $color-one, $color-two) 0 0 / 200%, 100%;
+  background: radial-gradient(circle, $color-one, $color-two) 0 0 /
+    ($size, 100%);
   color: transparent;
   background-clip: text;
 }
@@ -24,7 +27,7 @@
 
   @keyframes move-bg {
     to {
-      background-position: 200% 0;
+      background-position: $size 0;
     }
   }
 }
