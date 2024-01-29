@@ -33,6 +33,13 @@
   height: 2rem;
 }
 
+// %radioButton
+%radioButton {
+  @extend %buttonStyles;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 %buttonStyles:hover {
   cursor: pointer;
   color: var.$accent-green;
