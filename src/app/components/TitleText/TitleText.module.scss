@@ -1,40 +1,30 @@
 @use "../../utilities/fonts";
 @use "../../utilities/variables" as var;
 
-// .title {
-//   @extend %title;
-//   margin-top: 20rem;
-//   padding: 0 1rem 0 1rem;
-//   background-image: radial-gradient(rgb(11, 127, 109), rgb(86, 244, 220));
-//   background-clip: text;
-//   color: transparent;
-// }
-
-// $blue-dark: #0b7f6d;
-// $blue-shady: #0eaf96;
-// $blue: #11e0c0;
-// $blue-bright: #33f1d3;
-// $blue-brightest: #62f5de;
 .title {
   @extend %title;
   margin-top: 20rem;
-  --bg-size: 200%;
-  --color-one: hsl(171, 86%, 46%);
-  --color-two: hsl(52, 80%, 42%);
   font-family: sans-serif;
-  background: radial-gradient(circle, var(--color-one), var(--color-two)) 0 0 /
-    var(--bg-size) 100%;
+  $color-one: hsl(171, 86%, 46%);
+  $color-two: hsl(81, 83%, 46%);
+  // Background with a radial gradient transitioning from $color-one to $color-two, covering the entire element
+  // NOTE: 0 0 is the initial position, 200% is the size of the gradient. It should cover an area
+  // twice its width. 100% means cover all of its height.
+  background: radial-gradient(circle, $color-one, $color-two) 0 0 / 200%, 100%;
   color: transparent;
   background-clip: text;
 }
 
+// Animation for title elements only on devices with no preference for reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   .title {
+    // Background animation moving horizontally to 200%
     animation: move-bg 10s linear infinite;
   }
+
   @keyframes move-bg {
     to {
-      background-position: var(--bg-size) 0;
+      background-position: 200% 0;
     }
   }
 }
