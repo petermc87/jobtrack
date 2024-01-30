@@ -4,6 +4,7 @@ import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
 import InputField from "./components/InputField/InputField";
 import JobListElement from "./components/JobListElement/JobListElement";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
+import LoginSignupForm from "./components/LoginSignupForm/LoginSignupForm";
 import NavBar from "./components/NavBar/NavBar";
 import RadioButton from "./components/RadioButton/RadioButton";
 import ResumeUpload from "./components/ResumeUploadButton/ResumeUploadButton";
@@ -29,6 +30,8 @@ export default function Home() {
         <InputField placeholderText="e.g Construction, Real Estate..." />
 
         <JobListElement />
+
+        <LoginSignupForm />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
