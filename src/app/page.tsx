@@ -1,6 +1,7 @@
 import AddButton from "./components/AddButton/AddButton";
 import ExpandLarge from "./components/ExpandButtons/ExpandButtonLarge";
 import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
+import GoogleButton from "./components/GoogleButton/GoogleButton";
 import InputField from "./components/InputField/InputField";
 import JobListElement from "./components/JobListElement/JobListElement";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
@@ -32,6 +33,8 @@ export default function Home() {
         <JobListElement />
 
         <LoginSignupForm />
+
+        <GoogleButton />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
