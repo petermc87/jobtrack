@@ -1,0 +1,24 @@
+$line: solid;
+
+.formWrapper {
+  border: $line red;
+  padding: 0.2rem;
+}
+
+.topContainer {
+  border: $line blue;
+  display: flex;
+}
+
+.bottomContainer {
+  border: $line green;
+  display: flex;
+}
+
+.left {
+  border: $line orange;
+}
+
+.right {
+  border: $line gray;
+}
