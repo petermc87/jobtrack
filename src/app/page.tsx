@@ -1,6 +1,7 @@
 import AddButton from "./components/AddButton/AddButton";
 import ExpandLarge from "./components/ExpandButtons/ExpandButtonLarge";
 import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
+import InputField from "./components/InputField/InputField";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
 import NavBar from "./components/NavBar/NavBar";
 import RadioButton from "./components/RadioButton/RadioButton";
@@ -24,6 +25,7 @@ export default function Home() {
         <RadioButton buttonChoice={true} />
         <RadioButton buttonChoice={false} />
         <ResumeUpload />
+        <InputField placeholderText="e.g Construction, Real Estate..." />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
