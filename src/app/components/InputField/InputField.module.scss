@@ -1,0 +1,11 @@
+@use "../../utilities/variables" as var;
+
+$line: solid;
+
+#inputWrapper {
+  border: $line red;
+  border: solid var.$accent-blue;
+  background-color: var.$dark-gray;
+  color: white;
+  border-radius: 0.5rem;
+}
