@@ -24,6 +24,7 @@
 // Chevron button general styling.
 %chevron {
   @extend %buttonStyles;
+  background-color: transparent;
 }
 
 // %addButton
@@ -38,6 +39,7 @@
   @extend %buttonStyles;
   width: 1.5rem;
   height: 1.5rem;
+  background-color: transparent;
 }
 
 %buttonStyles:hover {

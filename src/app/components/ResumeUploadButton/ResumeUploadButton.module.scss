@@ -7,17 +7,20 @@ $padding: 1rem;
 // Parent container.
 .buttonContainer {
   border: $line red;
-  border: solid var.$accent-blue;
+  // border: solid var.$accent-blue;
   border-radius: 0.5rem;
-  background-color: var.$black-gray;
+  background-color: var.$gray;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 // View container
 .viewContainer {
   border: $line green;
-  background-color: var.$black-gray;
+  background-color: var.$gray;
   border-bottom: solid var.$accent-blue;
   border-width: var.$thin-seperator;
+  border-radius: 0.5rem 0.5rem 0 0;
   display: flex;
   align-items: center;
   padding: $padding 0 $padding 0;
@@ -32,10 +35,10 @@ $padding: 1rem;
     white-space: nowrap;
     padding: 0.2rem 0 0.2rem 0;
     border-radius: 0.2rem;
-    background-color: var.$black-gray;
+    background-color: var.$gray;
     p {
       margin: 0;
-      background-color: var.$black-gray;
+      background-color: var.$gray;
     }
   }
 }
@@ -56,8 +59,9 @@ $padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var.$black-gray;
+  background-color: var.$gray;
   padding: $padding 0 $padding 0;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 // Individual button styling
@@ -65,7 +69,7 @@ $padding: 1rem;
   @extend %buttonStyles;
   height: 1.5rem;
   width: 1.5rem;
-  background-color: var.$black-gray;
+  background-color: var.$gray;
 }
 
 #upload {

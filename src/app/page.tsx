@@ -29,7 +29,7 @@ export default function Home() {
         <RadioButton buttonChoice={false} />
         <ResumeUpload />
         <InputField placeholderText="e.g Construction, Real Estate..." />
-
+        <br />
         <br />
         <JobListElement />
         <br />
