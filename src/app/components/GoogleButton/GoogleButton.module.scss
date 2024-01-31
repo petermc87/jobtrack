@@ -10,7 +10,7 @@ $line: solid;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
-  padding: 0.5rem;
+  padding: 0.2rem;
   background-color: var.$black-gray;
   h1 {
     font-weight: 100;
@@ -25,7 +25,7 @@ $line: solid;
 
 .googleWrapper:hover {
   cursor: pointer;
-  opacity: 0.9;
+  opacity: 0.7;
   border-color: var.$accent-green;
   h1,
   .icon {

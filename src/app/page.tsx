@@ -30,10 +30,15 @@ export default function Home() {
         <ResumeUpload />
         <InputField placeholderText="e.g Construction, Real Estate..." />
 
+        <br />
         <JobListElement />
-
+        <br />
+        <br />
+        <br />
         <LoginSignupForm />
-
+        <br />
+        <br />
+        <br />
         <GoogleButton />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
