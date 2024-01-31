@@ -3,6 +3,7 @@
 $line: none;
 $background: var.$black-gray;
 
+// Parent
 .formWrapper {
   border: $line red;
   border: solid var.$accent-blue;
@@ -13,6 +14,7 @@ $background: var.$black-gray;
   padding: 0 !important;
   background-color: $background;
   border-radius: 0.5rem;
+  text-align: start;
   h2,
   p {
     background-color: transparent;
@@ -21,6 +23,7 @@ $background: var.$black-gray;
   h2 {
     text-decoration: underline;
     font-weight: 600;
+    margin-bottom: 0.3rem;
   }
 }
 
@@ -31,6 +34,7 @@ $background: var.$black-gray;
   padding: 0.5rem;
   // Divider line
   border-bottom: solid var.$accent-blue;
+  border-width: 1px;
 }
 
 .bottomContainer {
@@ -47,9 +51,10 @@ $background: var.$black-gray;
   width: 50%;
   display: flex;
   flex-direction: column;
+  background-color: $background;
   // Divier Line
   border-right: solid var.$accent-blue;
-  background-color: $background;
+  border-width: 1px;
   h2 {
     background-color: transparent;
   }
@@ -59,6 +64,22 @@ $background: var.$black-gray;
   border: $line gray;
   width: 50%;
   background-color: transparent;
+  padding-left: 0.5rem;
+}
+
+// Summary Container
+.summaryPoints {
+  border-radius: 0.3rem;
+  background-color: var.$gray;
+  ul {
+    background-color: transparent;
+    li {
+      background-color: transparent;
+    }
+    li::marker {
+      color: white;
+    }
+  }
 }
 
 // Radio buttons
@@ -72,7 +93,6 @@ $background: var.$black-gray;
 .radioPair {
   border: $line white;
   display: flex;
-  // justify-content: space-around;
   background-color: transparent;
   align-items: center;
   text-align: center;
@@ -81,7 +101,6 @@ $background: var.$black-gray;
 // Rows
 .topRow,
 .bottomRow {
-  border: $line yellow;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -89,14 +108,20 @@ $background: var.$black-gray;
 }
 
 .bottomRow {
-  display: flex;
+  padding-top: 1rem;
+  border: $line yellow;
   flex-direction: column;
   align-items: center;
   background-color: transparent;
+}
+
+.topRow {
+  border: $line red;
 }
 
 // Individual Containers.
 #resumeUpload {
   border: $line purple;
   width: 90%;
+  padding: 0;
 }

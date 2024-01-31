@@ -43,6 +43,19 @@ export default function JobListElement() {
             </div>
             <div className={styles.right}>
               <h2>Job Summary</h2>
+              <div className={styles.summaryPoints}>
+                <ul>
+                  <li>
+                    <p>Here is a point.</p>
+                  </li>
+                  <li>
+                    <p>Here is a point.</p>
+                  </li>
+                  <li>
+                    <p>Here is a point.</p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
