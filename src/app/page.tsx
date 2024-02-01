@@ -1,3 +1,5 @@
+"use client";
+
 import AddButton from "./components/AddButton/AddButton";
 import ExpandLarge from "./components/ExpandButtons/ExpandButtonLarge";
 import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
@@ -11,12 +13,21 @@ import RadioButton from "./components/RadioButton/RadioButton";
 import ResumeUpload from "./components/ResumeUploadButton/ResumeUploadButton";
 import TitleText from "./components/TitleText/TitleText";
 import styles from "./page.module.scss";
+// Import redux variables.
+import { useAppSelector } from "./redux/store";
+
 export default function Home() {
+  // Retrieving the value stored elsewhere i.e when the a button is selected
+  // at the NavBar.
+  const isOpen = useAppSelector((state) => state.signupReducer.value.isOpen);
+
   return (
     <div>
       <NavBar />
+
       <div className={styles.landingWrapper}>
         <TitleText text="An easy way to track your job applications" />
+        <p>Current state: {isOpen.toString()}</p>
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
         <p>Paragraph</p>

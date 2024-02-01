@@ -18,8 +18,8 @@ const initialState: initialStateType = {
   },
 };
 
-export const auth = createSlice({
-  name: "fromActive",
+export const signup = createSlice({
+  name: "signup",
   initialState,
 
   // Reducer for changing the state.
@@ -35,3 +35,7 @@ export const auth = createSlice({
     },
   },
 });
+
+export const { openForm } = signup.actions;
+
+export default signup.reducer;
