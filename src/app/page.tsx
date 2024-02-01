@@ -31,6 +31,11 @@ export default function Home() {
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
         <p>Paragraph</p>
+        <br />
+        <br />
+        <br />
+        {isOpen && <LoginSignupForm />}
+
         <LoginSignupLarge buttonChoice={false} />
         <ExpandSmall buttonChoice={true} />
         <ExpandSmall buttonChoice={false} />
@@ -45,10 +50,7 @@ export default function Home() {
         <br />
         <br />
         <JobListElement />
-        <br />
-        <br />
-        <br />
-        <LoginSignupForm />
+
         <br />
         <br />
         <br />
