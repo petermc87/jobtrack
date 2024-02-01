@@ -17,7 +17,9 @@ export default function Home() {
       <NavBar />
       <div className={styles.landingWrapper}>
         <TitleText text="An easy way to track your job applications" />
-
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <p>Paragraph</p>
         <LoginSignupLarge buttonChoice={false} />
         <ExpandSmall buttonChoice={true} />
         <ExpandSmall buttonChoice={false} />
