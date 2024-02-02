@@ -1,12 +1,28 @@
 @use "../../utilities/variables" as var;
 
-$line: solid;
+$line: none;
+
+#groupWrapper {
+  background-color: transparent;
+}
 
 #inputWrapper {
   border: $line red;
   border: solid var.$accent-blue;
   background-color: var.$dark-gray;
   color: white;
-  border-radius: 0.5rem;
   margin: 0.4rem 0 0.4rem 0;
+}
+
+.button {
+  border: $line orange !important;
+  padding: 0.3rem !important;
+  margin: 0 !important;
+  background-color: var.$accent-blue !important;
+  margin: 0.4rem 0 0.4rem 0 !important;
+  .eye {
+    border: $line green;
+    background-color: var.$accent-blue;
+    color: var.$dark-gray;
+  }
 }

@@ -20,17 +20,27 @@ export default function InputField({ placeholderText }: InputTypes) {
   };
   return (
     <>
-      <InputGroup>
+      <InputGroup id={styles.groupWrapper}>
         <Form.Control
-          type={showPassword ? "text" : "password"}
+          aria-describedby="basic-addon2"
+          type={showPassword ? "password" : "text"}
           placeholder={placeholderText}
           id={styles.inputWrapper}
         />
         {/* Eye button beside input to toggle pass visibility*/}
         {placeholderText === "PASSWORD" && (
-          <Button onClick={() => handleToggle()}>
+          <Button
+            variant="outline-secondary"
+            id="button-addon2"
+            onClick={() => handleToggle()}
+            className={styles.button}
+          >
             {/* If it is off(false), it is "password", and the opposite for "text" */}
-            {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+            {showPassword ? (
+              <FaRegEyeSlash className={styles.eye} />
+            ) : (
+              <FaRegEye className={styles.eye} />
+            )}
           </Button>
         )}
       </InputGroup>
