@@ -37,6 +37,7 @@ export default function Home() {
         {isOpen === "signup" || isOpen === "login" ? <LoginSignupForm /> : ""}
 
         <LoginSignupLarge buttonChoice="signup" />
+        <LoginSignupLarge buttonChoice="login" />
         <ExpandSmall buttonChoice={true} />
         <ExpandSmall buttonChoice={false} />
         <ExpandLarge buttonChoice={true} />
