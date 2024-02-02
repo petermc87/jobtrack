@@ -37,10 +37,11 @@ $common-background: var.$black-gray;
     font-weight: 800;
     text-decoration: underline;
     background-color: $common-background;
-  }
-  span:hover {
-    cursor: pointer;
-    color: var.$accent-green;
+
+    &:hover {
+      cursor: pointer;
+      color: var.$accent-green;
+    }
   }
 }
 

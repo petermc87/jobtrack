@@ -73,11 +73,13 @@ $background: var.$black-gray;
   background-color: var.$gray;
   ul {
     background-color: transparent;
+
     li {
       background-color: transparent;
-    }
-    li::marker {
-      color: white;
+
+      &::marker {
+        color: white;
+      }
     }
   }
 }
