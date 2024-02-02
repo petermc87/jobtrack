@@ -7,14 +7,14 @@ type initialStateType = {
 
 // Types for form active
 type SignupState = {
-  isOpen: boolean;
+  isOpen: string;
 };
 
 const initialState: initialStateType = {
   // The initial state of the form
   // will be false i.e. not open.
   value: {
-    isOpen: false,
+    isOpen: "",
   },
 };
 
@@ -24,7 +24,7 @@ export const signup = createSlice({
 
   // Reducer for changing the state.
   reducers: {
-    openForm: (state, action: PayloadAction<boolean>) => {
+    openForm: (state, action: PayloadAction<string>) => {
       return {
         // Action is the boolean state passed from
         // the button in the NavBar, for example.

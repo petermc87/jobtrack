@@ -11,10 +11,10 @@ type ButtonTypes<ReactNode> = {
 
 export default function LoginButtonSignUpButton({
   buttonChoice,
-}: ButtonTypes<boolean>) {
+}: ButtonTypes<string>) {
   return (
     <Button id={styles.loginButtonEl}>
-      {buttonChoice ? "Log In" : "Sign Up"}
+      {buttonChoice === "login" ? "Log In" : "Sign Up"}
     </Button>
   );
 }

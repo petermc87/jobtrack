@@ -8,6 +8,10 @@
   height: fit-content;
   height: 3rem;
   width: 3rem;
+  &:hover {
+    cursor: pointer;
+    color: var.$accent-green;
+  }
 }
 
 %loginButton {
@@ -40,11 +44,6 @@
   width: 1.5rem;
   height: 1.5rem;
   background-color: transparent;
-}
-
-%buttonStyles:hover {
-  cursor: pointer;
-  color: var.$accent-green;
 }
 
 // %inputField

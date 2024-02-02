@@ -24,8 +24,8 @@ export default function InputField({ placeholderText }: InputTypes) {
         <Form.Control
           aria-describedby="basic-addon2"
           // The two types for "PASSWORD" field are either
-          // password or text, otherwise, in the case of the
-          // other fields, it is text.
+          // "password" or "text", otherwise, in the case of the
+          // other fields, it is "text" only.
           type={
             showPassword && placeholderText === "PASSWORD"
               ? "password"
@@ -36,7 +36,7 @@ export default function InputField({ placeholderText }: InputTypes) {
           placeholder={placeholderText}
           id={styles.inputWrapper}
         />
-        {/* Eye button beside input to toggle pass visibility*/}
+        {/* Eye button beside input to toggle password visibility*/}
         {placeholderText === "PASSWORD" && (
           <Button
             variant="outline-secondary"

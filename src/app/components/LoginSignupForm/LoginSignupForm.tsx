@@ -19,7 +19,7 @@ export default function LoginSignupForm() {
           <InputField placeholderText="EMAIL" />
           <InputField placeholderText="PASSWORD" />
         </Form.Group>
-        <LoginButtonSignUpButton buttonChoice={false} />
+        <LoginButtonSignUpButton buttonChoice="login" />
         <h1 className={styles.heading}>OR</h1>
         <Form.Group className={styles.bottomContainer}>
           <GoogleButton />

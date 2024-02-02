@@ -10,7 +10,7 @@ type LoginSignupLargeTypes<ReactNode> = {
 
 export default function LoginSignupLarge({
   buttonChoice,
-}: LoginSignupLargeTypes<boolean>) {
+}: LoginSignupLargeTypes<string>) {
   // Declaring the dispatch i.e. setting redux state.
   // Importing types declared in store.ts
   const dispatch = useDispatch<AppDispatch>();
@@ -19,7 +19,7 @@ export default function LoginSignupLarge({
   const isOpen = useAppSelector((state) => state.signupReducer.value.isOpen);
 
   // Setting the login form
-  const handleOpenLogin = (currentState: boolean) => {
+  const handleOpenLogin = (currentState: string) => {
     dispatch(openForm(currentState));
   };
 
@@ -28,11 +28,14 @@ export default function LoginSignupLarge({
     <Button
       id={styles.loginButtonEl}
       onClick={() => {
-        if (isOpen === false) handleOpenLogin(true);
-        else handleOpenLogin(false);
+        // If there is an empty field, or if its 'login',
+        // make it 'signup', otherwise make it '' to
+        // close the form.
+        if (isOpen === "") handleOpenLogin("signup");
+        else handleOpenLogin("");
       }}
     >
-      {buttonChoice ? "Log In" : "Sign Up"}
+      {buttonChoice === "login" ? "Log In" : "Sign Up"}
     </Button>
   );
 }
