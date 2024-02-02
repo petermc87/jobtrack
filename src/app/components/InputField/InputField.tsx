@@ -11,7 +11,7 @@ type InputTypes = {
 
 export default function InputField({ placeholderText }: InputTypes) {
   // Use state to toggle the type.
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(true);
 
   // Changing the state on click.
   const handleToggle = () => {
@@ -23,7 +23,16 @@ export default function InputField({ placeholderText }: InputTypes) {
       <InputGroup id={styles.groupWrapper}>
         <Form.Control
           aria-describedby="basic-addon2"
-          type={showPassword ? "password" : "text"}
+          // The two types for "PASSWORD" field are either
+          // password or text, otherwise, in the case of the
+          // other fields, it is text.
+          type={
+            showPassword && placeholderText === "PASSWORD"
+              ? "password"
+              : !showPassword && placeholderText === "PASSWORD"
+              ? "text"
+              : "text"
+          }
           placeholder={placeholderText}
           id={styles.inputWrapper}
         />
@@ -35,7 +44,7 @@ export default function InputField({ placeholderText }: InputTypes) {
             onClick={() => handleToggle()}
             className={styles.button}
           >
-            {/* If it is off(false), it is "password", and the opposite for "text" */}
+            {/* If it is off(false), it is "text", and the opposite for "password" */}
             {showPassword ? (
               <FaRegEyeSlash className={styles.eye} />
             ) : (
