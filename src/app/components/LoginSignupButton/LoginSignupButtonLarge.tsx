@@ -21,13 +21,10 @@ export default function LoginSignupLarge({
     dispatch(openForm(currentState));
   };
 
-  // Settings
   return (
     <Button
       id={styles.loginButtonEl}
       onClick={() => {
-        // LOGIN From Page: If there is empty state OR if
-        // the current state is
         if (buttonChoice === "login") handleOpenLogin("login");
         else handleOpenLogin("signup");
       }}
