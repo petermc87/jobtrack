@@ -57,7 +57,7 @@ export default function LoginSignupForm() {
                 else handleFormType("signup");
               }}
             >
-              {isOpen === "signup" ? "Sign Up" : "Log In"}
+              {isOpen === "signup" ? "Log In" : "Sign Up"}
             </span>
           </h2>
         </Form.Group>
