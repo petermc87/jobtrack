@@ -14,12 +14,19 @@ import ResumeUpload from "./components/ResumeUploadButton/ResumeUploadButton";
 import TitleText from "./components/TitleText/TitleText";
 import styles from "./page.module.scss";
 // Import redux variables.
+
+import { Button } from "react-bootstrap";
+import LoginSession from "../../actions/authRequests/loginSession";
 import { useAppSelector } from "./redux/store";
 
 export default function Home() {
   // Retrieving the value stored elsewhere i.e when the a button is selected
   // at the NavBar.
   const isOpen = useAppSelector((state) => state.signupReducer.value.isOpen);
+
+  const handleLoginSession = async () => {
+    await LoginSession();
+  };
 
   return (
     <div>
@@ -31,6 +38,7 @@ export default function Home() {
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
         <p>Paragraph</p>
+        <Button onClick={() => handleLoginSession()}>Go to Auth page</Button>
         <br />
         <br />
         <br />

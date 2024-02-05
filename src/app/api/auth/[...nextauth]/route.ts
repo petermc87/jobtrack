@@ -1,25 +1,41 @@
+import bcrypt from "bcrypt";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
+import db from "../../../../../prisma/db";
 
 const authOptions: NextAuthOptions = {
   providers: [
-    Credentials({
+    CredentialsProvider({
       name: "Credentials",
       credentials: {
         email: { label: "Email", placeholder: "Enter your email..." },
         password: { label: "Password", placeholder: "Enter your password..." },
       },
-      authorize(credentials, req) {
-        // Test the crendtials provider.
-        if (
-          credentials?.email === "this@mail.com" &&
-          credentials?.password === "password"
-        ) {
-          return {
-            id: "123",
-            email: "this@mail.com",
-          };
+      async authorize(credentials, req) {
+        try {
+          // Credentials check
+          if (!credentials) throw new Error("No credentials to login");
+
+          // Get user object.
+          const user = db.user.findUnique({
+            where: {
+              email: credentials.email,
+            },
+          });
+
+          // Compare passwords
+          const logged = await bcrypt.compare(
+            credentials.password,
+            user.password
+          );
+
+          // If its not there, throw an error!
+          if (!logged) throw new Error("Invalid credentials");
+
+          return user as any; // fix for https://github.com/nextauthjs/next-auth/issues/2701
+        } catch (ignored) {
+          return null;
         }
       },
     }),
