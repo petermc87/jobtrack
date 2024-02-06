@@ -16,7 +16,7 @@ import styles from "./page.module.scss";
 // Import redux variables.
 
 import { Button } from "react-bootstrap";
-import LoginSession from "../../actions/authRequests/loginSession";
+import LoginSession from "../../actions/authRequests/signup";
 import { useAppSelector } from "./redux/store";
 
 export default function Home() {
