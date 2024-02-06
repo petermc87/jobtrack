@@ -2,15 +2,29 @@
 
 import { openForm } from "@/app/redux/features/signupSlice";
 import { AppDispatch, useAppSelector } from "@/app/redux/store";
-import { Form } from "react-bootstrap";
+import { User } from "@prisma/client";
+import { signIn } from "next-auth/react";
+import { SyntheticEvent, useState } from "react";
+import { Button, Form, InputGroup } from "react-bootstrap";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
+import Signup from "../../../../actions/authRequests/signup";
 import GoogleButton from "../GoogleButton/GoogleButton";
-import InputField from "../InputField/InputField";
-import LoginButtonSignUpButton from "../LoginSignupButton/LoginSignupButtonModal";
 import Logo from "../Logo/logo";
 import styles from "./LoginSignupForm.module.scss";
 
 export default function LoginSignupForm() {
+  // --- INPUT FIELDS --- //
+  // Use state to toggle the type.
+  const [showPassword, setShowPassword] = useState<boolean>(true);
+
+  // Changing the password show state on click.
+  const handleToggle = () => {
+    if (showPassword) setShowPassword(false);
+    else setShowPassword(true);
+  };
+
+  // --- FORM TYPE --- //
   // Instantiate the state update event
   const dispatch = useDispatch<AppDispatch>();
 
@@ -21,28 +35,95 @@ export default function LoginSignupForm() {
 
   // Get current state of the form.
   const isOpen = useAppSelector((state) => state.signupReducer.value.isOpen);
+
+  // --- FORM SUBMIT --- //
+  // Submitting user.
+  const handleSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    // Test the signup function by just passing in
+    // props.
+
+    // Storing the target value in the form to a variable.
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      email: { value: string };
+      username: { value: string };
+      password: { value: any };
+    };
+
+    // TODO: Refactor this code to consider the difference
+    // between Login and Signup. Login will not need name and
+    // username.
+
+    let name: string = "";
+    let username: string = "";
+    if (target.name || target.username) {
+      name = target.name.value;
+      username = target.username.value;
+    }
+
+    const email = target.email.value;
+    const password = target.password.value;
+
+    // TODO: Refactor this so that we consider whether isOpen
+    // is either login or signup.
+
+    // Signing up the new user.
+    try {
+      console.log(email, password, username, name);
+      const user = await Signup({ email, password, username, name } as User);
+
+      await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect: true,
+        callbackUrl: "/home",
+      });
+    } catch (error) {
+      throw new Error("There was an error when signing up: " + error);
+    }
+  };
   return (
     <>
-      <Form className={styles.formWrapper}>
+      <Form className={styles.formWrapper} onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className={styles.topContainer}>
           <Logo />
           <h1 className={styles.heading}>
             {isOpen === "signup" ? "Sign Up" : "Log In"}
           </h1>
+          {/* Create a map that will render the input */}
           {isOpen === "signup" && (
             <>
-              <InputField placeholderText="FULLNAME" />
-              <InputField placeholderText="USERNAME" />
+              <Form.Control placeholder="FULLNAME" name="name" />
+              <Form.Control placeholder="USERNAME" name="username" />
             </>
           )}
-
-          <InputField placeholderText="EMAIL" />
-          <InputField placeholderText="PASSWORD" />
+          <Form.Control placeholder="EMAIL" name="email" />
+          <InputGroup>
+            <Form.Control
+              placeholder="PASSWORD"
+              type={showPassword ? "password" : "text"}
+              name="password"
+            />
+            <Button
+              variant="outline-secondary"
+              id="button-addon2"
+              onClick={() => handleToggle()}
+              className={styles.button}
+            >
+              {showPassword ? (
+                <FaRegEyeSlash className={styles.eye} />
+              ) : (
+                <FaRegEye className={styles.eye} />
+              )}
+            </Button>
+          </InputGroup>
         </Form.Group>
         {isOpen === "signup" ? (
-          <LoginButtonSignUpButton buttonChoice={isOpen} />
+          // <LoginButtonSignUpButton buttonChoice={isOpen} />
+          <Button type="submit">Sign Up</Button>
         ) : (
-          <LoginButtonSignUpButton buttonChoice={isOpen} />
+          <Button type="submit">Log In</Button>
         )}
         <h1 className={styles.heading}>OR</h1>
         <Form.Group className={styles.bottomContainer}>

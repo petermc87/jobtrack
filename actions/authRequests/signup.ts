@@ -22,7 +22,7 @@ export default async function Signup({
     console.error(error);
   }
 
-  // Statemento to check whether it exists or not
+  // Statement to check whether it exists or not
   if (checkEmail) {
     return "Email already exists";
   } else {

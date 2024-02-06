@@ -7,9 +7,9 @@ import db from "../../../../../prisma/db";
 declare module "next-auth" {
   interface User {
     id: number;
-    password: string | undefined | number | null;
+    password?: string | undefined | number | null;
     email: string | undefined | null;
-    username: string | undefined | null;
+    username?: string | undefined | null;
   }
   interface Session {
     user: {
@@ -28,30 +28,28 @@ const authOptions: NextAuthOptions = {
         password: { label: "Password", placeholder: "Enter your password..." },
       },
       async authorize(credentials, req) {
-        try {
-          // Credentials check
-          if (!credentials) throw new Error("No credentials to login");
+        if (!credentials || !credentials.email || !credentials.password)
+          return null;
 
-          // Get user object.
-          const user = db.user.findUnique({
-            where: {
-              email: credentials.email,
-            },
-          });
+        // Finding the user object
+        const user = await db.user.findUnique({
+          where: {
+            email: credentials.email,
+          },
+        });
 
-          // Compare passwords
-          const logged = await bcrypt.compare(
+        if (user?.email && user?.password) {
+          const isPasswordValid = await bcrypt.compare(
             credentials.password,
             user.password
           );
-
-          // If its not there, throw an error!
-          if (!logged) throw new Error("Invalid credentials");
-
-          return user as any; // fix for https://github.com/nextauthjs/next-auth/issues/2701
-        } catch (ignored) {
-          return null;
+          if (!isPasswordValid) {
+            return null;
+          }
+          return user as any;
         }
+
+        return null;
       },
     }),
   ],
@@ -99,3 +97,13 @@ const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
+
+///--- THIS CODE BLOCK FOR AUTHORIZE DIDNT RIDIRECT TO HOME --- ///
+// Here is what was returned in the terminal:
+// {
+//   then: [Function: then],
+//   catch: [Function: catch],
+//   finally: [Function: finally],
+//   requestTransaction: [Function: requestTransaction],
+//   [Symbol(Symbol.toStringTag)]: 'PrismaPromise'
+// }

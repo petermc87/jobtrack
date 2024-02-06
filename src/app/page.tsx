@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import AddButton from "./components/AddButton/AddButton";
 import ExpandLarge from "./components/ExpandButtons/ExpandButtonLarge";
 import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
@@ -15,8 +16,6 @@ import TitleText from "./components/TitleText/TitleText";
 import styles from "./page.module.scss";
 // Import redux variables.
 
-import { Button } from "react-bootstrap";
-import LoginSession from "../../actions/authRequests/signup";
 import { useAppSelector } from "./redux/store";
 
 export default function Home() {
@@ -24,10 +23,10 @@ export default function Home() {
   // at the NavBar.
   const isOpen = useAppSelector((state) => state.signupReducer.value.isOpen);
 
-  const handleLoginSession = async () => {
-    await LoginSession();
-  };
+  //
+  const { data } = useSession();
 
+  console.log(data);
   return (
     <div>
       <NavBar />
@@ -38,7 +37,8 @@ export default function Home() {
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
         <p>Paragraph</p>
-        <Button onClick={() => handleLoginSession()}>Go to Auth page</Button>
+        {/* <p>{data}</p> */}
+        {/* <Button onClick={() => handleLoginSession()}>Go to Auth page</Button> */}
         <br />
         <br />
         <br />
