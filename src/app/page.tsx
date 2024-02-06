@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import AddButton from "./components/AddButton/AddButton";
 import ExpandLarge from "./components/ExpandButtons/ExpandButtonLarge";
 import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
@@ -23,10 +22,6 @@ export default function Home() {
   // at the NavBar.
   const isOpen = useAppSelector((state) => state.signupReducer.value.isOpen);
 
-  //
-  const { data } = useSession();
-
-  console.log(data);
   return (
     <div>
       <NavBar />
