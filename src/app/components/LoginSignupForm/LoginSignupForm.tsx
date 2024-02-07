@@ -4,7 +4,7 @@ import { openForm } from "@/app/redux/features/signupSlice";
 import { AppDispatch, useAppSelector } from "@/app/redux/store";
 import { User } from "@prisma/client";
 import { signIn } from "next-auth/react";
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
@@ -85,9 +85,32 @@ export default function LoginSignupForm() {
     }
   };
 
+  // Handling 'click outside' of the form to close it
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Calling the handle click outside.
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent): void {
+      if (formRef.current && !formRef.current.contains(e.target as Node)) {
+        // Set the redux State for the form type here.
+        handleFormType("");
+      }
+    }
+
+    // Bind to an event listenter for closing modal
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
   return (
     <>
-      <Form className={styles.formWrapper} onSubmit={(e) => handleSubmit(e)}>
+      <Form
+        ref={formRef}
+        className={styles.formWrapper}
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <Form.Group className={styles.topContainer}>
           <Logo />
           <h1 className={styles.heading}>
