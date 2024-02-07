@@ -7,6 +7,7 @@ import { signIn } from "next-auth/react";
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import Signup from "../../../../actions/authRequests/signup";
 import GoogleButton from "../GoogleButton/GoogleButton";
@@ -106,6 +107,16 @@ export default function LoginSignupForm() {
   });
   return (
     <div className={styles.formBackground}>
+      {/* <Button
+        onClick={() => handleFormType("signup")}
+        className={styles.closeButton}
+      >
+        X
+      </Button> */}
+      <div className={styles.closeButton}>
+        <IoIosCloseCircleOutline />
+      </div>
+
       <Form
         ref={formRef}
         className={styles.formWrapper}
@@ -122,26 +133,29 @@ export default function LoginSignupForm() {
               <Form.Control
                 placeholder="FULLNAME"
                 name="name"
-                id={styles.inputWrapper}
+                className={styles.inputWrapper}
+                required
               />
               <Form.Control
                 placeholder="USERNAME"
                 name="username"
-                id={styles.inputWrapper}
+                className={styles.inputWrapper}
               />
             </>
           )}
           <Form.Control
             placeholder="EMAIL"
             name="email"
-            id={styles.inputWrapper}
+            className={styles.inputWrapper}
+            required
           />
           <InputGroup id={styles.groupWrapper}>
             <Form.Control
               placeholder="PASSWORD"
               type={showPassword ? "password" : "text"}
               name="password"
-              id={styles.inputWrapper}
+              className={styles.inputWrapper}
+              required
             />
             <Button
               variant="outline-secondary"
