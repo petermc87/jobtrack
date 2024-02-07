@@ -1,11 +1,8 @@
-@mixin button-hover($seconds) {
-}
-
+// Animation fade for any style, hence the type variable.
 @mixin fade-in-animation($type, $valueOne, $valueTwo, $seconds) {
   animation: fadeIn $seconds forwards;
 
   // Animation for fade in
-
   @keyframes fadeIn {
     from {
       #{$type}: $valueOne;

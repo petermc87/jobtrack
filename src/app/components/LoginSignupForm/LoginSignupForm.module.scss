@@ -15,7 +15,7 @@ $common-background: var.$black-gray;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
-  @include fade-in-animation(opacity, 0, 1, 0.2s);
+  @include fade-in-animation(opacity, 0, 1, 2s);
 }
 
 .formWrapper {
@@ -59,7 +59,12 @@ $common-background: var.$black-gray;
 
     &:hover {
       cursor: pointer;
-      color: var.$accent-green;
+      @include fade-in-animation(
+        color,
+        var.$accent-blue,
+        var.$accent-green,
+        0.2s
+      );
     }
   }
 }
@@ -90,6 +95,12 @@ $common-background: var.$black-gray;
   margin: 0.4rem 0 0.4rem 0 !important;
   &:hover {
     background-color: var.$accent-green !important;
+    @include fade-in-animation(
+      color,
+      var.$accent-blue,
+      var.$accent-green,
+      0.2s
+    );
   }
   .eye {
     border: $line green;
@@ -112,6 +123,7 @@ $common-background: var.$black-gray;
     background-color: transparent;
     color: var.$accent-blue;
     font-size: 2rem;
+    // It will pass in color animation types to the mixin.
     &:hover {
       cursor: pointer;
       @include fade-in-animation(

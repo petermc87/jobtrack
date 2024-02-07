@@ -107,12 +107,6 @@ export default function LoginSignupForm() {
   });
   return (
     <div className={styles.formBackground}>
-      {/* <Button
-        onClick={() => handleFormType("signup")}
-        className={styles.closeButton}
-      >
-        X
-      </Button> */}
       <div className={styles.closeButton}>
         <IoIosCloseCircleOutline />
       </div>

@@ -5,7 +5,8 @@ import styles from "./GoogleButton.module.scss";
 export default function GoogleButton() {
   return (
     <Container className={styles.googleWrapper}>
-      <h1>Sign In with Google</h1> <FaGoogle className={styles.icon} />
+      <FaGoogle className={styles.icon} />
+      <h1>Sign In with Google</h1>
     </Container>
   );
 }

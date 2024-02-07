@@ -1,5 +1,5 @@
 @use "../../utilities/variables" as var;
-
+@import "../../utilities/mixins";
 $line: solid;
 
 .googleWrapper {
@@ -20,15 +20,20 @@ $line: solid;
   .icon {
     color: var.$accent-blue;
     background-color: var.$black-gray;
+    margin-right: 1rem;
   }
-}
+  &:hover {
+    cursor: pointer;
+    border-color: var.$accent-green;
 
-.googleWrapper:hover {
-  cursor: pointer;
-  opacity: 0.7;
-  border-color: var.$accent-green;
-  h1,
-  .icon {
-    color: var.$accent-green;
+    h1,
+    .icon {
+      @include fade-in-animation(
+        color,
+        var.$accent-blue,
+        var.$accent-green,
+        0.2
+      );
+    }
   }
 }
