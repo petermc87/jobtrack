@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-
+      {isOpen === "signup" || isOpen === "login" ? <LoginSignupForm /> : ""}
       <div className={styles.landingWrapper}>
         <TitleText text="An easy way to track your job applications" />
         <p>Current state: {isOpen.toString()}</p>
@@ -36,7 +36,6 @@ export default function Home() {
         <br />
         <br />
         <br />
-        {isOpen === "signup" || isOpen === "login" ? <LoginSignupForm /> : ""}
 
         <LoginSignupLarge buttonChoice="signup" />
         <LoginSignupLarge buttonChoice="login" />

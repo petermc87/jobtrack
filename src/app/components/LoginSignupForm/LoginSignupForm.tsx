@@ -105,7 +105,7 @@ export default function LoginSignupForm() {
     };
   });
   return (
-    <>
+    <div className={styles.formBackground}>
       <Form
         ref={formRef}
         className={styles.formWrapper}
@@ -180,6 +180,6 @@ export default function LoginSignupForm() {
           </h2>
         </Form.Group>
       </Form>
-    </>
+    </div>
   );
 }

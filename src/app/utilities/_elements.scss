@@ -46,6 +46,17 @@
   background-color: transparent;
 }
 
+%fadeInAnimation {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100%;
+    }
+  }
+}
+
 // %inputField
 
 // %loginModal
