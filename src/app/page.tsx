@@ -4,7 +4,6 @@ import AddButton from "./components/AddButton/AddButton";
 import ExpandLarge from "./components/ExpandButtons/ExpandButtonLarge";
 import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
 import GoogleButton from "./components/GoogleButton/GoogleButton";
-import InputField from "./components/InputField/InputField";
 import JobListElement from "./components/JobListElement/JobListElement";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
 import LoginSignupForm from "./components/LoginSignupForm/LoginSignupForm";
@@ -50,7 +49,6 @@ export default function Home() {
         <RadioButton buttonChoice={true} />
         <RadioButton buttonChoice={false} />
         <ResumeUpload />
-        <InputField placeholderText="e.g Construction, Real Estate..." />
         <br />
         <br />
         <JobListElement />

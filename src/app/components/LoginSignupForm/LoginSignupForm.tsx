@@ -83,6 +83,7 @@ export default function LoginSignupForm() {
       throw new Error("There was an error when signing up: " + error);
     }
   };
+
   return (
     <>
       <Form className={styles.formWrapper} onSubmit={(e) => handleSubmit(e)}>
@@ -94,16 +95,29 @@ export default function LoginSignupForm() {
           {/* Create a map that will render the input */}
           {isOpen === "signup" && (
             <>
-              <Form.Control placeholder="FULLNAME" name="name" />
-              <Form.Control placeholder="USERNAME" name="username" />
+              <Form.Control
+                placeholder="FULLNAME"
+                name="name"
+                id={styles.inputWrapper}
+              />
+              <Form.Control
+                placeholder="USERNAME"
+                name="username"
+                id={styles.inputWrapper}
+              />
             </>
           )}
-          <Form.Control placeholder="EMAIL" name="email" />
-          <InputGroup>
+          <Form.Control
+            placeholder="EMAIL"
+            name="email"
+            id={styles.inputWrapper}
+          />
+          <InputGroup id={styles.groupWrapper}>
             <Form.Control
               placeholder="PASSWORD"
               type={showPassword ? "password" : "text"}
               name="password"
+              id={styles.inputWrapper}
             />
             <Button
               variant="outline-secondary"
@@ -120,7 +134,6 @@ export default function LoginSignupForm() {
           </InputGroup>
         </Form.Group>
         {isOpen === "signup" ? (
-          // <LoginButtonSignUpButton buttonChoice={isOpen} />
           <Button type="submit">Sign Up</Button>
         ) : (
           <Button type="submit">Log In</Button>

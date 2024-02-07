@@ -38,6 +38,7 @@ const authOptions: NextAuthOptions = {
           },
         });
 
+        // Checking the password.
         if (user?.email && user?.password) {
           const isPasswordValid = await bcrypt.compare(
             credentials.password,
