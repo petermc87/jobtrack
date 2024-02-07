@@ -18,3 +18,5 @@ JobTrack is an app that helps you manage your job applications with ease. You ca
 ## Resources
 
 1. [Color Palette Generator](https://www.toptal.com/designers/colourcode/monochrome-color-builder)
+
+2. [SCSS Mixins](https://sass-lang.com/documentation/at-rules/mixin/)
