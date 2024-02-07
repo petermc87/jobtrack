@@ -10,6 +10,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import Signup from "../../../../actions/authRequests/signup";
 import GoogleButton from "../GoogleButton/GoogleButton";
+import LoginButtonSignUpButton from "../LoginSignupButton/LoginSignupButtonModal";
 import Logo from "../Logo/logo";
 import styles from "./LoginSignupForm.module.scss";
 
@@ -134,9 +135,9 @@ export default function LoginSignupForm() {
           </InputGroup>
         </Form.Group>
         {isOpen === "signup" ? (
-          <Button type="submit">Sign Up</Button>
+          <LoginButtonSignUpButton buttonChoice="signup" />
         ) : (
-          <Button type="submit">Log In</Button>
+          <LoginButtonSignUpButton buttonChoice="login" />
         )}
         <h1 className={styles.heading}>OR</h1>
         <Form.Group className={styles.bottomContainer}>

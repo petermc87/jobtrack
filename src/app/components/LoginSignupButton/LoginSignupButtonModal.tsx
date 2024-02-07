@@ -13,7 +13,7 @@ export default function LoginButtonSignUpButton({
   buttonChoice,
 }: ButtonTypes<string>) {
   return (
-    <Button id={styles.loginButtonEl}>
+    <Button type="submit" id={styles.loginButtonEl}>
       {buttonChoice === "login" ? "Log In" : "Sign Up"}
     </Button>
   );
