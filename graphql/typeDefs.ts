@@ -32,6 +32,6 @@ export const typeDefs = gql`
     # Get one user
     user(id: ID!): User
     # Get all users
-    users: [Users]
+    users: [User]
   }
 `;
