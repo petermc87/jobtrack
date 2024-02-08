@@ -1,6 +1,6 @@
 // export { Context }
-
 import { Context } from "@/app/api/graphql/route";
+import bcrypt from "bcrypt";
 
 export const resolvers = {
   // GET requests --> Users
@@ -86,6 +86,49 @@ export const resolvers = {
       } catch (error) {
         console.error("Error when fetching categories: ", error);
         throw new Error("Unable to fetch categories");
+      }
+    },
+  },
+  Mutation: {
+    newUser: async (parent: any, args: any, context: Context) => {
+      // Checking if email exists
+      let checkEmail;
+
+      try {
+        checkEmail = await context.prisma.user.findUnique({
+          where: {
+            email: args.email,
+          },
+        });
+      } catch (error) {
+        console.error("The fetch request could not be performed", error);
+        throw new Error(
+          "Unable to perform fetch. NOTE: This means there is an error with performing the prisma request, not because there wasnt an email match"
+        );
+      }
+
+      // Breaking down the response
+      if (checkEmail) {
+        // Returning it back to the client
+        return "Email already exists";
+      } else {
+        const saltRounds = 10;
+        let saltedPassword = await bcrypt.hash(args.password, saltRounds);
+        // Adding user to database
+        try {
+          const newUser = await context.prisma.user.create({
+            data: {
+              email: args.email,
+              password: saltedPassword,
+              name: args.name,
+              username: args.username,
+            },
+          });
+          return newUser;
+        } catch (error) {
+          console.error("Error when signing up", error);
+          throw new Error("Unable to create user");
+        }
       }
     },
   },

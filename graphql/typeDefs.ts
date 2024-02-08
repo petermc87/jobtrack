@@ -43,4 +43,13 @@ export const typeDefs = gql`
     # Get all jobs
     jobs: [Job]
   }
+
+  type Mutation {
+    newUser(
+      name: String
+      username: String
+      email: String
+      password: String
+    ): User
+  }
 `;
