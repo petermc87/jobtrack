@@ -1,5 +1,7 @@
 import gql from "graphql-tag";
 
+//---> THis is what shows up in the left selection pane in
+// Apollo.
 export const typeDefs = gql`
   type Category {
     id: ID!
@@ -36,5 +38,9 @@ export const typeDefs = gql`
     category(id: ID!): Category
     # Get all categories
     categories: [Category]
+    # Get one job
+    job(id: ID!): Job
+    # Get all jobs
+    jobs: [Job]
   }
 `;

@@ -50,6 +50,28 @@ export const resolvers = {
         throw new Error("Unable to fetch category");
       }
     },
+    jobs: async (parent: any, args: any, context: Context) => {
+      try {
+        const jobs = await context.prisma.job.findMany();
+        return jobs || [];
+      } catch (error) {
+        console.error("Error when fetching jobs", error);
+        throw new Error("Unable to fetch jobs");
+      }
+    },
+    job: async (parent: any, args: any, context: Context) => {
+      try {
+        const job = await context.prisma.job.findUnique({
+          where: {
+            id: args.id,
+          },
+        });
+        return job;
+      } catch (error) {
+        console.error("Error when fetching job", error);
+        throw new Error("Unable to fetch job");
+      }
+    },
   },
   // User to get the Categories contained within. - GET
   User: {
