@@ -194,5 +194,35 @@ export const resolvers = {
         throw new Error("Error when updating category");
       }
     },
+    deleteCategory: async (parent: any, args: any, context: Context) => {
+      try {
+        const deletedCategory = await context.prisma.category.delete({
+          where: {
+            id: args.id,
+          },
+        });
+        return deletedCategory;
+      } catch (error) {
+        console.error("Unable to delete category", error);
+        throw new Error("Error when deleting category");
+      }
+    },
+    newJob: async (parent: any, args: any, context: Context) => {
+      try {
+        const job = await context.prisma.job.create({
+          data: {
+            title: args.title,
+            link: args.link,
+            jobDescription: args.jobDescription,
+            categoryId: args.categoryId,
+            resumeLink: args.resumeLink,
+          },
+        });
+        return job;
+      } catch (error) {
+        console.error("Unable to create job", error);
+        throw new Error("Error when creating job");
+      }
+    },
   },
 };

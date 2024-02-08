@@ -59,5 +59,14 @@ export const typeDefs = gql`
     # NOTE: The user can only change the name of the category. There is no
     # option to change the userId.
     updateCategory(id: ID!, newName: String): Category
+    deleteCategory(id: ID!): Category
+    # Job
+    newJob(
+      title: String
+      link: String
+      jobDescription: String
+      categoryId: String
+      resumeLink: String
+    ): Job
   }
 `;
