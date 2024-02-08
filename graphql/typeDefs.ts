@@ -32,5 +32,9 @@ export const typeDefs = gql`
     user(id: ID!): User
     # Get all users
     users: [User]
+    # Get one category
+    category(id: ID!): Category
+    # Get all categories
+    categories: [Category]
   }
 `;

@@ -28,6 +28,15 @@ export const resolvers = {
         throw new Error("Unable to fetch user");
       }
     },
+    categories: async (parent: any, args: any, context: Context) => {
+      try {
+        const categories = await context.prisma.category.findMany();
+        return categories || [];
+      } catch (error) {
+        console.error("Error when fetching category: ", error);
+        throw new Error("Unable to fetch category");
+      }
+    },
   },
   // GET request --> for User to get the Categories contained within.
   User: {
