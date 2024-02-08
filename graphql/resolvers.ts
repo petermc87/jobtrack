@@ -131,5 +131,25 @@ export const resolvers = {
         }
       }
     },
+    updateUser: async (parent: any, args: any, context: Context) => {
+      const updateData: { [key: string]: any } = {}; // Define an empy object to hold the key:value
+      // pair being passed in.
+
+      // Populating the new object with the data
+      updateData[args.type] = args.item;
+      try {
+        // Update the user using the populated object.
+        const updatedUser = await context.prisma.user.update({
+          where: {
+            id: args.id,
+          },
+          data: updateData,
+        });
+        return updatedUser;
+      } catch (error) {
+        console.error("Error updating the user", error);
+        throw new Error("Unable to update user");
+      }
+    },
   },
 };

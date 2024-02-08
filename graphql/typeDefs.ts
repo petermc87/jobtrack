@@ -51,5 +51,7 @@ export const typeDefs = gql`
       email: String
       password: String
     ): User
+
+    updateUser(id: ID!, item: String, type: String): User
   }
 `;
