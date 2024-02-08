@@ -68,5 +68,7 @@ export const typeDefs = gql`
       categoryId: String
       resumeLink: String
     ): Job
+    updateJob(id: ID!, newValue: String, type: String): Job
+    deleteJob(id: ID!): Job
   }
 `;

@@ -224,5 +224,36 @@ export const resolvers = {
         throw new Error("Error when creating job");
       }
     },
+    updateJob: async (parent: any, args: any, context: Context) => {
+      const updateData: { [key: string]: any } = {};
+
+      updateData[args.type] = args.newValue;
+
+      try {
+        const updatedJob = await context.prisma.job.update({
+          where: {
+            id: args.id,
+          },
+          data: updateData,
+        });
+        return updatedJob;
+      } catch (error) {
+        console.error("Unable to update job", error);
+        throw new Error("Error when updating job");
+      }
+    },
+    deleteJob: async (parent: any, args: any, context: Context) => {
+      try {
+        const deletedJob = await context.prisma.job.delete({
+          where: {
+            id: args.id,
+          },
+        });
+        return deletedJob;
+      } catch (error) {
+        console.error("Unable to delete job");
+        throw new Error("Error deleting Job");
+      }
+    },
   },
 };
