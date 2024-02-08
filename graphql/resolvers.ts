@@ -136,7 +136,7 @@ export const resolvers = {
       // pair being passed in.
 
       // Populating the new object with the data
-      updateData[args.type] = args.item;
+      updateData[args.type] = args.newValue;
       try {
         // Update the user using the populated object.
         const updatedUser = await context.prisma.user.update({
@@ -149,6 +149,19 @@ export const resolvers = {
       } catch (error) {
         console.error("Error updating the user", error);
         throw new Error("Unable to update user");
+      }
+    },
+    deleteUser: async (parent: any, args: any, context: Context) => {
+      try {
+        const deletedUser = await context.prisma.user.delete({
+          where: {
+            id: args.id,
+          },
+        });
+        return deletedUser;
+      } catch (error) {
+        console.error("Unable to delete user", error);
+        throw new Error("Error deleting user");
       }
     },
   },

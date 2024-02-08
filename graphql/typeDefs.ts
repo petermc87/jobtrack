@@ -51,7 +51,7 @@ export const typeDefs = gql`
       email: String
       password: String
     ): User
-
-    updateUser(id: ID!, item: String, type: String): User
+    updateUser(id: ID!, newValue: String, type: String): User
+    deleteUser(id: ID!): User
   }
 `;
