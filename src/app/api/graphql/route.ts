@@ -6,7 +6,7 @@ import { typeDefs } from "../../../../graphql/typeDefs";
 
 import prisma from "../../../../prisma/db";
 
-// Declaring the type as the Prismaclient.
+// Declaring the type as the Prisma client.
 export type Context = {
   prisma: PrismaClient;
 };

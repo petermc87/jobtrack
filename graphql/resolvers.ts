@@ -5,12 +5,11 @@ import { Context } from "@/app/api/graphql/route";
 export const resolvers = {
   // GET requests --> Users
   Query: {
-    ///---> TODO: Change Context.
     users: async (parent: any, args: any, context: Context) => {
       try {
         const users = await context.prisma.user.findMany();
         //  Returns an empy array if null.
-        return users;
+        return users || [];
       } catch (error) {
         console.error("Error fetching users", error);
         throw new Error("Unable to fetch users");
@@ -36,7 +35,7 @@ export const resolvers = {
       try {
         const categories = await context.prisma.category.findMany({
           where: {
-            userId: args.id,
+            userId: parent.id,
           },
         });
         return categories || [];

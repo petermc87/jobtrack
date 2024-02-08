@@ -1,6 +1,12 @@
 import gql from "graphql-tag";
 
 export const typeDefs = gql`
+  type Category {
+    id: ID!
+    name: String
+    # NOTE: The user @relation parameter is not matched here.
+    userId: String
+  }
   type User {
     # ID! represents a non nullable id.
     id: ID!
@@ -9,13 +15,6 @@ export const typeDefs = gql`
     email: String
     password: String
     categories: [Category]
-  }
-
-  type Category {
-    id: ID!
-    name: String
-    # NOTE: The user @relation parameter is not matched here.
-    userId: String
   }
 
   type Job {
