@@ -164,5 +164,35 @@ export const resolvers = {
         throw new Error("Error deleting user");
       }
     },
+    newCategory: async (parent: any, args: any, context: Context) => {
+      try {
+        const category = await context.prisma.category.create({
+          data: {
+            name: args.name,
+            userId: args.userId,
+          },
+        });
+        return category;
+      } catch (error) {
+        console.error("Unable to create category", error);
+        throw new Error("Error when creating category");
+      }
+    },
+    updateCategory: async (parent: any, args: any, context: Context) => {
+      try {
+        const updatedCategory = await context.prisma.category.update({
+          where: {
+            id: args.id,
+          },
+          data: {
+            name: args.newName,
+          },
+        });
+        return updatedCategory;
+      } catch (error) {
+        console.error("Unable to update category", error);
+        throw new Error("Error when updating category");
+      }
+    },
   },
 };

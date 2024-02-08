@@ -45,6 +45,7 @@ export const typeDefs = gql`
   }
 
   type Mutation {
+    # Users
     newUser(
       name: String
       username: String
@@ -53,5 +54,10 @@ export const typeDefs = gql`
     ): User
     updateUser(id: ID!, newValue: String, type: String): User
     deleteUser(id: ID!): User
+    # Categories
+    newCategory(name: String, userId: String): Category
+    # NOTE: The user can only change the name of the category. There is no
+    # option to change the userId.
+    updateCategory(id: ID!, newName: String): Category
   }
 `;
