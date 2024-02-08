@@ -31,7 +31,7 @@ export const typeDefs = gql`
   #   GET requests.
   type Query {
     # Get one user
-    user(id: ID!): User
+    user(email: String): User
     # Get all users
     users: [User]
     # Get one category

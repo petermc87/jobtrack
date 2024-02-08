@@ -31,6 +31,7 @@ const authOptions: NextAuthOptions = {
         if (!credentials || !credentials.email || !credentials.password)
           return null;
 
+        // ---> FETCH THROUGH GRAPHQL <--- //
         // Finding the user object
         const user = await db.user.findUnique({
           where: {

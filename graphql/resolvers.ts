@@ -19,7 +19,7 @@ export const resolvers = {
       try {
         const user = await context.prisma.user.findUnique({
           where: {
-            id: args.id,
+            email: args.email,
           },
         });
         return user;

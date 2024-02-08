@@ -72,7 +72,6 @@ export default function LoginSignupForm() {
 
     // Signing up the new user.
     try {
-      console.log(email, password, username, name);
       const user = await Signup({ email, password, username, name } as User);
 
       await signIn("credentials", {
