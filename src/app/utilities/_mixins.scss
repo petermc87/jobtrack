@@ -1,3 +1,6 @@
+@use "./variables" as var;
+@use "./elements";
+
 // Animation fade for any style, hence the type variable.
 @mixin fade-in-animation($type, $valueOne, $valueTwo, $seconds) {
   animation: fadeIn $seconds forwards;
@@ -11,4 +14,11 @@
       #{$type}: $valueTwo;
     }
   }
+}
+
+@mixin input-field($marginOne, $marginTwo) {
+  border: solid var.$accent-blue !important;
+  background-color: var.$dark-gray !important;
+  color: white !important;
+  margin: $marginOne $marginTwo $marginOne $marginTwo !important;
 }

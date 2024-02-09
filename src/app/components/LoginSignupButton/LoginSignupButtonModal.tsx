@@ -1,3 +1,4 @@
+import { signOut, useSession } from "next-auth/react";
 import { Button } from "react-bootstrap";
 import styles from "./LoginSignupButtonModal.module.scss";
 
@@ -12,9 +13,25 @@ type ButtonTypes<ReactNode> = {
 export default function LoginButtonSignUpButton({
   buttonChoice,
 }: ButtonTypes<string>) {
+  // If there is a user, then that will affect the button type also.
+  const { data } = useSession();
+
   return (
-    <Button type="submit" id={styles.loginButtonEl}>
-      {buttonChoice === "login" ? "Log In" : "Sign Up"}
-    </Button>
+    <>
+      {/* No data --> either Sign Up OR Log In */}
+      {!data ? (
+        <Button type="submit" id={styles.loginButtonEl}>
+          {buttonChoice === "login" ? "Log In" : "Sign Up"}
+        </Button>
+      ) : (
+        // data --> Log out
+        <Button
+          onClick={() => signOut({ callbackUrl: "/" })}
+          id={styles.loginButtonEl}
+        >
+          Log Out
+        </Button>
+      )}
+    </>
   );
 }

@@ -81,10 +81,7 @@ $common-background: var.$black-gray;
 
 .inputWrapper {
   border: $line red;
-  border: solid var.$accent-blue !important;
-  background-color: var.$dark-gray !important;
-  color: white !important;
-  margin: 0.4rem 0 0.4rem 0 !important;
+  @include input-field(0.4rem, 0);
 }
 
 .button {
