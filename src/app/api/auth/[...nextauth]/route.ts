@@ -44,8 +44,7 @@ const authOptions: NextAuthOptions = {
           },
         });
 
-        console.log(user);
-
+        // ERROR: No user from the database found
         if (user === null || !user) return null;
 
         // Checking the password.
@@ -57,8 +56,7 @@ const authOptions: NextAuthOptions = {
             user.password || ""
           );
           if (!isPasswordValid) {
-            // ERROR: The password was incorrectly inputted.
-            // return "Invalid password!";
+            //ERROR: Invalid password
             return null;
           }
           return user as any;

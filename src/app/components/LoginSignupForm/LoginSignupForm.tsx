@@ -99,7 +99,7 @@ export default function LoginSignupForm() {
       email: email,
       password: password,
       redirect: false,
-    }).then(({ ok, status }) => {
+    }).then(({ ok, status }: any) => {
       if (ok === true) {
         router.push("/home");
       } else {
