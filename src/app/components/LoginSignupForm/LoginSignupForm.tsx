@@ -4,6 +4,7 @@ import { openForm } from "@/app/redux/features/signupSlice";
 import { AppDispatch, useAppSelector } from "@/app/redux/store";
 import { useMutation } from "@apollo/client";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
@@ -20,11 +21,16 @@ export default function LoginSignupForm() {
   // Use state to toggle the type.
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
+  // State for error message
+  const [message, setMessage] = useState<string>("");
+
   // Changing the password show state on click.
   const handleToggle = () => {
     if (showPassword) setShowPassword(false);
     else setShowPassword(true);
   };
+
+  const router = useRouter();
 
   // ---> APOLLO CLIENT <--- //
   const [newUser, { data, loading, error }] = useMutation(NEW_USER);
@@ -76,8 +82,9 @@ export default function LoginSignupForm() {
     // is either login or signup.
 
     // Signing up the new user.
-    try {
-      // ---> Sign Up User
+    // try {
+    // ---> Sign Up User
+    if (isOpen === "signup") {
       newUser({
         variables: {
           name: name,
@@ -86,16 +93,37 @@ export default function LoginSignupForm() {
           password: password,
         },
       });
-      // ---> Check against the fetched user after signup.
-      await signIn("credentials", {
-        email: email,
-        password: password,
-        redirect: true,
-        callbackUrl: "/home",
-      });
-    } catch (error) {
-      throw new Error("There was an error when signing up: " + error);
     }
+
+    // // ---> Check against the fetched user after signup.
+    // const returned = await signIn("credentials", {
+    //   email: email,
+    //   password: password,
+    //   redirect: false,
+    //   // callbackUrl: "/home",
+    // });
+    await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
+    }).then(({ ok, status }) => {
+      if (ok === true) {
+        router.push("/home");
+      } else {
+        setMessage(status + ": Incorrect login credentails");
+      }
+    });
+
+    // // If an error was returned
+    // if (typeof returned === "string") setMessage(returned);
+    // else {
+    //   setMessage("");
+    //   router.push("/home");
+    // }
+    // } catch (error) {
+    //   setMessage("There was an error signing up");
+    //   throw new Error("There was an error when signing up: " + error);
+    // }
   };
 
   // Handling 'click outside' of the form to close it
@@ -177,6 +205,7 @@ export default function LoginSignupForm() {
             </Button>
           </InputGroup>
         </Form.Group>
+        <div>{message}</div>
         {isOpen === "signup" ? (
           <LoginButtonSignUpButton buttonChoice="signup" />
         ) : (

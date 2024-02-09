@@ -30,6 +30,10 @@ const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials || !credentials.email || !credentials.password)
+          // ERROR: When either no credentials, the email OR the password were not
+          // provided. NOTE: This will likely not happen because of the required
+          // input fields in the login form. This is to satisfy types.
+          // return "Please enter email and password";
           return null;
 
         // ---> FETCH THROUGH GRAPHQL <--- //
@@ -40,18 +44,27 @@ const authOptions: NextAuthOptions = {
           },
         });
 
+        console.log(user);
+
+        if (user === null || !user) return null;
+
         // Checking the password.
         if (user?.email && user?.password) {
+          // Checking both passwords.
+          console.log(credentials.password, user?.password);
           const isPasswordValid = await bcrypt.compare(
             credentials.password,
-            user.password
+            user.password || ""
           );
           if (!isPasswordValid) {
+            // ERROR: The password was incorrectly inputted.
+            // return "Invalid password!";
             return null;
           }
           return user as any;
         }
 
+        // ERROR: When the email AND password were not provided.
         return null;
       },
     }),
