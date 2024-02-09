@@ -1,15 +1,8 @@
 "use client";
 
-import AddButton from "./components/AddButton/AddButton";
-import ExpandLarge from "./components/ExpandButtons/ExpandButtonLarge";
-import ExpandSmall from "./components/ExpandButtons/ExpandButtonSmall";
-import GoogleButton from "./components/GoogleButton/GoogleButton";
-import JobListElement from "./components/JobListElement/JobListElement";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
 import LoginSignupForm from "./components/LoginSignupForm/LoginSignupForm";
 import NavBar from "./components/NavBar/NavBar";
-import RadioButton from "./components/RadioButton/RadioButton";
-import ResumeUpload from "./components/ResumeUploadButton/ResumeUploadButton";
 import TitleText from "./components/TitleText/TitleText";
 import styles from "./page.module.scss";
 // Import redux variables.
@@ -26,13 +19,16 @@ export default function Home() {
       <NavBar />
       {isOpen === "signup" || isOpen === "login" ? <LoginSignupForm /> : ""}
       <div className={styles.landingWrapper}>
-        <TitleText text="An easy way to track your job applications" />
-        <p>Current state: {isOpen.toString()}</p>
+        <TitleText
+          text="An easy way to track your job applications"
+          style={{}}
+        />
+        <LoginSignupLarge buttonChoice="signup" />
+        <LoginSignupLarge buttonChoice="login" />
+        {/* <p>Current state: {isOpen.toString()}</p>
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
         <p>Paragraph</p>
-        {/* <p>{data}</p> */}
-        {/* <Button onClick={() => handleLoginSession()}>Go to Auth page</Button> */}
         <br />
         <br />
         <br />
@@ -61,7 +57,7 @@ export default function Home() {
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
         <TitleText text="An easy way to track your job applications" />
-        <TitleText text="An easy way to track your job applications" />
+        <TitleText text="An easy way to track your job applications" /> */}
       </div>
     </div>
   );

@@ -1,0 +1,11 @@
+$line: none;
+
+.homeWrapper {
+  border: $line blue;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.5rem 0 0.5rem;
+}
