@@ -85,7 +85,7 @@ export default function LoginSignupForm() {
     // try {
     // ---> Sign Up User
     if (isOpen === "signup") {
-      newUser({
+      await newUser({
         variables: {
           name: name,
           username: username,
@@ -95,13 +95,6 @@ export default function LoginSignupForm() {
       });
     }
 
-    // // ---> Check against the fetched user after signup.
-    // const returned = await signIn("credentials", {
-    //   email: email,
-    //   password: password,
-    //   redirect: false,
-    //   // callbackUrl: "/home",
-    // });
     await signIn("credentials", {
       email: email,
       password: password,
@@ -110,20 +103,9 @@ export default function LoginSignupForm() {
       if (ok === true) {
         router.push("/home");
       } else {
-        setMessage(status + ": Incorrect login credentails");
+        setMessage(status + ": Incorrect login credentials");
       }
     });
-
-    // // If an error was returned
-    // if (typeof returned === "string") setMessage(returned);
-    // else {
-    //   setMessage("");
-    //   router.push("/home");
-    // }
-    // } catch (error) {
-    //   setMessage("There was an error signing up");
-    //   throw new Error("There was an error when signing up: " + error);
-    // }
   };
 
   // Handling 'click outside' of the form to close it
