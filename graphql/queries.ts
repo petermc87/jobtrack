@@ -17,4 +17,21 @@ export const GET_USER = gql`
   }
 `;
 
+export const GET_USERS = gql`
+  query Users {
+    users {
+      id
+      name
+      username
+      email
+      password
+      categories {
+        id
+        name
+        userId
+      }
+    }
+  }
+`;
+
 // Retrieve from Apollo server GUI

@@ -2,14 +2,14 @@
 
 import { openForm } from "@/app/redux/features/signupSlice";
 import { AppDispatch, useAppSelector } from "@/app/redux/store";
-import { User } from "@prisma/client";
+import { useMutation } from "@apollo/client";
 import { signIn } from "next-auth/react";
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import Signup from "../../../../actions/authRequests/signup";
+import { NEW_USER } from "../../../../graphql/mutations";
 import GoogleButton from "../GoogleButton/GoogleButton";
 import LoginButtonSignUpButton from "../LoginSignupButton/LoginSignupButtonModal";
 import Logo from "../Logo/logo";
@@ -26,7 +26,10 @@ export default function LoginSignupForm() {
     else setShowPassword(true);
   };
 
-  // --- FORM TYPE --- //
+  // ---> APOLLO CLIENT <--- //
+  const [newUser, { data, loading, error }] = useMutation(NEW_USER);
+
+  // ---> FORM TYPE(Redux) <--- //
   // Instantiate the state update event
   const dispatch = useDispatch<AppDispatch>();
 
@@ -38,7 +41,7 @@ export default function LoginSignupForm() {
   // Get current state of the form.
   const isOpen = useAppSelector((state) => state.signupReducer.value.isOpen);
 
-  // --- FORM SUBMIT --- //
+  // ---> FORM SUBMIT(GraphQL/Apollo/NextAuth) <--- //
   // Submitting user.
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -53,6 +56,8 @@ export default function LoginSignupForm() {
       password: { value: any };
     };
 
+    if (loading) console.log("loading...");
+    if (error) console.error("Submission Error!: ", error);
     // TODO: Refactor this code to consider the difference
     // between Login and Signup. Login will not need name and
     // username.
@@ -72,8 +77,16 @@ export default function LoginSignupForm() {
 
     // Signing up the new user.
     try {
-      const user = await Signup({ email, password, username, name } as User);
-
+      // ---> Sign Up User
+      newUser({
+        variables: {
+          name: name,
+          username: username,
+          email: email,
+          password: password,
+        },
+      });
+      // ---> Check against the fetched user after signup.
       await signIn("credentials", {
         email: email,
         password: password,

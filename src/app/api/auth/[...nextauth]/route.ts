@@ -1,3 +1,4 @@
+// "use client";
 import bcrypt from "bcrypt";
 import { NextAuthOptions, User } from "next-auth";
 import NextAuth from "next-auth/next";

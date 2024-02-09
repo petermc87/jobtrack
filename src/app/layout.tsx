@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import AuthProvider from "./components/AuthProvider/AuthProvider";
+import GraphQlProvider from "./components/GraphQlProvider/GraphQlProvider";
 import "./globals.scss";
 import { ReduxProvider } from "./redux/providers";
 
@@ -26,9 +27,11 @@ export default function RootLayout({
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
           crossOrigin="anonymous"
         />
-        <ReduxProvider>
-          <AuthProvider>{children}</AuthProvider>
-        </ReduxProvider>
+        <GraphQlProvider>
+          <ReduxProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </ReduxProvider>
+        </GraphQlProvider>
       </body>
     </html>
   );
