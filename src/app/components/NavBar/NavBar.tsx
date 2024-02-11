@@ -6,7 +6,10 @@ export default function NavBar() {
   return (
     <div className={styles.NavWrapper}>
       <Logo />
-      <LoginButtonSignUpButton buttonChoice="signup" />
+      <div className={styles.buttonContainer}>
+        <LoginButtonSignUpButton buttonChoice="signup" />
+        <LoginButtonSignUpButton buttonChoice="login" />
+      </div>
     </div>
   );
 }

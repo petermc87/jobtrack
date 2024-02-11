@@ -12,3 +12,12 @@ $line: none;
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(6px);
 }
+
+.buttonContainer {
+  border: $line red;
+  width: 11.5rem;
+  // width: 50%;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+}

@@ -16,7 +16,6 @@ export default function Home() {
   //   Assign that type to the 'data' passed into the session
   // hook.
   const { data } = useSession() as { data: SessionData | null };
-  console.log(data);
 
   return (
     <div>
