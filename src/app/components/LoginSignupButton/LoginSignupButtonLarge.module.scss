@@ -1,9 +1,19 @@
 @use "../../utilities/elements";
 @use "../../utilities/variables" as var;
+@import "../../utilities/mixins";
+
 $line: none;
 
 #loginButtonEl {
   @extend %loginButton;
   width: 6rem;
   border: $line gray;
+  &:hover {
+    @include fade-in-animation(
+      background-color,
+      var.$accent-blue,
+      var.$accent-green,
+      0.2s
+    );
+  }
 }
