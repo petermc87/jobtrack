@@ -1,7 +1,6 @@
 $line: none;
 
 .NavWrapper {
-  //   z-index: +2;
   border: $line black;
   display: flex;
   justify-content: space-between;
@@ -16,7 +15,6 @@ $line: none;
 .buttonContainer {
   border: $line red;
   width: 11.5rem;
-  // width: 50%;
   display: flex;
   justify-content: space-between;
   background-color: transparent;

@@ -23,6 +23,8 @@ export default function Home() {
           text="An easy way to track your job applications"
           style={{}}
         />
+        <br />
+        <br />
         <LoginSignupLarge buttonChoice="signup" />
       </div>
     </div>
