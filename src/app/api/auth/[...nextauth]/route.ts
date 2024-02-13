@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { NextAuthOptions, User } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 import db from "../../../../../prisma/db";
 
 declare module "next-auth" {
@@ -64,6 +65,17 @@ const authOptions: NextAuthOptions = {
 
         // ERROR: When the email AND password were not provided.
         return null;
+      },
+    }),
+    Google({
+      clientId: process.env.GOOGLE_CLIENT ?? "",
+      clientSecret: process.env.GOOGLE_SECRET ?? "",
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
       },
     }),
   ],
