@@ -187,7 +187,7 @@ export default function LoginSignupForm() {
             </Button>
           </InputGroup>
         </Form.Group>
-        <div>{message}</div>
+        {message && <div className={styles.errorMessage}>{message}</div>}
         {isOpen === "signup" ? (
           <LoginButtonSignUpButton buttonChoice="signup" />
         ) : (
