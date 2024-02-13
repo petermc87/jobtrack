@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "react-bootstrap";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
 import LoginSignupForm from "./components/LoginSignupForm/LoginSignupForm";
 import NavBar from "./components/NavBar/NavBar";
@@ -8,7 +7,6 @@ import TitleText from "./components/TitleText/TitleText";
 import styles from "./page.module.scss";
 // Import redux variables.
 
-import { signOut } from "next-auth/react";
 import { useAppSelector } from "./redux/store";
 
 export default function Home() {
@@ -26,47 +24,6 @@ export default function Home() {
           style={{}}
         />
         <LoginSignupLarge buttonChoice="signup" />
-        <LoginSignupLarge buttonChoice="login" />
-        <Button
-          onClick={() => {
-            signOut();
-          }}
-        >
-          Log Out
-        </Button>
-        {/* <p>Current state: {isOpen.toString()}</p>
-        <h1>Heading 1</h1>
-        <h2>Heading 2</h2>
-        <p>Paragraph</p>
-        <br />
-        <br />
-        <br />
-
-        <LoginSignupLarge buttonChoice="signup" />
-        <LoginSignupLarge buttonChoice="login" />
-        <ExpandSmall buttonChoice={true} />
-        <ExpandSmall buttonChoice={false} />
-        <ExpandLarge buttonChoice={true} />
-        <ExpandLarge buttonChoice={false} />
-        <AddButton />
-
-        <RadioButton buttonChoice={true} />
-        <RadioButton buttonChoice={false} />
-        <ResumeUpload />
-        <br />
-        <br />
-        <JobListElement />
-
-        <br />
-        <br />
-        <br />
-        <GoogleButton />
-        <TitleText text="An easy way to track your job applications" />
-        <TitleText text="An easy way to track your job applications" />
-        <TitleText text="An easy way to track your job applications" />
-        <TitleText text="An easy way to track your job applications" />
-        <TitleText text="An easy way to track your job applications" />
-        <TitleText text="An easy way to track your job applications" /> */}
       </div>
     </div>
   );
