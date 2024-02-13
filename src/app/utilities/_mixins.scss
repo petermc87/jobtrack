@@ -3,7 +3,7 @@
 
 // Animation fade for any style, hence the type variable.
 @mixin fade-in-animation($type, $valueOne, $valueTwo, $seconds) {
-  animation: fadeIn $seconds forwards;
+  animation: fadeIn $seconds ease-in-out forwards;
 
   // Animation for fade in
   @keyframes fadeIn {
