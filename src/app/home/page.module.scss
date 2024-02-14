@@ -1,6 +1,6 @@
 @import "../utilities/mixins";
 
-$line: none;
+$line: solid;
 
 .homeWrapper {
   border: $line blue;
@@ -15,9 +15,10 @@ $line: none;
     text-align: left;
     margin-left: 1rem;
     text-decoration: underline;
+    margin-top: 2rem;
   }
 
-  .titleWrapper {
+  .contentWrapper {
     border: $line yellow;
   }
   .createCat {
@@ -26,7 +27,7 @@ $line: none;
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    margin-left: 2rem;
     input {
       @include input-field(0.2rem, 0.4rem);
     }

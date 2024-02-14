@@ -22,22 +22,23 @@ export default function Home() {
       <NavBar />
       <div className={styles.homeWrapper}>
         {/* NOTE: Adding custom styling on top of the title component */}
-        <div className={styles.titleWrapper}>
+        <div className={styles.contentWrapper}>
           <TitleText
             text={`Welcome, ${data?.user.username}!`}
             style={{
-              // color: "#11e0c0",
               marginTop: "8rem",
               marginBottom: "8rem",
             }}
           />
           <h1>Create a Job Category</h1>
-        </div>
+          <Form className={styles.createCat}>
+            <Form.Control />
+            <AddButton />
+          </Form>
 
-        <Form className={styles.createCat}>
-          <Form.Control />
-          <AddButton />
-        </Form>
+          {/*TODO: Create a list of categories. */}
+          <h1>Construction Placeholder</h1>
+        </div>
       </div>
     </div>
   );
