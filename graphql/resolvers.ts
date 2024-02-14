@@ -73,6 +73,7 @@ export const resolvers = {
       }
     },
   },
+
   // User to get the Categories contained within. - GET
   User: {
     categories: async (parent: any, args: any, context: Context) => {
@@ -86,6 +87,21 @@ export const resolvers = {
       } catch (error) {
         console.error("Error when fetching categories: ", error);
         throw new Error("Unable to fetch categories");
+      }
+    },
+  },
+  Category: {
+    jobs: async (parent: any, args: any, context: Context) => {
+      try {
+        const returnedJobs = await context.prisma.job.findMany({
+          where: {
+            categoryId: parent.id,
+          },
+        });
+        return returnedJobs || [];
+      } catch (error) {
+        console.error("Error when fetching jobs: ", error);
+        throw new Error("Unable to fetch jobs");
       }
     },
   },

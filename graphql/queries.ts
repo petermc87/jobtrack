@@ -12,6 +12,14 @@ export const GET_USER = gql`
         id
         name
         userId
+        jobs {
+          id
+          title
+          link
+          jobDescription
+          categoryId
+          resumeLink
+        }
       }
     }
   }
@@ -37,16 +45,6 @@ export const GET_USERS = gql`
 export const GET_CATEGORIES = gql`
   query Categories {
     categories {
-      id
-      name
-      userId
-    }
-  }
-`;
-
-export const GET_CATEGORIES_BY_USER = gql`
-  query CategoriesByUser($categoriesByUserId: ID) {
-    categoriesByUser(id: $categoriesByUserId) {
       id
       name
       userId

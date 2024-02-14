@@ -8,6 +8,7 @@ export const typeDefs = gql`
     name: String
     # NOTE: The user @relation parameter is not matched here.
     userId: String
+    jobs: [Job]
   }
   type User {
     # ID! represents a non nullable id.

@@ -7,14 +7,6 @@ type UserTypes = {
 };
 
 export default function Categories({ user }: UserTypes) {
-  // Side affect to load categories.
-
-  // let currentUser;
-  // if (!user === undefined) {
-  //   currentUser = user;
-  // }
-  console.log(user);
-
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { email: user?.email },
   });
@@ -24,6 +16,7 @@ export default function Categories({ user }: UserTypes) {
 
   // List of categories to be returned
   const categoriesList = data.user.categories.map((category: Category) => {
+    console.log(category);
     return (
       <div key={category.id}>
         <h1>{category.name}</h1>
