@@ -36,7 +36,6 @@ export default function Home() {
     refetchQueries: [GET_CATEGORIES],
   });
 
-  // TODO: Consume the useMutation hook to create job category
   const handleCreateCategory = (e: FormEvent<HTMLFormElement>) => {
     console.log("Submit");
     e.preventDefault();
@@ -49,6 +48,9 @@ export default function Home() {
     newCategory({ variables: { name: categoryName, userId: userData?.id } });
     setCategoryName("");
   };
+
+  // TODO: display categpries by user.
+
   return (
     <div>
       <NavBar />
