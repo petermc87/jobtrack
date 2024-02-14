@@ -4,18 +4,19 @@ import { NextAuthOptions, User } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import oauthStore from "../../../../../actions/oAuth/OAuthStore";
 import db from "../../../../../prisma/db";
 
 declare module "next-auth" {
   interface User {
-    id: number;
+    id: string | unknown;
     password?: string | undefined | number | null;
     email: string | undefined | null;
     username?: string | undefined | null;
   }
   interface Session {
     user: {
-      id: number | unknown;
+      id: string | unknown;
       username: string | unknown;
     };
   }
@@ -80,11 +81,31 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    // TEST: Connecting the Apollo cleint here.
+    // async signIn(user, account, profile) {
+    //   if (account.provider === "google") {
+    //     try {
+    //       await ApolloClient.arguments({
+    //         MutationObserver: NEW_USER,
+    //         variables: {
+    //           name: profile.name,
+    //           email: profile.email,
+    //         },
+    //       });
+    //     } catch (error) {
+    //       console.error("Unable to save to the database: ", error);
+    //       throw new Error("Error when saving google user");
+    //     }
+    //   }
+    // },
     async session({ session, token }) {
       session.user.id = token.id;
       session.user.username = token.username;
 
-      // Add oauthStore.
+      // Add oauthStore persist to session storage.
+      const userSession = session.user as User;
+      const returnedUser = await oauthStore(userSession);
+      session.user.username = returnedUser.username;
 
       return session;
     },

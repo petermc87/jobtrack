@@ -17,6 +17,10 @@ export default function Home() {
   // hook.
   const { data } = useSession() as { data: SessionData | null };
 
+  // TEST: Check if the user data is persisting to the database when logging
+  // in using alternative providers.
+  console.log(data);
+
   return (
     <div>
       <NavBar />
