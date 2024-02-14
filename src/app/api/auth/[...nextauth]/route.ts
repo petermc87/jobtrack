@@ -104,7 +104,7 @@ const authOptions: NextAuthOptions = {
 
       // Add oauthStore persist to session storage.
       const userSession = session.user as User;
-      const returnedUser = await oauthStore(userSession);
+      const returnedUser = await oauthStore(userSession as any);
       session.user.username = returnedUser.username;
 
       return session;
