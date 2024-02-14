@@ -38,6 +38,8 @@ export const typeDefs = gql`
     category(id: ID!): Category
     # Get all categories
     categories: [Category]
+    # Get categories by user.
+    categoriesByUser(id: ID!): [Category]
     # Get one job
     job(id: ID!): Job
     # Get all jobs

@@ -34,4 +34,14 @@ export const GET_USERS = gql`
   }
 `;
 
+export const GET_CATEGORIES_BY_USER = gql`
+  query CategoriesByUser($categoriesByUserId: ID) {
+    categoriesByUser(id: $categoriesByUserId) {
+      id
+      name
+      userId
+    }
+  }
+`;
+
 // Retrieve from Apollo server GUI

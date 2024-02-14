@@ -26,3 +26,12 @@ export const NEW_USER = gql`
     }
   }
 `;
+export const NEW_CATEGORY = gql`
+  mutation Mutation($name: String, $userId: String) {
+    newCategory(name: $name, userId: $userId) {
+      id
+      name
+      userId
+    }
+  }
+`;

@@ -1,6 +1,7 @@
 "use client";
 import { User } from "@prisma/client";
 import { useSession } from "next-auth/react";
+import { FormEvent } from "react";
 import { Form } from "react-bootstrap";
 import AddButton from "../components/AddButton/AddButton";
 import NavBar from "../components/NavBar/NavBar";
@@ -17,6 +18,15 @@ export default function Home() {
   // hook.
   const { data } = useSession() as { data: SessionData | null };
 
+  // // GraphQL
+  // const [newUser, {loading, error}] = useMutation(NEW_, {
+  //   refetchQueries:
+  // })
+
+  // TODO: Consume the useMutation hook to create job category
+  const handleCreateCategory = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
   return (
     <div>
       <NavBar />
@@ -36,7 +46,7 @@ export default function Home() {
             <AddButton />
           </Form>
 
-          {/*TODO: Create a list of categories. */}
+          {/*TODO: Map list of created categories. */}
           <h1>Construction Placeholder</h1>
         </div>
       </div>
