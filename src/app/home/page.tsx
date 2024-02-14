@@ -1,8 +1,11 @@
 "use client";
+import { useMutation } from "@apollo/client";
 import { User } from "@prisma/client";
 import { useSession } from "next-auth/react";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { Form } from "react-bootstrap";
+import { NEW_CATEGORY } from "../../../graphql/mutations";
+import { GET_CATEGORIES } from "../../../graphql/queries";
 import AddButton from "../components/AddButton/AddButton";
 import NavBar from "../components/NavBar/NavBar";
 import TitleText from "../components/TitleText/TitleText";
@@ -14,18 +17,37 @@ type SessionData = {
 };
 
 export default function Home() {
-  //   Assign that type to the 'data' passed into the session
+  // Assign that type to the 'data' passed into the session
   // hook.
+
   const { data } = useSession() as { data: SessionData | null };
 
-  // // GraphQL
-  // const [newUser, {loading, error}] = useMutation(NEW_, {
-  //   refetchQueries:
-  // })
+  let userData: User;
+
+  if (data) {
+    userData = data.user;
+  }
+
+  // State for category.
+  const [categoryName, setCategoryName] = useState("");
+
+  // GraphQL - Create Category
+  const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY, {
+    refetchQueries: [GET_CATEGORIES],
+  });
 
   // TODO: Consume the useMutation hook to create job category
   const handleCreateCategory = (e: FormEvent<HTMLFormElement>) => {
+    console.log("Submit");
     e.preventDefault();
+
+    // Error handling
+    if (loading) return <p>Submitting...</p>;
+    if (error) return <p>Submission Error: {error.message}</p>;
+
+    console.log(categoryName);
+    newCategory({ variables: { name: categoryName, userId: userData?.id } });
+    setCategoryName("");
   };
   return (
     <div>
@@ -41,8 +63,16 @@ export default function Home() {
             }}
           />
           <h1>Create a Job Category</h1>
-          <Form className={styles.createCat}>
-            <Form.Control />
+          <Form
+            className={styles.createCat}
+            onSubmit={(e) => handleCreateCategory(e)}
+          >
+            <Form.Control
+              type="text"
+              placeholder="Eg. Construction, Software Development, etc."
+              value={categoryName}
+              onChange={(e) => setCategoryName(e.target.value)}
+            />
             <AddButton />
           </Form>
 

@@ -34,6 +34,16 @@ export const GET_USERS = gql`
   }
 `;
 
+export const GET_CATEGORIES = gql`
+  query Categories {
+    categories {
+      id
+      name
+      userId
+    }
+  }
+`;
+
 export const GET_CATEGORIES_BY_USER = gql`
   query CategoriesByUser($categoriesByUserId: ID) {
     categoriesByUser(id: $categoriesByUserId) {

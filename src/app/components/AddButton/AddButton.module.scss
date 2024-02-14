@@ -1,5 +1,13 @@
 @use "../../utilities/elements";
 
 .buttonWrapper {
-  @extend %addButton;
+  // height: 100%;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background-color: none !important;
+  margin: 0 !important;
+  .addButton {
+    @extend %addButton;
+  }
 }
