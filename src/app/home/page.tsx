@@ -5,8 +5,9 @@ import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import { Form } from "react-bootstrap";
 import { NEW_CATEGORY } from "../../../graphql/mutations";
-import { GET_CATEGORIES } from "../../../graphql/queries";
+import { GET_USER } from "../../../graphql/queries";
 import AddButton from "../components/AddButton/AddButton";
+import Categories from "../components/Categories/Categories";
 import NavBar from "../components/NavBar/NavBar";
 import TitleText from "../components/TitleText/TitleText";
 import styles from "./page.module.scss";
@@ -33,7 +34,7 @@ export default function Home() {
 
   // GraphQL - Create Category
   const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY, {
-    refetchQueries: [GET_CATEGORIES],
+    refetchQueries: [GET_USER, "GetUser"],
   });
 
   const handleCreateCategory = (e: FormEvent<HTMLFormElement>) => {
@@ -44,7 +45,6 @@ export default function Home() {
     if (loading) return <p>Submitting...</p>;
     if (error) return <p>Submission Error: {error.message}</p>;
 
-    console.log(categoryName);
     newCategory({ variables: { name: categoryName, userId: userData?.id } });
     setCategoryName("");
   };
@@ -80,6 +80,7 @@ export default function Home() {
 
           {/*TODO: Map list of created categories. */}
           <h1>Construction Placeholder</h1>
+          <Categories user={data?.user} />
         </div>
       </div>
     </div>
