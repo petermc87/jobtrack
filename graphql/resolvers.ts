@@ -37,19 +37,6 @@ export const resolvers = {
         throw new Error("Unable to fetch categories");
       }
     },
-    // categoriesByUser: async (parent: any, args: any, context: Context) => {
-    //   try {
-    //     const categoriesUser = await context.prisma.category.findMany({
-    //       where: {
-    //         userId: args.id,
-    //       },
-    //     });
-    //     return categoriesUser || [];
-    //   } catch (error) {
-    //     console.error("Error when fetching categories for this user ", error);
-    //     throw new Error("Unable to fetch categories");
-    //   }
-    // },
     category: async (parent: any, args: any, context: Context) => {
       try {
         const category = await context.prisma.category.findUnique({
