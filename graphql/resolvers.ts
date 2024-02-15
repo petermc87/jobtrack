@@ -230,6 +230,7 @@ export const resolvers = {
             title: args.title,
             link: args.link,
             jobDescription: args.jobDescription,
+            status: args.status,
             categoryId: args.categoryId,
             resumeLink: args.resumeLink,
           },

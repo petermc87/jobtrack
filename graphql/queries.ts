@@ -15,6 +15,7 @@ export const GET_USER = gql`
         jobs {
           id
           title
+          status
           link
           jobDescription
           categoryId

@@ -27,6 +27,7 @@ export const typeDefs = gql`
     jobDescription: String
     categoryId: String
     resumeLink: String
+    status: String
   }
 
   #   GET requests.
@@ -70,6 +71,7 @@ export const typeDefs = gql`
       jobDescription: String
       categoryId: String
       resumeLink: String
+      status: String
     ): Job
     updateJob(id: ID!, newValue: String, type: String): Job
     deleteJob(id: ID!): Job

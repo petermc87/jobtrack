@@ -79,7 +79,6 @@ export default function Home() {
           </Form>
 
           {/*TODO: Map list of created categories. */}
-          <h1>Construction Placeholder</h1>
           <Categories user={data?.user} />
         </div>
       </div>
