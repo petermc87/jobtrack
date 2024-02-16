@@ -14,8 +14,6 @@ type CategoryTypes = {
 };
 
 export default function Categories({ user }: UserTypes) {
-  console.log(user);
-
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { email: user?.email },
   });
@@ -24,6 +22,13 @@ export default function Categories({ user }: UserTypes) {
   if (error) return `Error: ${error}`;
 
   // List of categories to be returned
+
+  // Check if data and data.user exist
+  if (!data || !data.user) return null;
+
+  // Check if data.user.categories exist
+  if (!data.user.categories) return <div>No categories found.</div>;
+
   const categoriesList = data.user.categories.map((category: CategoryTypes) => {
     return (
       <div key={category.id}>
@@ -38,7 +43,7 @@ export default function Categories({ user }: UserTypes) {
 
   return (
     <>
-      <>{categoriesList}</>
+      <>{categoriesList ? categoriesList : ""}</>
     </>
   );
 }
