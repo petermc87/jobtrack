@@ -14,6 +14,8 @@ type CategoryTypes = {
 };
 
 export default function Categories({ user }: UserTypes) {
+  console.log(user);
+
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { email: user?.email },
   });
@@ -33,7 +35,6 @@ export default function Categories({ user }: UserTypes) {
       </div>
     );
   });
-  console.log(data);
 
   return (
     <>

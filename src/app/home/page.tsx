@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import { Form } from "react-bootstrap";
 import { NEW_CATEGORY } from "../../../graphql/mutations";
-import { GET_CATEGORIES } from "../../../graphql/queries";
 import AddButton from "../components/AddButton/AddButton";
 import Categories from "../components/Categories/Categories";
 import NavBar from "../components/NavBar/NavBar";
@@ -33,9 +32,10 @@ export default function Home() {
   const [categoryName, setCategoryName] = useState("");
 
   // GraphQL - Create Category
-  const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY, {
-    refetchQueries: [GET_CATEGORIES],
-  });
+  // const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY, {
+  //   refetchQueries: [GET_CATEGORIES],
+  // });
+  const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY);
 
   const handleCreateCategory = (e: FormEvent<HTMLFormElement>) => {
     console.log("Submit");

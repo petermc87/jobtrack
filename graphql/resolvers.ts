@@ -17,12 +17,18 @@ export const resolvers = {
     },
     user: async (parent: any, args: any, context: Context) => {
       try {
-        const user = await context.prisma.user.findUnique({
-          where: {
-            email: args.email,
-          },
-        });
-        return user;
+        // This will ensure that prisma will not be called if
+        // the is no email address passed in.
+        if (args.email) {
+          const user = await context.prisma.user.findUnique({
+            where: {
+              email: args.email,
+            },
+          });
+          return user;
+        } else {
+          return null;
+        }
       } catch (error) {
         console.error("Error when fetching user: ", error);
         throw new Error("Unable to fetch user");
