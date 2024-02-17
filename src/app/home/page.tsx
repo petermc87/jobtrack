@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import { Form } from "react-bootstrap";
 import { NEW_CATEGORY } from "../../../graphql/mutations";
-import { GET_CATEGORIES } from "../../../graphql/queries";
+import { GET_USER } from "../../../graphql/queries";
 import AddButton from "../components/AddButton/AddButton";
 import Categories from "../components/Categories/Categories";
 import NavBar from "../components/NavBar/NavBar";
@@ -34,7 +34,7 @@ export default function Home() {
 
   // GraphQL - Create Category
   const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY, {
-    refetchQueries: [GET_CATEGORIES],
+    refetchQueries: [GET_USER, "GetUser"],
   });
   // const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY);
 

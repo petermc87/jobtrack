@@ -18,6 +18,7 @@ export default function Categories({ user }: UserTypes) {
     variables: { email: user?.email },
   });
 
+  console.log(data);
   if (loading) return null;
   if (error) return `Error: ${error}`;
 
@@ -35,7 +36,11 @@ export default function Categories({ user }: UserTypes) {
         <h1>{category.name}</h1>
         <h2>JobList</h2>
         {category.jobs?.map((job: Job) => {
-          return <p>{job.title}</p>;
+          return (
+            <>
+              <p key={job.id}>{job.title}</p>
+            </>
+          );
         })}
       </div>
     );
