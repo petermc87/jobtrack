@@ -29,16 +29,21 @@ export default function Categories({ user }: UserTypes) {
 
   // Check if data.user.categories exist
   if (!data.user.categories) return <div>No categories found.</div>;
+  // console.log(data.user.categories);
 
   const categoriesList = data.user.categories.map((category: CategoryTypes) => {
     return (
       <div key={category.id}>
-        <h1>{category.name}</h1>
         <h2>JobList</h2>
         {category.jobs?.map((job: Job) => {
           return (
             <>
-              <p key={job.id}>{job.title}</p>
+              {/* If there are no categories, display: No categories to display`` */}
+              {!job ? (
+                <h2>No jobs to display</h2>
+              ) : (
+                <p key={job.id}>{job.title}</p>
+              )}
             </>
           );
         })}
@@ -48,7 +53,12 @@ export default function Categories({ user }: UserTypes) {
 
   return (
     <>
-      <>{categoriesList ? categoriesList : ""}</>
+      {data.user.categories.length() !== 0 ? (
+        <>{categoriesList && categoriesList}</>
+      ) : (
+        <h2>No categories to display</h2>
+      )}
+      {/* Returning the list of categories if the array within the user has contents. */}
     </>
   );
 }
