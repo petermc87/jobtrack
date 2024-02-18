@@ -42,12 +42,11 @@ export default function Categories({ user }: UserTypes) {
   const categoriesList = data.user.categories.map(
     (category: CategoryTypes, i: number) => {
       return (
-        <div key={category.id}>
+        <div key={category.id} className={styles.allCategoriesWrapper}>
           <div className={styles.headingWrapper}>
             <h1>{category.name}</h1>
             {/* Store the current position of the selected element and only
             render the jobs expanded for that category */}
-            {/* {i === currentSelected && ( */}
             <ExpandLarge
               showJobs={showJobs}
               setShowJobs={setShowJobs}
@@ -55,25 +54,28 @@ export default function Categories({ user }: UserTypes) {
               currentSelected={currentSelected}
               i={i}
             />
-            {/* )} */}
           </div>
 
           {/* Check if there are jobs contained within each category. If not, */}
           {/* display a message. */}
-          {category.jobs.length ? (
+          {showJobs && i === currentSelected && (
             <>
-              {category.jobs?.map((job: Job) => {
-                return (
-                  <>
-                    <p key={job.id}>{job.title}</p>
-                    <JobListElement />
-                  </>
-                );
-              })}
-            </>
-          ) : (
-            <>
-              <h2>No jobs to display</h2>
+              {category.jobs.length ? (
+                <>
+                  {category.jobs?.map((job: Job) => {
+                    return (
+                      <div className={styles.jobWrapper}>
+                        <p key={job.id}>{job.title}</p>
+                        <JobListElement />
+                      </div>
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  <h2>No jobs to display</h2>
+                </>
+              )}
             </>
           )}
         </div>
