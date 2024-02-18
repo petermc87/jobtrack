@@ -33,16 +33,28 @@ export default function JobListElement({ job }: JobTypes) {
               <h2>Status</h2>
               <div className={styles.radioContainer}>
                 <div className={styles.radioPair}>
-                  <RadioButton buttonChoice={true} /> <p>Added</p>
+                  <RadioButton
+                    buttonChoice={job.status === "added" ? true : false}
+                  />{" "}
+                  <p>Added</p>
                 </div>
                 <div className={styles.radioPair}>
-                  <RadioButton buttonChoice={false} /> <p>Applied</p>
+                  <RadioButton
+                    buttonChoice={job.status === "applied" ? true : false}
+                  />{" "}
+                  <p>Applied</p>
                 </div>
                 <div className={styles.radioPair}>
-                  <RadioButton buttonChoice={false} /> <p>Accepted</p>
+                  <RadioButton
+                    buttonChoice={job.status === "accepted" ? true : false}
+                  />{" "}
+                  <p>Accepted</p>
                 </div>
                 <div className={styles.radioPair}>
-                  <RadioButton buttonChoice={false} /> <p>Rejected</p>
+                  <RadioButton
+                    buttonChoice={job.status === "rejected" ? true : false}
+                  />{" "}
+                  <p>Rejected</p>
                 </div>
               </div>
             </div>
