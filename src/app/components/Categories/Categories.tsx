@@ -25,6 +25,9 @@ export default function Categories({ user }: UserTypes) {
   // State for handling show jobs
   const [showJobs, setShowJobs] = useState(false);
 
+  // State for holding current selected category for viewing jobs.
+  const [currentSelected, setCurrentSelected] = useState(0);
+
   if (loading) return null;
   if (error) return `Error: ${error}`;
 
@@ -35,22 +38,24 @@ export default function Categories({ user }: UserTypes) {
 
   // Check if data.user.categories exist
   if (!data.user.categories) return <div>No categories found.</div>;
-  // console.log(data.user.categories);
 
-  console.log(showJobs);
   const categoriesList = data.user.categories.map(
     (category: CategoryTypes, i: number) => {
       return (
         <div key={category.id}>
           <div className={styles.headingWrapper}>
             <h1>{category.name}</h1>
-            {/* Store the current position of the selected element. */}
+            {/* Store the current position of the selected element and only
+            render the jobs expanded for that category */}
+            {/* {i === currentSelected && ( */}
             <ExpandLarge
               showJobs={showJobs}
               setShowJobs={setShowJobs}
-              // category={category}
+              setCurrentSelected={setCurrentSelected}
+              currentSelected={currentSelected}
               i={i}
             />
+            {/* )} */}
           </div>
 
           {/* Check if there are jobs contained within each category. If not, */}
