@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { Job, User } from "@prisma/client";
 import { useState } from "react";
 import { GET_USER } from "../../../../graphql/queries";
+import AddJobButton from "../AddJobButton/AddJobButton";
 import ExpandLarge from "../ExpandButtons/ExpandButtonLarge";
 import JobListElement from "../JobListElement/JobListElement";
 import styles from "./Categories.module.scss";
@@ -65,8 +66,7 @@ export default function Categories({ user }: UserTypes) {
                   {category.jobs?.map((job: Job) => {
                     return (
                       <div className={styles.jobWrapper}>
-                        <p key={job.id}>{job.title}</p>
-                        <JobListElement />
+                        <JobListElement job={job} />
                       </div>
                     );
                   })}
@@ -76,6 +76,8 @@ export default function Categories({ user }: UserTypes) {
                   <h2>No jobs to display</h2>
                 </>
               )}
+
+              <AddJobButton />
             </>
           )}
         </div>

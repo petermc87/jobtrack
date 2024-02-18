@@ -1,3 +1,4 @@
+import { Job } from "@prisma/client";
 import { Container } from "react-bootstrap";
 import ExpandSmall from "../ExpandButtons/ExpandButtonSmall";
 import RadioButton from "../RadioButton/RadioButton";
@@ -5,7 +6,11 @@ import ResumeUpload from "../ResumeUploadButton/ResumeUploadButton";
 import styles from "./JobListElement.module.scss";
 // NOTE: Using regular divs here to avoid having to
 // change styling for a react-bootstrap container.
-export default function JobListElement() {
+type JobTypes = {
+  job: Job;
+};
+
+export default function JobListElement({ job }: JobTypes) {
   return (
     <>
       <Container className={styles.formWrapper}>
@@ -13,7 +18,7 @@ export default function JobListElement() {
         <div className={styles.topContainer}>
           <div className={styles.left}>
             <h2>Title</h2>
-            <p>Placeholder Job</p>
+            <p>{job.title}</p>
           </div>
           <div className={styles.right}>
             <h2>Link</h2>

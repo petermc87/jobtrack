@@ -1,0 +1,39 @@
+@use "../../utilities/variables" as var;
+
+$line: none;
+$background: transparent !important;
+
+.addJobWrapper {
+  border: $line red;
+  display: flex;
+  align-items: center;
+  background-color: var.$black-gray;
+  padding: 0.2rem;
+  border-radius: 5px;
+  justify-content: space-around;
+  width: 15rem;
+  margin: 1rem;
+  &:hover {
+    cursor: pointer;
+    h2 {
+      color: var.$accent-green;
+    }
+    button {
+      color: var.$accent-green;
+      svg {
+        color: var.$accent-green;
+      }
+    }
+  }
+  h2 {
+    margin: 0 !important;
+    background-color: $background;
+    margin-right: 1rem;
+  }
+  button {
+    background-color: $background;
+    svg {
+      background-color: $background;
+    }
+  }
+}
