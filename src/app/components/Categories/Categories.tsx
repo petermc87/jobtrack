@@ -90,7 +90,6 @@ export default function Categories({ user }: UserTypes) {
                         return <JobListElement job={job} />;
                       })}
                   </div>
-
                   <div className={styles.jobWrapper}>
                     <h2>Rejected</h2>
                     {category.jobs
