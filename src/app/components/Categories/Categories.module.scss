@@ -12,7 +12,6 @@ $line: none;
   display: flex;
   align-items: center;
   padding: 2rem 0 2rem 0;
-  //   justify-content: ;
   h1 {
     margin-top: 0 !important;
     border: $line gray !important;
@@ -23,4 +22,9 @@ $line: none;
 .jobWrapper {
   border: $line green;
   width: 90%;
+  h2 {
+    border: $line orange;
+    text-align: left;
+    font-weight: 900;
+  }
 }

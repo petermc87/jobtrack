@@ -57,27 +57,54 @@ export default function Categories({ user }: UserTypes) {
             />
           </div>
 
-          {/* Check if there are jobs contained within each category. If not, */}
-          {/* display a message. */}
+          {/* Unhide is selected and we are only viewing the category we selected. */}
           {showJobs && i === currentSelected && (
             <>
+              <AddJobButton />
+              {/* Check if there are jobs contained within each category. If not, */}
+              {/* display a message. */}
               {category.jobs.length ? (
                 <>
-                  {category.jobs?.map((job: Job) => {
-                    return (
-                      <div className={styles.jobWrapper}>
-                        <JobListElement job={job} />
-                      </div>
-                    );
-                  })}
+                  <div className={styles.jobWrapper}>
+                    <h2>Added</h2>
+                    {category.jobs
+                      .filter((job) => job.status === "Added")
+                      .map((job: Job) => {
+                        return <JobListElement job={job} />;
+                      })}
+                  </div>
+                  <div className={styles.jobWrapper}>
+                    <h2>Applied</h2>
+                    {category.jobs
+                      .filter((job) => job.status === "applied")
+                      .map((job: Job) => {
+                        return <JobListElement job={job} />;
+                      })}
+                  </div>
+                  <div className={styles.jobWrapper}>
+                    <h2>Accepted</h2>
+                    {/* Create a filter and map fuction here. Filter by the  */}
+                    {category.jobs
+                      .filter((job) => job.status === "accepted")
+                      .map((job: Job) => {
+                        return <JobListElement job={job} />;
+                      })}
+                  </div>
+
+                  <div className={styles.jobWrapper}>
+                    <h2>Rejected</h2>
+                    {category.jobs
+                      .filter((job) => job.status === "rejected")
+                      .map((job: Job) => {
+                        return <JobListElement job={job} />;
+                      })}
+                  </div>
                 </>
               ) : (
                 <>
                   <h2>No jobs to display</h2>
                 </>
               )}
-
-              <AddJobButton />
             </>
           )}
         </div>
@@ -87,6 +114,7 @@ export default function Categories({ user }: UserTypes) {
 
   return (
     <>
+      {/* IF THE CATEGORIES ARRAY HAS A LENGTH, CALL THE categoriesList variable */}
       {data && data.user.categories.length ? (
         <>{categoriesList}</>
       ) : (
