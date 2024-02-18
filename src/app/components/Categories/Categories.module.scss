@@ -1,0 +1,14 @@
+$line: none;
+
+.headingWrapper {
+  border: $line red;
+  display: flex;
+  align-items: center;
+  padding: 2rem 0 2rem 0;
+  //   justify-content: ;
+  h1 {
+    margin-top: 0 !important;
+    border: $line gray !important;
+    width: 45%;
+  }
+}

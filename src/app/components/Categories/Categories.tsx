@@ -1,6 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { Job, User } from "@prisma/client";
 import { GET_USER } from "../../../../graphql/queries";
+import ExpandLarge from "../ExpandButtons/ExpandButtonLarge";
+import JobListElement from "../JobListElement/JobListElement";
+import styles from "./Categories.module.scss";
 
 type UserTypes = {
   user: User | undefined;
@@ -34,7 +37,12 @@ export default function Categories({ user }: UserTypes) {
   const categoriesList = data.user.categories.map((category: CategoryTypes) => {
     return (
       <div key={category.id}>
-        <h1>{category.name}</h1>
+        {/* <JobListElement /> */}
+        <div className={styles.headingWrapper}>
+          {" "}
+          <h1>{category.name}</h1>
+          <ExpandLarge buttonChoice={true} />
+        </div>
 
         {/* Check if there are jobs contained within each category. If not, */}
         {/* display a message. */}
@@ -44,12 +52,16 @@ export default function Categories({ user }: UserTypes) {
               return (
                 <>
                   <p key={job.id}>{job.title}</p>
+                  <JobListElement />
                 </>
               );
             })}
           </>
         ) : (
-          <h2>No jobs to display</h2>
+          <>
+            <h2>No jobs to display</h2>
+            {/* <JobListElement /> */}
+          </>
         )}
       </div>
     );
