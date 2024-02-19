@@ -18,7 +18,7 @@ export default function JobListElement({ job }: JobTypes) {
   // Title input container state.
   const [editTitle, setEditTitle] = useState(false);
 
-  // Current title
+  // Current job
   const [currentJob, setCurrentJob] = useState<Job | null>(null);
 
   // Link input container state.
@@ -46,7 +46,7 @@ export default function JobListElement({ job }: JobTypes) {
     });
   };
 
-  // Create an array of status types.
+  // Array of status types.
   const status = ["Added", "Applied", "Accepted", "Rejected"];
   return (
     <>

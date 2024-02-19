@@ -5,37 +5,40 @@ import styles from "./ExpandButtonLarge.module.scss";
 type ExpandButtonTypes = {
   showJobs: boolean;
   setShowJobs: Dispatch<SetStateAction<boolean>>;
-  setCurrentSelected: Dispatch<SetStateAction<number>>;
-  currentSelected: number;
-  i: number;
+  // Current category object being passed down.
+  setCurrentCategoryId: Dispatch<SetStateAction<string>>;
+  currentCategoryId: string;
+  // Category id of the current iteration
+  iteratedCategoryId: string;
 };
 
 export default function ExpandLarge({
   showJobs,
   setShowJobs,
-  setCurrentSelected,
-  currentSelected,
-  i,
+  //CatrgoryId Selection
+  currentCategoryId,
+  setCurrentCategoryId,
+  iteratedCategoryId,
 }: ExpandButtonTypes) {
-  // Function on click.
+  // Show the jobs or hide and store the current iteration of cat id in state for use elsewhere.
   const handleSelectButton = () => {
     if (showJobs) {
       setShowJobs(false);
     } else {
       setShowJobs(true);
     }
-    setCurrentSelected(i);
+    setCurrentCategoryId(iteratedCategoryId);
   };
   return (
     <>
       {/* IF THE JOBS ARE NOT BEING SHOWN, AND IT IS CONCERNING THE CURRENT SELECTED CAT ONLY */}
-      {!showJobs && currentSelected === i ? (
+      {!showJobs && currentCategoryId === iteratedCategoryId ? (
         <FaCircleChevronDown
           className={styles.buttonWrapper}
           onClick={() => handleSelectButton()}
         />
       ) : // IF THE JOBS ARE BEING SHOWN, AND IT IS CONCERNING THE CURRENT SELECTED CAT ONLY
-      showJobs && currentSelected === i ? (
+      showJobs && currentCategoryId === iteratedCategoryId ? (
         <FaCircleChevronUp
           className={styles.buttonWrapper}
           onClick={() => handleSelectButton()}

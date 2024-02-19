@@ -1,6 +1,7 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Job, User } from "@prisma/client";
 import { useState } from "react";
+import { NEW_JOB } from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
 import AddJobButton from "../AddJobButton/AddJobButton";
 import ExpandLarge from "../ExpandButtons/ExpandButtonLarge";
@@ -19,26 +20,51 @@ type CategoryTypes = {
 };
 
 export default function Categories({ user }: UserTypes) {
+  // useQuery for user
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { email: user?.email },
   });
 
+  // useMutation for new job
+  const [newJob] = useMutation(NEW_JOB, {
+    refetchQueries: [GET_USER, "GetUser"],
+  });
   // State for handling show jobs
   const [showJobs, setShowJobs] = useState(false);
 
   // State for holding current selected category for viewing jobs.
   const [currentSelected, setCurrentSelected] = useState(0);
 
+  // Current category object.
+  const [currentCategoryId, setCurrentCategoryId] = useState<string>("");
+
   if (loading) return null;
   if (error) return `Error: ${error}`;
-
-  // List of categories to be returned
 
   // Check if data and data.user exist
   if (!data || !data.user) return null;
 
   // Check if data.user.categories exist
   if (!data.user.categories) return <div>No categories found.</div>;
+
+  // New job function
+  const handleSubmitJob = (e: any, id: string) => {
+    e.preventDefault();
+
+    // Use the current selected category here.
+    newJob({
+      variables: {
+        title: "enterNewJob",
+        link: "enterNewJobLink.com",
+        jobDescription: "enterNewJobDescription",
+        //NOTE: We add the currentCategoryId based on the chevron selection
+        // of a category.
+        categoryId: currentCategoryId,
+        resumeLink: "enterResumeLink.com",
+        status: "added",
+      },
+    });
+  };
 
   const categoriesList = data.user.categories.map(
     (category: CategoryTypes, i: number) => {
@@ -51,14 +77,15 @@ export default function Categories({ user }: UserTypes) {
             <ExpandLarge
               showJobs={showJobs}
               setShowJobs={setShowJobs}
-              setCurrentSelected={setCurrentSelected}
-              currentSelected={currentSelected}
-              i={i}
+              //Pass in the currentSelectedCategory and the current category.id
+              currentCategoryId={currentCategoryId}
+              setCurrentCategoryId={setCurrentCategoryId}
+              iteratedCategoryId={category.id}
             />
           </div>
 
-          {/* Unhide is selected and we are only viewing the category we selected. */}
-          {showJobs && i === currentSelected && (
+          {/* Iterated category id matched the current selected */}
+          {showJobs && category.id === currentCategoryId && (
             <>
               <AddJobButton />
               {/* Check if there are jobs contained within each category. If not, */}
