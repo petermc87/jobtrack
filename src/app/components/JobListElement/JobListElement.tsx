@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { Job } from "@prisma/client";
-import { Container } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Form } from "react-bootstrap";
 import { UPDATE_JOB } from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
 import ExpandSmall from "../ExpandButtons/ExpandButtonSmall";
@@ -14,6 +15,15 @@ type JobTypes = {
 };
 
 export default function JobListElement({ job }: JobTypes) {
+  // Title input container state.
+  const [editTitle, setEditTitle] = useState(false);
+
+  // Current title
+  const [currentJob, setCurrentJob] = useState<Job | null>(null);
+
+  // Link input container state.
+  const [editLink, setEditLink] = useState(false);
+
   // UpdateJob Mutation
   const [updateJob, { loading, error }] = useMutation(UPDATE_JOB, {
     refetchQueries: [GET_USER, "GetUser"],
@@ -30,6 +40,25 @@ export default function JobListElement({ job }: JobTypes) {
     });
   };
 
+  const handleUpdateText = (
+    e: any,
+    passedType: string,
+    editedValue: string
+  ) => {
+    e.preventDefault();
+    // if (currentJob) console.log(passedType, currentJob.title);
+    if (loading) return <p>Updating...</p>;
+    if (error) return <p>Update Error: {error.message}</p>;
+
+    updateJob({
+      variables: {
+        updateJobId: job.id,
+        newValue: editedValue,
+        type: passedType,
+      },
+    });
+  };
+
   // Create an array of status types.
   const status = ["Added", "Applied", "Accepted", "Rejected"];
   return (
@@ -39,11 +68,79 @@ export default function JobListElement({ job }: JobTypes) {
         <div className={styles.topContainer}>
           <div className={styles.left}>
             <h2>Title</h2>
-            <p className={styles.editText}>{job.title}</p>
+            {!editTitle ? (
+              <p
+                className={styles.editText}
+                onClick={() => {
+                  setEditTitle(true);
+                  setCurrentJob(job);
+                }}
+              >
+                {job.title}
+              </p>
+            ) : (
+              <>
+                {/* EDIT TITLE IN PLACE */}
+                <Form
+                  onSubmit={(e) => {
+                    setEditTitle(false);
+                    if (currentJob)
+                      handleUpdateText(e, "title", currentJob.title);
+                  }}
+                >
+                  <Form.Group typeof="submit">
+                    <Form.Control
+                      value={currentJob ? currentJob.title : ""}
+                      onChange={(e) => {
+                        // if (e.key === "Escape") setEditTitle(false);
+                        if (currentJob) {
+                          setCurrentJob({
+                            ...currentJob,
+                            title: e.target.value,
+                          });
+                        }
+                      }}
+                    />
+                  </Form.Group>
+                </Form>
+              </>
+            )}
           </div>
           <div className={styles.right}>
             <h2>Link</h2>
-            <p className={styles.editText}>https://examplelink</p>
+            {!editLink ? (
+              <p
+                className={styles.editText}
+                onClick={() => {
+                  setEditLink(true);
+                  setCurrentJob(job);
+                }}
+              >
+                {job.link}
+              </p>
+            ) : (
+              <Form
+                onSubmit={(e) => {
+                  setEditLink(false);
+                  if (currentJob) handleUpdateText(e, "link", currentJob.link);
+                }}
+              >
+                <Form.Group>
+                  <Form.Control
+                    value={currentJob ? currentJob.link : ""}
+                    onChange={(e) => {
+                      if (currentJob) {
+                        setCurrentJob({
+                          ...currentJob,
+                          link: e.target.value,
+                        });
+                      }
+                    }}
+                    typeof="submit"
+                  />
+                </Form.Group>
+              </Form>
+            )}
           </div>
         </div>
         {/* BOTTOM HALF (BELOW BLUE DIVIDER) */}
