@@ -1,13 +1,13 @@
 @use "../../utilities/elements";
 @use "../../utilities/variables" as var;
+@import "../../utilities/mixins";
 
-$line: none;
+$line: solid;
 $padding: 1rem;
 
 // Parent container.
 .buttonContainer {
   border: $line red;
-  // border: solid var.$accent-blue;
   border-radius: 0.5rem;
   background-color: var.$gray;
   padding-left: 0 !important;
@@ -43,15 +43,12 @@ $padding: 1rem;
   }
 }
 
-.viewContainer:hover {
-  cursor: pointer;
-  p {
-    color: var.$accent-green;
-  }
-  #eye {
-    color: var.$accent-green;
-  }
-}
+// .viewContainer:hover {
+//   cursor: pointer;
+//   #eye {
+//     color: var.$accent-green;
+//   }
+// }
 
 // Upload and download container
 .bottomContainer {
@@ -81,7 +78,14 @@ $padding: 1rem;
 #eye {
   height: 2rem;
   width: 2rem;
-
   border: $line orange;
   border-radius: 0;
+  &:hover {
+    @include fade-in-animation(
+      color,
+      var.$accent-blue,
+      var.$accent-green,
+      0.2s
+    );
+  }
 }

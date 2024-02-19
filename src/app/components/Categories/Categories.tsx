@@ -68,7 +68,7 @@ export default function Categories({ user }: UserTypes) {
                   <div className={styles.jobWrapper}>
                     <h2>Added</h2>
                     {category.jobs
-                      .filter((job) => job.status === "Added")
+                      .filter((job) => job.status.toLowerCase() === "added")
                       .map((job: Job) => {
                         return <JobListElement job={job} />;
                       })}
@@ -76,7 +76,7 @@ export default function Categories({ user }: UserTypes) {
                   <div className={styles.jobWrapper}>
                     <h2>Applied</h2>
                     {category.jobs
-                      .filter((job) => job.status === "applied")
+                      .filter((job) => job.status.toLowerCase() === "applied")
                       .map((job: Job) => {
                         return <JobListElement job={job} />;
                       })}
@@ -85,7 +85,7 @@ export default function Categories({ user }: UserTypes) {
                     <h2>Accepted</h2>
                     {/* Create a filter and map fuction here. Filter by the  */}
                     {category.jobs
-                      .filter((job) => job.status === "accepted")
+                      .filter((job) => job.status.toLowerCase() === "accepted")
                       .map((job: Job) => {
                         return <JobListElement job={job} />;
                       })}
@@ -93,7 +93,7 @@ export default function Categories({ user }: UserTypes) {
                   <div className={styles.jobWrapper}>
                     <h2>Rejected</h2>
                     {category.jobs
-                      .filter((job) => job.status === "rejected")
+                      .filter((job) => job.status.toLowerCase() === "rejected")
                       .map((job: Job) => {
                         return <JobListElement job={job} />;
                       })}

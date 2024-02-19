@@ -12,17 +12,19 @@ type JobTypes = {
 
 export default function JobListElement({ job }: JobTypes) {
   return (
+    // Mutation function for updating the status of the job.
+
     <>
       <Container className={styles.formWrapper}>
         {/* TOP HALF (ABOVE THE BLUE LINE) */}
         <div className={styles.topContainer}>
           <div className={styles.left}>
             <h2>Title</h2>
-            <p>{job.title}</p>
+            <p className={styles.editText}>{job.title}</p>
           </div>
           <div className={styles.right}>
             <h2>Link</h2>
-            <p>https://examplelink</p>
+            <p className={styles.editText}>https://examplelink</p>
           </div>
         </div>
         {/* BOTTOM HALF (BELOW BLUE DIVIDER) */}
@@ -32,6 +34,8 @@ export default function JobListElement({ job }: JobTypes) {
             <div className={styles.left}>
               <h2>Status</h2>
               <div className={styles.radioContainer}>
+                {/* On click will call the useMutation function for updating the job. */}
+
                 <div className={styles.radioPair}>
                   <RadioButton
                     buttonChoice={job.status === "added" ? true : false}

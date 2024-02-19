@@ -1,6 +1,5 @@
 "use client";
 
-import JobListElement from "./components/JobListElement/JobListElement";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
 import LoginSignupForm from "./components/LoginSignupForm/LoginSignupForm";
 import NavBar from "./components/NavBar/NavBar";
@@ -27,7 +26,6 @@ export default function Home() {
         <br />
         <br />
         <LoginSignupLarge buttonChoice="signup" />
-        <JobListElement />
       </div>
     </div>
   );

@@ -20,6 +20,13 @@ $background: var.$black-gray;
     background-color: transparent;
     margin: 0;
   }
+  // Title, Link and Resmue link edit
+  .editText {
+    &:hover {
+      cursor: pointer;
+      background-color: var.$dark-gray;
+    }
+  }
   h2 {
     text-decoration: underline;
     font-weight: 600;
