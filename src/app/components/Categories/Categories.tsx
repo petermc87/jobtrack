@@ -48,7 +48,7 @@ export default function Categories({ user }: UserTypes) {
   if (!data.user.categories) return <div>No categories found.</div>;
 
   // New job function
-  const handleSubmitJob = (e: any, id: string) => {
+  const handleSubmitJob = (e: any) => {
     e.preventDefault();
 
     // Use the current selected category here.
@@ -87,7 +87,7 @@ export default function Categories({ user }: UserTypes) {
           {/* Iterated category id matched the current selected */}
           {showJobs && category.id === currentCategoryId && (
             <>
-              <AddJobButton />
+              <AddJobButton handleSubmitJob={handleSubmitJob} />
               {/* Check if there are jobs contained within each category. If not, */}
               {/* display a message. */}
               {category.jobs.length ? (
