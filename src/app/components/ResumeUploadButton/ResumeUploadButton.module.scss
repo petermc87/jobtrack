@@ -2,7 +2,7 @@
 @use "../../utilities/variables" as var;
 @import "../../utilities/mixins";
 
-$line: solid;
+$line: none;
 $padding: 1rem;
 
 // Parent container.
@@ -26,29 +26,46 @@ $padding: 1rem;
   padding: $padding 0 $padding 0;
   text-align: center;
 
-  div {
-    border: $line gray;
-    margin: 0;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 0.2rem 0 0.2rem 0;
-    border-radius: 0.2rem;
-    background-color: var.$gray;
-    p {
-      margin: 0;
-      background-color: var.$gray;
+  // View button (eye)
+  #eye {
+    height: 2rem;
+    width: 2rem;
+    border: $line orange;
+    border-radius: 0;
+    &:hover {
+      @include fade-in-animation(
+        color,
+        var.$accent-blue,
+        var.$accent-green,
+        0.2s
+      );
     }
   }
 }
-
-// .viewContainer:hover {
-//   cursor: pointer;
-//   #eye {
-//     color: var.$accent-green;
-//   }
-// }
+.viewTextWrapper {
+  border: $line gray;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.2rem 0 0.2rem 0;
+  border-radius: 0.2rem;
+  background-color: var.$gray;
+  &:hover {
+    @include fade-in-animation(
+      background-color,
+      var.$gray,
+      var.$dark-gray,
+      0.2s
+    );
+    cursor: pointer;
+  }
+  p {
+    margin: 0;
+    background-color: transparent;
+  }
+}
 
 // Upload and download container
 .bottomContainer {
@@ -72,20 +89,4 @@ $padding: 1rem;
 #upload {
   border: $line blue;
   border-radius: 0;
-}
-
-// View button (eye)
-#eye {
-  height: 2rem;
-  width: 2rem;
-  border: $line orange;
-  border-radius: 0;
-  &:hover {
-    @include fade-in-animation(
-      color,
-      var.$accent-blue,
-      var.$accent-green,
-      0.2s
-    );
-  }
 }

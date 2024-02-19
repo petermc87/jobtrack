@@ -35,3 +35,17 @@ export const NEW_CATEGORY = gql`
     }
   }
 `;
+
+export const UPDATE_JOB = gql`
+  mutation UpdateJob($updateJobId: ID!, $newValue: String, $type: String) {
+    updateJob(id: $updateJobId, newValue: $newValue, type: $type) {
+      id
+      title
+      link
+      jobDescription
+      categoryId
+      resumeLink
+      status
+    }
+  }
+`;

@@ -9,7 +9,7 @@ export default function ResumeUpload() {
         {/* VIEW CONTAINER */}
         <Container className={styles.viewContainer}>
           <MdPreview className={styles.buttonWrapper} id={styles.eye} />
-          <div>
+          <div className={styles.viewTextWrapper}>
             <p>
               resume_placeholderasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
             </p>

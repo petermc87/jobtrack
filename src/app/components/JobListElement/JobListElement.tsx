@@ -1,5 +1,8 @@
+import { useMutation } from "@apollo/client";
 import { Job } from "@prisma/client";
 import { Container } from "react-bootstrap";
+import { UPDATE_JOB } from "../../../../graphql/mutations";
+import { GET_USER } from "../../../../graphql/queries";
 import ExpandSmall from "../ExpandButtons/ExpandButtonSmall";
 import RadioButton from "../RadioButton/RadioButton";
 import ResumeUpload from "../ResumeUploadButton/ResumeUploadButton";
@@ -11,9 +14,22 @@ type JobTypes = {
 };
 
 export default function JobListElement({ job }: JobTypes) {
-  return (
-    // Mutation function for updating the status of the job.
+  // UpdateJob Mutation
+  const [updateJob, { loading, error }] = useMutation(UPDATE_JOB, {
+    refetchQueries: [GET_USER, "GetUser"],
+  });
+  // Mutation function for updating the status of the job.
+  const handleUpdateStatus = (status: string) => {
+    // Error handling
+    if (loading) return <p>Updating...</p>;
+    if (error) return <p>Update Error: {error.message}</p>;
 
+    // Call update resolver function.
+    updateJob({
+      variables: { updateJobId: job.id, newValue: status, type: "status" },
+    });
+  };
+  return (
     <>
       <Container className={styles.formWrapper}>
         {/* TOP HALF (ABOVE THE BLUE LINE) */}
@@ -35,26 +51,37 @@ export default function JobListElement({ job }: JobTypes) {
               <h2>Status</h2>
               <div className={styles.radioContainer}>
                 {/* On click will call the useMutation function for updating the job. */}
-
-                <div className={styles.radioPair}>
+                <div
+                  className={styles.radioPair}
+                  onClick={() => handleUpdateStatus("added")}
+                >
                   <RadioButton
                     buttonChoice={job.status === "added" ? true : false}
                   />{" "}
                   <p>Added</p>
                 </div>
-                <div className={styles.radioPair}>
+                <div
+                  className={styles.radioPair}
+                  onClick={() => handleUpdateStatus("applied")}
+                >
                   <RadioButton
                     buttonChoice={job.status === "applied" ? true : false}
                   />{" "}
                   <p>Applied</p>
                 </div>
-                <div className={styles.radioPair}>
+                <div
+                  className={styles.radioPair}
+                  onClick={() => handleUpdateStatus("accepted")}
+                >
                   <RadioButton
                     buttonChoice={job.status === "accepted" ? true : false}
                   />{" "}
                   <p>Accepted</p>
                 </div>
-                <div className={styles.radioPair}>
+                <div
+                  className={styles.radioPair}
+                  onClick={() => handleUpdateStatus("rejected")}
+                >
                   <RadioButton
                     buttonChoice={job.status === "rejected" ? true : false}
                   />{" "}
