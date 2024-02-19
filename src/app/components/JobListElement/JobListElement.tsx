@@ -28,23 +28,10 @@ export default function JobListElement({ job }: JobTypes) {
   const [updateJob, { loading, error }] = useMutation(UPDATE_JOB, {
     refetchQueries: [GET_USER, "GetUser"],
   });
-  // Mutation function for updating the status of the job.
-  const handleUpdateStatus = (status: string) => {
-    // Error handling
-    if (loading) return <p>Updating...</p>;
-    if (error) return <p>Update Error: {error.message}</p>;
 
-    // Call update resolver function.
-    updateJob({
-      variables: { updateJobId: job.id, newValue: status, type: "status" },
-    });
-  };
-
-  const handleUpdateText = (
-    e: any,
-    passedType: string,
-    editedValue: string
-  ) => {
+  // Update with the key type, which is "status", "title", etc. The editedValue is
+  // the new string entered into the input field.
+  const handleUpdate = (e: any, passedType: string, editedValue: string) => {
     e.preventDefault();
     // if (currentJob) console.log(passedType, currentJob.title);
     if (loading) return <p>Updating...</p>;
@@ -84,8 +71,7 @@ export default function JobListElement({ job }: JobTypes) {
                 <Form
                   onSubmit={(e) => {
                     setEditTitle(false);
-                    if (currentJob)
-                      handleUpdateText(e, "title", currentJob.title);
+                    if (currentJob) handleUpdate(e, "title", currentJob.title);
                   }}
                 >
                   <Form.Group typeof="submit">
@@ -122,7 +108,7 @@ export default function JobListElement({ job }: JobTypes) {
               <Form
                 onSubmit={(e) => {
                   setEditLink(false);
-                  if (currentJob) handleUpdateText(e, "link", currentJob.link);
+                  if (currentJob) handleUpdate(e, "link", currentJob.link);
                 }}
               >
                 <Form.Group>
@@ -156,7 +142,9 @@ export default function JobListElement({ job }: JobTypes) {
                     <>
                       <div
                         className={styles.radioPair}
-                        onClick={() => handleUpdateStatus(item.toLowerCase())}
+                        onClick={(e) =>
+                          handleUpdate(e, "status", item.toLowerCase())
+                        }
                       >
                         <RadioButton
                           buttonChoice={
