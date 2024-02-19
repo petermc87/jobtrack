@@ -29,6 +29,9 @@ export default function JobListElement({ job }: JobTypes) {
       variables: { updateJobId: job.id, newValue: status, type: "status" },
     });
   };
+
+  // Create an array of status types.
+  const status = ["Added", "Applied", "Accepted", "Rejected"];
   return (
     <>
       <Container className={styles.formWrapper}>
@@ -51,42 +54,23 @@ export default function JobListElement({ job }: JobTypes) {
               <h2>Status</h2>
               <div className={styles.radioContainer}>
                 {/* On click will call the useMutation function for updating the job. */}
-                <div
-                  className={styles.radioPair}
-                  onClick={() => handleUpdateStatus("added")}
-                >
-                  <RadioButton
-                    buttonChoice={job.status === "added" ? true : false}
-                  />{" "}
-                  <p>Added</p>
-                </div>
-                <div
-                  className={styles.radioPair}
-                  onClick={() => handleUpdateStatus("applied")}
-                >
-                  <RadioButton
-                    buttonChoice={job.status === "applied" ? true : false}
-                  />{" "}
-                  <p>Applied</p>
-                </div>
-                <div
-                  className={styles.radioPair}
-                  onClick={() => handleUpdateStatus("accepted")}
-                >
-                  <RadioButton
-                    buttonChoice={job.status === "accepted" ? true : false}
-                  />{" "}
-                  <p>Accepted</p>
-                </div>
-                <div
-                  className={styles.radioPair}
-                  onClick={() => handleUpdateStatus("rejected")}
-                >
-                  <RadioButton
-                    buttonChoice={job.status === "rejected" ? true : false}
-                  />{" "}
-                  <p>Rejected</p>
-                </div>
+                {status.map((item: string) => {
+                  return (
+                    <>
+                      <div
+                        className={styles.radioPair}
+                        onClick={() => handleUpdateStatus(item.toLowerCase())}
+                      >
+                        <RadioButton
+                          buttonChoice={
+                            job.status === item.toLowerCase() ? true : false
+                          }
+                        />{" "}
+                        <p>{item}</p>
+                      </div>
+                    </>
+                  );
+                })}
               </div>
             </div>
             <div className={styles.right}>
