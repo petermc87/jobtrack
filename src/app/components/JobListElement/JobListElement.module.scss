@@ -38,11 +38,28 @@ $background: var.$black-gray;
 .topContainer {
   border: $line blue;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: transparent;
   padding: 0.5rem;
   // Divider line
   border-bottom: solid var.$accent-blue;
   border-width: 1px;
+}
+
+.titleAndLinkWrapper {
+  display: flex;
+  border: $line white;
+  width: 100%;
+  div {
+    background-color: var.$black-gray;
+  }
+}
+
+// Down Chevron
+.downArrowWrapper {
+  background-color: transparent;
+  margin-top: 0.5rem;
 }
 
 .bottomContainer {
@@ -71,8 +88,8 @@ $background: var.$black-gray;
 .right {
   border: $line gray;
   width: 50%;
-  background-color: transparent;
   padding-left: 0.5rem;
+  background-color: var.$black-gray;
 }
 
 // Summary Container

@@ -59,89 +59,96 @@ export default function JobListElement({ job }: JobTypes) {
       <Container className={styles.formWrapper}>
         {/* TOP HALF (ABOVE THE BLUE LINE) */}
         <div className={styles.topContainer}>
-          <div className={styles.left}>
-            <h2>Title</h2>
-            {!editTitle ? (
-              <p
-                className={styles.editText}
-                onClick={() => {
-                  setEditTitle(true);
-                  setCurrentJob(job);
-                }}
-              >
-                {job.title}
-              </p>
-            ) : (
-              <>
-                {/* EDIT TITLE IN PLACE */}
-                <Form
-                  onSubmit={(e) => {
-                    setEditTitle(false);
-                    if (currentJob) handleUpdate(e, "title", currentJob.title);
+          <div className={styles.titleAndLinkWrapper}>
+            <div className={styles.left}>
+              <h2>Title</h2>
+              {!editTitle ? (
+                <p
+                  className={styles.editText}
+                  onClick={() => {
+                    setEditTitle(true);
+                    setCurrentJob(job);
                   }}
                 >
-                  <Form.Group typeof="submit">
+                  {job.title}
+                </p>
+              ) : (
+                <>
+                  {/* EDIT TITLE IN PLACE */}
+                  <Form
+                    onSubmit={(e) => {
+                      setEditTitle(false);
+                      if (currentJob)
+                        handleUpdate(e, "title", currentJob.title);
+                    }}
+                  >
+                    <Form.Group typeof="submit">
+                      <Form.Control
+                        value={currentJob ? currentJob.title : ""}
+                        onChange={(e) => {
+                          // if (e.key === "Escape") setEditTitle(false);
+                          if (currentJob) {
+                            setCurrentJob({
+                              ...currentJob,
+                              title: e.target.value,
+                            });
+                          }
+                        }}
+                      />
+                    </Form.Group>
+                  </Form>
+                </>
+              )}
+            </div>
+            <div className={styles.right}>
+              <h2>Link</h2>
+              {!editLink ? (
+                <p
+                  className={styles.editText}
+                  onClick={() => {
+                    setEditLink(true);
+                    setCurrentJob(job);
+                  }}
+                >
+                  {job.link}
+                </p>
+              ) : (
+                <Form
+                  onSubmit={(e) => {
+                    setEditLink(false);
+                    if (currentJob) handleUpdate(e, "link", currentJob.link);
+                  }}
+                >
+                  <Form.Group>
                     <Form.Control
-                      value={currentJob ? currentJob.title : ""}
+                      value={currentJob ? currentJob.link : ""}
                       onChange={(e) => {
-                        // if (e.key === "Escape") setEditTitle(false);
                         if (currentJob) {
                           setCurrentJob({
                             ...currentJob,
-                            title: e.target.value,
+                            link: e.target.value,
                           });
                         }
                       }}
+                      typeof="submit"
                     />
                   </Form.Group>
                 </Form>
-              </>
-            )}
+              )}
+            </div>
           </div>
-          <div className={styles.right}>
-            <h2>Link</h2>
-            {!editLink ? (
-              <p
-                className={styles.editText}
-                onClick={() => {
-                  setEditLink(true);
-                  setCurrentJob(job);
-                }}
-              >
-                {job.link}
-              </p>
-            ) : (
-              <Form
-                onSubmit={(e) => {
-                  setEditLink(false);
-                  if (currentJob) handleUpdate(e, "link", currentJob.link);
-                }}
-              >
-                <Form.Group>
-                  <Form.Control
-                    value={currentJob ? currentJob.link : ""}
-                    onChange={(e) => {
-                      if (currentJob) {
-                        setCurrentJob({
-                          ...currentJob,
-                          link: e.target.value,
-                        });
-                      }
-                    }}
-                    typeof="submit"
-                  />
-                </Form.Group>
-              </Form>
-            )}
-          </div>
-          {/* DOWN CHEVRON ON NOT SHOW OF DETAILS*/}
+
+          {/* DOWN CHEVRON WHEN NOT SHOWING EXPANDED DETAILS*/}
+
           {!showJobDetails && (
-            <ExpandSmall
-              buttonChoice={showJobDetails}
-              setCurrentJobId={setCurrentJobId}
-              jobId={job.id}
-              setShowDetails={setShowJobDetails}
-            />
+            <div className={styles.downArrowWrapper}>
+              <ExpandSmall
+                buttonChoice={showJobDetails}
+                setCurrentJobId={setCurrentJobId}
+                jobId={job.id}
+                setShowDetails={setShowJobDetails}
+              />
+            </div>
           )}
         </div>
 
