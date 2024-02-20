@@ -24,6 +24,12 @@ export default function JobListElement({ job }: JobTypes) {
   // Link input container state.
   const [editLink, setEditLink] = useState(false);
 
+  // Job details show
+  const [showJobDetails, setShowJobDetails] = useState(false);
+
+  // Current selected job id.
+  const [currentJobId, setCurrentJobId] = useState("");
+
   // UpdateJob Mutation
   const [updateJob, { loading, error }] = useMutation(UPDATE_JOB, {
     refetchQueries: [GET_USER, "GetUser"],
@@ -128,63 +134,83 @@ export default function JobListElement({ job }: JobTypes) {
               </Form>
             )}
           </div>
+          {/* DOWN CHEVRON ON NOT SHOW OF DETAILS*/}
+          {!showJobDetails && (
+            <ExpandSmall
+              buttonChoice={showJobDetails}
+              setCurrentJobId={setCurrentJobId}
+              jobId={job.id}
+              setShowDetails={setShowJobDetails}
+            />
+          )}
         </div>
-        {/* BOTTOM HALF (BELOW BLUE DIVIDER) */}
-        <div className={styles.bottomContainer}>
-          {/* TOP ROW */}
-          <div className={styles.topRow}>
-            <div className={styles.left}>
-              <h2>Status</h2>
-              <div className={styles.radioContainer}>
-                {/* On click will call the useMutation function for updating the job. */}
-                {status.map((item: string) => {
-                  return (
-                    <>
-                      <div
-                        className={styles.radioPair}
-                        onClick={(e) =>
-                          handleUpdate(e, "status", item.toLowerCase())
-                        }
-                      >
-                        <RadioButton
-                          buttonChoice={
-                            job.status === item.toLowerCase() ? true : false
-                          }
-                        />{" "}
-                        <p>{item}</p>
-                      </div>
-                    </>
-                  );
-                })}
-              </div>
-            </div>
-            <div className={styles.right}>
-              <h2>Job Summary</h2>
-              <div className={styles.summaryPoints}>
-                <ul>
-                  <li>
-                    <p>Here is a point.</p>
-                  </li>
-                  <li>
-                    <p>Here is a point.</p>
-                  </li>
-                  <li>
-                    <p>Here is a point.</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
 
-          {/* BOTTOM ROW */}
-          <div className={styles.bottomRow}>
-            <h2>Resume</h2>
-            <div className={styles.right} id={styles.resumeUpload}>
-              <ResumeUpload />
+        {/* NOTE: This half will only be shown when the detail show state is true. */}
+
+        {/* BOTTOM HALF (BELOW BLUE DIVIDER) */}
+        {/* Comparison between job.id and currentJobId to only expand the current selection.*/}
+        {showJobDetails && job.id === currentJobId && (
+          <div className={styles.bottomContainer}>
+            {/* TOP ROW */}
+            <div className={styles.topRow}>
+              <div className={styles.left}>
+                <h2>Status</h2>
+                <div className={styles.radioContainer}>
+                  {/* On click will call the useMutation function for updating the job. */}
+                  {status.map((item: string) => {
+                    return (
+                      <>
+                        <div
+                          className={styles.radioPair}
+                          onClick={(e) =>
+                            handleUpdate(e, "status", item.toLowerCase())
+                          }
+                        >
+                          <RadioButton
+                            buttonChoice={
+                              job.status === item.toLowerCase() ? true : false
+                            }
+                          />{" "}
+                          <p>{item}</p>
+                        </div>
+                      </>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className={styles.right}>
+                <h2>Job Summary</h2>
+                <div className={styles.summaryPoints}>
+                  <ul>
+                    <li>
+                      <p>Here is a point.</p>
+                    </li>
+                    <li>
+                      <p>Here is a point.</p>
+                    </li>
+                    <li>
+                      <p>Here is a point.</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <ExpandSmall buttonChoice={false} />
+
+            {/* BOTTOM ROW */}
+            <div className={styles.bottomRow}>
+              <h2>Resume</h2>
+              <div className={styles.right} id={styles.resumeUpload}>
+                <ResumeUpload />
+              </div>
+              <ExpandSmall
+                buttonChoice={showJobDetails}
+                setCurrentJobId={setCurrentJobId}
+                jobId={job.id}
+                setShowDetails={setShowJobDetails}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </Container>
     </>
   );

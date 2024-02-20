@@ -1,18 +1,40 @@
+import { Dispatch, SetStateAction } from "react";
 import {
   IoChevronDownCircleOutline,
   IoChevronUpCircleOutline,
 } from "react-icons/io5";
-import { ButtonTypes } from "../../../../typings";
 import styles from "./ExpandButtonSmall.module.scss";
 
+type JobElementButtonTypes = {
+  setCurrentJobId: Dispatch<SetStateAction<string>>;
+  setShowDetails: Dispatch<SetStateAction<boolean>>;
+  buttonChoice: boolean;
+  jobId: string;
+};
+
 // Use a boolean to manage whether its an Up or Down arrow.
-export default function ExpandSmall({ buttonChoice }: ButtonTypes) {
+export default function ExpandSmall({
+  buttonChoice,
+  jobId,
+  setCurrentJobId,
+  setShowDetails,
+}: JobElementButtonTypes) {
   return (
     <>
       {buttonChoice ? (
-        <IoChevronDownCircleOutline className={styles.buttonWrapper} />
+        <IoChevronUpCircleOutline
+          className={styles.buttonWrapper}
+          onClick={() => setShowDetails(false)}
+        />
       ) : (
-        <IoChevronUpCircleOutline className={styles.buttonWrapper} />
+        // show details true and set the currentJobId to show the expanded job list element.
+        <IoChevronDownCircleOutline
+          className={styles.buttonWrapper}
+          onClick={() => {
+            setShowDetails(true);
+            setCurrentJobId(jobId);
+          }}
+        />
       )}
     </>
   );

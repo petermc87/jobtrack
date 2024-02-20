@@ -32,10 +32,7 @@ export default function Categories({ user }: UserTypes) {
   // State for handling show jobs
   const [showJobs, setShowJobs] = useState(false);
 
-  // State for holding current selected category for viewing jobs.
-  const [currentSelected, setCurrentSelected] = useState(0);
-
-  // Current category object.
+  // Current category id.
   const [currentCategoryId, setCurrentCategoryId] = useState<string>("");
 
   if (loading) return null;
@@ -66,77 +63,75 @@ export default function Categories({ user }: UserTypes) {
     });
   };
 
-  const categoriesList = data.user.categories.map(
-    (category: CategoryTypes, i: number) => {
-      return (
-        <div key={category.id} className={styles.allCategoriesWrapper}>
-          <div className={styles.headingWrapper}>
-            <h1>{category.name}</h1>
-            {/* Store the current position of the selected element and only
+  const categoriesList = data.user.categories.map((category: CategoryTypes) => {
+    return (
+      <div key={category.id} className={styles.allCategoriesWrapper}>
+        <div className={styles.headingWrapper}>
+          <h1>{category.name}</h1>
+          {/* Store the current position of the selected element and only
             render the jobs expanded for that category */}
-            <ExpandLarge
-              showJobs={showJobs}
-              setShowJobs={setShowJobs}
-              //Pass in the currentSelectedCategory and the current category.id
-              currentCategoryId={currentCategoryId}
-              setCurrentCategoryId={setCurrentCategoryId}
-              iteratedCategoryId={category.id}
-            />
-          </div>
-
-          {/* Iterated category id matched the current selected */}
-          {showJobs && category.id === currentCategoryId && (
-            <>
-              <AddJobButton handleSubmitJob={handleSubmitJob} />
-              {/* Check if there are jobs contained within each category. If not, */}
-              {/* display a message. */}
-              {category.jobs.length ? (
-                <>
-                  <div className={styles.jobWrapper}>
-                    <h2>Added</h2>
-                    {category.jobs
-                      .filter((job) => job.status.toLowerCase() === "added")
-                      .map((job: Job) => {
-                        return <JobListElement job={job} />;
-                      })}
-                  </div>
-                  <div className={styles.jobWrapper}>
-                    <h2>Applied</h2>
-                    {category.jobs
-                      .filter((job) => job.status.toLowerCase() === "applied")
-                      .map((job: Job) => {
-                        return <JobListElement job={job} />;
-                      })}
-                  </div>
-                  <div className={styles.jobWrapper}>
-                    <h2>Accepted</h2>
-                    {/* Create a filter and map fuction here. Filter by the  */}
-                    {category.jobs
-                      .filter((job) => job.status.toLowerCase() === "accepted")
-                      .map((job: Job) => {
-                        return <JobListElement job={job} />;
-                      })}
-                  </div>
-                  <div className={styles.jobWrapper}>
-                    <h2>Rejected</h2>
-                    {category.jobs
-                      .filter((job) => job.status.toLowerCase() === "rejected")
-                      .map((job: Job) => {
-                        return <JobListElement job={job} />;
-                      })}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <h2>No jobs to display</h2>
-                </>
-              )}
-            </>
-          )}
+          <ExpandLarge
+            showJobs={showJobs}
+            setShowJobs={setShowJobs}
+            //Pass in the currentSelectedCategory and the current category.id
+            currentCategoryId={currentCategoryId}
+            setCurrentCategoryId={setCurrentCategoryId}
+            iteratedCategoryId={category.id}
+          />
         </div>
-      );
-    }
-  );
+
+        {/* Iterated category id matched the current selected */}
+        {showJobs && category.id === currentCategoryId && (
+          <>
+            <AddJobButton handleSubmitJob={handleSubmitJob} />
+            {/* Check if there are jobs contained within each category. If not, */}
+            {/* display a message. */}
+            {category.jobs.length ? (
+              <>
+                <div className={styles.jobWrapper}>
+                  <h2>Added</h2>
+                  {category.jobs
+                    .filter((job) => job.status.toLowerCase() === "added")
+                    .map((job: Job) => {
+                      return <JobListElement job={job} />;
+                    })}
+                </div>
+                <div className={styles.jobWrapper}>
+                  <h2>Applied</h2>
+                  {category.jobs
+                    .filter((job) => job.status.toLowerCase() === "applied")
+                    .map((job: Job) => {
+                      return <JobListElement job={job} />;
+                    })}
+                </div>
+                <div className={styles.jobWrapper}>
+                  <h2>Accepted</h2>
+                  {/* Create a filter and map fuction here. Filter by the  */}
+                  {category.jobs
+                    .filter((job) => job.status.toLowerCase() === "accepted")
+                    .map((job: Job) => {
+                      return <JobListElement job={job} />;
+                    })}
+                </div>
+                <div className={styles.jobWrapper}>
+                  <h2>Rejected</h2>
+                  {category.jobs
+                    .filter((job) => job.status.toLowerCase() === "rejected")
+                    .map((job: Job) => {
+                      return <JobListElement job={job} />;
+                    })}
+                </div>
+              </>
+            ) : (
+              <>
+                <h2>No jobs to display</h2>
+              </>
+            )}
+          </>
+        )}
+      </div>
+    );
+  });
 
   return (
     <>
