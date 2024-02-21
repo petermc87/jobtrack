@@ -36,10 +36,8 @@ export default function Home() {
   const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY, {
     refetchQueries: [GET_USER, "GetUser"],
   });
-  // const [newCategory, { loading, error }] = useMutation(NEW_CATEGORY);
 
   const handleCreateCategory = (e: FormEvent<HTMLFormElement>) => {
-    console.log("Submit");
     e.preventDefault();
 
     // Error handling
@@ -49,8 +47,6 @@ export default function Home() {
     newCategory({ variables: { name: categoryName, userId: userData?.id } });
     setCategoryName("");
   };
-
-  // TODO: display categpries by user.
 
   return (
     <div>
@@ -74,6 +70,7 @@ export default function Home() {
               type="text"
               placeholder="Eg. Construction, Software Development, etc."
               value={categoryName}
+              required
               onChange={(e) => setCategoryName(e.target.value)}
             />
             <AddButton />

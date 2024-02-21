@@ -3,7 +3,7 @@ import { Job, User } from "@prisma/client";
 import { useState } from "react";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin7Fill } from "react-icons/ri";
-import { NEW_JOB } from "../../../../graphql/mutations";
+import { DELETE_CATEGORY, NEW_JOB } from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
 import AddJobButton from "../AddJobButton/AddJobButton";
 import ExpandLarge from "../ExpandButtons/ExpandButtonLarge";
@@ -29,6 +29,11 @@ export default function Categories({ user }: UserTypes) {
 
   // useMutation for new job
   const [newJob] = useMutation(NEW_JOB, {
+    refetchQueries: [GET_USER, "GetUser"],
+  });
+
+  // useMutation for deleting category
+  const [deleteCategory] = useMutation(DELETE_CATEGORY, {
     refetchQueries: [GET_USER, "GetUser"],
   });
   // State for handling show jobs
@@ -64,11 +69,17 @@ export default function Categories({ user }: UserTypes) {
       },
     });
   };
-  {
-  }
-  {
-    /* </div> */
-  }
+
+  // Delete category
+  const handleDeleteCategory = (e: any, id: string) => {
+    e.preventDefault();
+
+    deleteCategory({
+      variables: {
+        deleteCategoryId: id,
+      },
+    });
+  };
   const categoriesList = data.user.categories.map((category: CategoryTypes) => {
     return (
       <div key={category.id} className={styles.allCategoriesWrapper}>
@@ -77,7 +88,11 @@ export default function Categories({ user }: UserTypes) {
             <h1>{category.name}</h1>
             <div className={styles.buttonWrapper}>
               <MdEdit />
-              <RiDeleteBin7Fill />
+              <RiDeleteBin7Fill
+                onClick={(e) => {
+                  handleDeleteCategory(e, category.id);
+                }}
+              />
             </div>
           </div>
 
