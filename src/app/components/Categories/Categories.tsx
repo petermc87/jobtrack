@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Job, User } from "@prisma/client";
 import { useState } from "react";
+import { MdEdit } from "react-icons/md";
+import { RiDeleteBin7Fill } from "react-icons/ri";
 import { NEW_JOB } from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
 import AddJobButton from "../AddJobButton/AddJobButton";
@@ -62,12 +64,23 @@ export default function Categories({ user }: UserTypes) {
       },
     });
   };
-
+  {
+  }
+  {
+    /* </div> */
+  }
   const categoriesList = data.user.categories.map((category: CategoryTypes) => {
     return (
       <div key={category.id} className={styles.allCategoriesWrapper}>
         <div className={styles.headingWrapper}>
-          <h1>{category.name}</h1>
+          <div className={styles.leftElementsWrapper}>
+            <h1>{category.name}</h1>
+            <div className={styles.buttonWrapper}>
+              <MdEdit />
+              <RiDeleteBin7Fill />
+            </div>
+          </div>
+
           {/* Store the current position of the selected element and only
             render the jobs expanded for that category */}
           <ExpandLarge

@@ -1,4 +1,3 @@
-// "use client";
 import bcrypt from "bcrypt";
 import { NextAuthOptions, User } from "next-auth";
 import NextAuth from "next-auth/next";
@@ -81,23 +80,6 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    // TEST: Connecting the Apollo cleint here.
-    // async signIn(user, account, profile) {
-    //   if (account.provider === "google") {
-    //     try {
-    //       await ApolloClient.arguments({
-    //         MutationObserver: NEW_USER,
-    //         variables: {
-    //           name: profile.name,
-    //           email: profile.email,
-    //         },
-    //       });
-    //     } catch (error) {
-    //       console.error("Unable to save to the database: ", error);
-    //       throw new Error("Error when saving google user");
-    //     }
-    //   }
-    // },
     async session({ session, token }) {
       session.user.id = token.id;
       session.user.username = token.username;
@@ -144,13 +126,3 @@ const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-
-///--- THIS CODE BLOCK FOR AUTHORIZE DIDNT RIDIRECT TO HOME --- ///
-// Here is what was returned in the terminal:
-// {
-//   then: [Function: then],
-//   catch: [Function: catch],
-//   finally: [Function: finally],
-//   requestTransaction: [Function: requestTransaction],
-//   [Symbol(Symbol.toStringTag)]: 'PrismaPromise'
-// }
