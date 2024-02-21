@@ -218,6 +218,12 @@ export const resolvers = {
     },
     deleteCategory: async (parent: any, args: any, context: Context) => {
       try {
+        // First, delete all the jobs with foreign keys.
+        await context.prisma.job.deleteMany({
+          where: {
+            categoryId: args.id,
+          },
+        });
         const deletedCategory = await context.prisma.category.delete({
           where: {
             id: args.id,
