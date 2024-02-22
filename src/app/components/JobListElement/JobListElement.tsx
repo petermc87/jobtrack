@@ -82,11 +82,14 @@ export default function JobListElement({ job }: JobTypes) {
                         handleUpdate(e, "title", currentJob.title);
                     }}
                   >
+                    {/* In lieu of a submit button, we establish the submission of the */}
+                    {/* input field as a self submitting. */}
                     <Form.Group typeof="submit">
                       <Form.Control
+                        // For type error (undefined), we need to check if the currentjob
+                        // has been retrieved from the backend before passing it.
                         value={currentJob ? currentJob.title : ""}
                         onChange={(e) => {
-                          // if (e.key === "Escape") setEditTitle(false);
                           if (currentJob) {
                             setCurrentJob({
                               ...currentJob,

@@ -36,6 +36,25 @@ export const NEW_CATEGORY = gql`
   }
 `;
 
+export const UPDATE_CATEGORY = gql`
+  mutation UpdateCategory($updateCategoryId: ID!, $newName: String) {
+    updateCategory(id: $updateCategoryId, newName: $newName) {
+      id
+      name
+      userId
+      jobs {
+        id
+        title
+        link
+        jobDescription
+        categoryId
+        resumeLink
+        status
+      }
+    }
+  }
+`;
+
 export const DELETE_CATEGORY = gql`
   mutation Mutation($deleteCategoryId: ID!) {
     deleteCategory(id: $deleteCategoryId) {

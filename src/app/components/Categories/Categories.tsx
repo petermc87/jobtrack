@@ -4,7 +4,11 @@ import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin7Fill } from "react-icons/ri";
-import { DELETE_CATEGORY, NEW_JOB } from "../../../../graphql/mutations";
+import {
+  DELETE_CATEGORY,
+  NEW_JOB,
+  UPDATE_CATEGORY,
+} from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
 import AddJobButton from "../AddJobButton/AddJobButton";
 import ExpandLarge from "../ExpandButtons/ExpandButtonLarge";
@@ -29,13 +33,18 @@ export default function Categories({ user }: UserTypes) {
   });
 
   // Category Name State for Editing
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState<string>("");
 
   // Category name edit field
   const [edit, setEdit] = useState(false);
 
   // useMutation for new job
   const [newJob] = useMutation(NEW_JOB, {
+    refetchQueries: [GET_USER, "GetUser"],
+  });
+
+  // useMutation for updating category
+  const [updateCategory] = useMutation(UPDATE_CATEGORY, {
     refetchQueries: [GET_USER, "GetUser"],
   });
 
@@ -79,8 +88,14 @@ export default function Categories({ user }: UserTypes) {
 
   // Edit handler function
   const handleEditCategory = (e: any) => {
-    // console.log("edit");
     e.preventDefault();
+
+    updateCategory({
+      variables: {
+        updateCategoryId: currentCategoryId,
+        newName: categoryName,
+      },
+    });
   };
 
   // Delete category
@@ -98,7 +113,7 @@ export default function Categories({ user }: UserTypes) {
       <div key={category.id} className={styles.allCategoriesWrapper}>
         <div className={styles.headingWrapper}>
           <div className={styles.leftElementsWrapper}>
-            {edit ? (
+            {edit && category.id === currentCategoryId ? (
               <>
                 <Form
                   onSubmit={(e) => {
@@ -106,8 +121,14 @@ export default function Categories({ user }: UserTypes) {
                     handleEditCategory(e);
                   }}
                 >
-                  <Form.Group>
-                    <Form.Control />
+                  <Form.Group typeof="submit">
+                    <Form.Control
+                      value={categoryName}
+                      onChange={(e) => {
+                        console.log(e);
+                        setCategoryName(e.target.value);
+                      }}
+                    />
                   </Form.Group>
                 </Form>
               </>
@@ -118,7 +139,8 @@ export default function Categories({ user }: UserTypes) {
               {/* Click to open edit field. */}
               <MdEdit
                 onClick={() => {
-                  setCategoryName(category.id);
+                  setCategoryName(category.name as string);
+                  setCurrentCategoryId(category.id);
                   if (!edit) setEdit(true);
                   else setEdit(false);
                 }}
