@@ -11,6 +11,7 @@ import {
 } from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
 import AddJobButton from "../AddJobButton/AddJobButton";
+import DangerModal from "../DangerModal/DangerModal";
 import ExpandLarge from "../ExpandButtons/ExpandButtonLarge";
 import JobListElement from "../JobListElement/JobListElement";
 import styles from "./Categories.module.scss";
@@ -37,6 +38,9 @@ export default function Categories({ user }: UserTypes) {
 
   // Category name edit field
   const [edit, setEdit] = useState(false);
+
+  // Show modal.
+  const [showModal, setShowModal] = useState(false);
 
   // useMutation for new job
   const [newJob] = useMutation(NEW_JOB, {
@@ -147,7 +151,9 @@ export default function Categories({ user }: UserTypes) {
               />
               <RiDeleteBin7Fill
                 onClick={(e) => {
-                  handleDeleteCategory(e, category.id);
+                  // Set the show modal state here.
+                  // Set the current selected category for deletion
+                  setShowModal(true);
                 }}
               />
             </div>
@@ -164,7 +170,6 @@ export default function Categories({ user }: UserTypes) {
             iteratedCategoryId={category.id}
           />
         </div>
-
         {/* Iterated category id matched the current selected */}
         {showJobs && category.id === currentCategoryId && (
           <>
@@ -214,6 +219,14 @@ export default function Categories({ user }: UserTypes) {
             )}
           </>
         )}
+        {/* Pass in whether we are deleting a job or category. */}
+        {/* Pass in the handleDelete function and also the id. */}
+        <DangerModal
+          show={showModal}
+          handleDeleteCategory={handleDeleteCategory}
+          currentCategoryId={currentCategoryId}
+          setShow={setShowModal}
+        />
       </div>
     );
   });
