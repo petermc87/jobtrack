@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Job, User } from "@prisma/client";
 import { useState } from "react";
+import { Form } from "react-bootstrap";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import { DELETE_CATEGORY, NEW_JOB } from "../../../../graphql/mutations";
@@ -26,6 +27,12 @@ export default function Categories({ user }: UserTypes) {
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { email: user?.email },
   });
+
+  // Category Name State for Editing
+  const [categoryName, setCategoryName] = useState("");
+
+  // Category name edit field
+  const [edit, setEdit] = useState(false);
 
   // useMutation for new job
   const [newJob] = useMutation(NEW_JOB, {
@@ -70,6 +77,12 @@ export default function Categories({ user }: UserTypes) {
     });
   };
 
+  // Edit handler function
+  const handleEditCategory = (e: any) => {
+    // console.log("edit");
+    e.preventDefault();
+  };
+
   // Delete category
   const handleDeleteCategory = (e: any, id: string) => {
     e.preventDefault();
@@ -85,9 +98,31 @@ export default function Categories({ user }: UserTypes) {
       <div key={category.id} className={styles.allCategoriesWrapper}>
         <div className={styles.headingWrapper}>
           <div className={styles.leftElementsWrapper}>
-            <h1>{category.name}</h1>
+            {edit ? (
+              <>
+                <Form
+                  onSubmit={(e) => {
+                    setEdit(false);
+                    handleEditCategory(e);
+                  }}
+                >
+                  <Form.Group>
+                    <Form.Control />
+                  </Form.Group>
+                </Form>
+              </>
+            ) : (
+              <h1>{category.name}</h1>
+            )}
             <div className={styles.buttonWrapper}>
-              <MdEdit />
+              {/* Click to open edit field. */}
+              <MdEdit
+                onClick={() => {
+                  setCategoryName(category.id);
+                  if (!edit) setEdit(true);
+                  else setEdit(false);
+                }}
+              />
               <RiDeleteBin7Fill
                 onClick={(e) => {
                   handleDeleteCategory(e, category.id);
