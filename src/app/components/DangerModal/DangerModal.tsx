@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
 type DangerModalTypes = {
   show: boolean;
@@ -19,7 +19,35 @@ export default function DangerModal({
   console.log(show, currentCategoryId);
   return (
     <>
-      <Modal show={show} onHide={() => setShow(false)}></Modal>
+      <Modal
+        show={show}
+        onHide={() => setShow(false)}
+        backdrop="static"
+        keyboard={false}
+        key={currentCategoryId}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Danger!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          You are about to delete this forever, are you sure you want to
+          continue?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShow(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="primary"
+            onClick={(e) => {
+              handleDeleteCategory(e, currentCategoryId);
+              setShow(false);
+            }}
+          >
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

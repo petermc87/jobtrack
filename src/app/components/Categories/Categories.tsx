@@ -150,9 +150,10 @@ export default function Categories({ user }: UserTypes) {
                 }}
               />
               <RiDeleteBin7Fill
-                onClick={(e) => {
+                onClick={() => {
                   // Set the show modal state here.
                   // Set the current selected category for deletion
+                  setCurrentCategoryId(category.id);
                   setShowModal(true);
                 }}
               />
