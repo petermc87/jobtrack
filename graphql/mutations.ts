@@ -115,3 +115,17 @@ export const UPDATE_JOB = gql`
     }
   }
 `;
+
+export const DELETE_JOB = gql`
+  mutation Mutation($deleteJobId: ID!) {
+    deleteJob(id: $deleteJobId) {
+      id
+      title
+      link
+      jobDescription
+      categoryId
+      resumeLink
+      status
+    }
+  }
+`;

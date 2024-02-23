@@ -2,8 +2,10 @@ import { useMutation } from "@apollo/client";
 import { Job } from "@prisma/client";
 import { useState } from "react";
 import { Container, Form } from "react-bootstrap";
-import { UPDATE_JOB } from "../../../../graphql/mutations";
+import { RiDeleteBin7Fill } from "react-icons/ri";
+import { DELETE_JOB, UPDATE_JOB } from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
+import DangerModal from "../DangerModal/DangerModal";
 import ExpandSmall from "../ExpandButtons/ExpandButtonSmall";
 import RadioButton from "../RadioButton/RadioButton";
 import ResumeUpload from "../ResumeUploadButton/ResumeUploadButton";
@@ -30,8 +32,15 @@ export default function JobListElement({ job }: JobTypes) {
   // Current selected job id.
   const [currentJobId, setCurrentJobId] = useState("");
 
+  // Show danger modal
+  const [showModal, setShowModal] = useState(false);
   // UpdateJob Mutation
   const [updateJob, { loading, error }] = useMutation(UPDATE_JOB, {
+    refetchQueries: [GET_USER, "GetUser"],
+  });
+
+  // DeleteJob Mutation
+  const [deleteJob] = useMutation(DELETE_JOB, {
     refetchQueries: [GET_USER, "GetUser"],
   });
 
@@ -52,6 +61,16 @@ export default function JobListElement({ job }: JobTypes) {
     });
   };
 
+  // Delete job handler function.
+  const handleDelete = (e: any, id: string) => {
+    e.preventDefault();
+
+    deleteJob({
+      variables: {
+        deleteJobId: id,
+      },
+    });
+  };
   // Array of status types.
   const status = ["Added", "Applied", "Accepted", "Rejected"];
   return (
@@ -139,6 +158,14 @@ export default function JobListElement({ job }: JobTypes) {
                 </Form>
               )}
             </div>
+            <div className={styles.deleteButton}>
+              <RiDeleteBin7Fill
+                onClick={() => {
+                  setCurrentJobId(job.id);
+                  setShowModal(true);
+                }}
+              />
+            </div>
           </div>
 
           {/* DOWN CHEVRON WHEN NOT SHOWING EXPANDED DETAILS*/}
@@ -222,6 +249,12 @@ export default function JobListElement({ job }: JobTypes) {
           </div>
         )}
       </Container>
+      <DangerModal
+        show={showModal}
+        handleDelete={handleDelete}
+        currentId={currentJobId}
+        setShow={setShowModal}
+      />
     </>
   );
 }

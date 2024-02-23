@@ -1,4 +1,5 @@
 @use "../../utilities/variables" as var;
+@import "../../utilities/mixins";
 
 $line: none;
 $background: var.$black-gray;
@@ -87,11 +88,31 @@ $background: var.$black-gray;
 
 .right {
   border: $line gray;
-  width: 50%;
+  width: 43%;
   padding-left: 0.5rem;
   background-color: var.$black-gray;
 }
 
+// Delete Button Styling
+.deleteButton {
+  border: $line orange;
+  width: 7%;
+  text-align: right;
+  svg {
+    font-size: 1.2rem;
+    color: var.$accent-blue;
+    background-color: transparent !important;
+    &:hover {
+      cursor: pointer;
+      @include fade-in-animation(
+        color,
+        var.$accent-blue,
+        var.$accent-green,
+        0.2s
+      );
+    }
+  }
+}
 // Summary Container
 .summaryPoints {
   border-radius: 0.3rem;

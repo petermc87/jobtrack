@@ -184,16 +184,32 @@ export default function Categories({ user }: UserTypes) {
                   {category.jobs
                     .filter((job) => job.status.toLowerCase() === "added")
                     .map((job: Job) => {
-                      return <JobListElement job={job} />;
+                      if (job) {
+                        return <JobListElement job={job} />;
+                      }
+                      return null;
                     })}
+                  {category.jobs.filter(
+                    (job) => job.status.toLowerCase() === "added"
+                  ).length === 0 && <p>Nothing to display</p>}
                 </div>
                 <div className={styles.jobWrapper}>
                   <h2>Applied</h2>
                   {category.jobs
                     .filter((job) => job.status.toLowerCase() === "applied")
                     .map((job: Job) => {
-                      return <JobListElement job={job} />;
+                      if (job) {
+                        return <JobListElement job={job} />;
+                      }
+                      return null;
                     })}
+                  {/* After checking and there was no jobs to list, the return null
+                    automaticlly checks the filter again to see if there are is
+                    any length. Of course, in the case of nothing returned, it will be zero
+                    therefore allowing the Nothing to display text to appear. */}
+                  {category.jobs.filter(
+                    (job) => job.status.toLowerCase() === "applied"
+                  ).length === 0 && <p>Nothing to display</p>}
                 </div>
                 <div className={styles.jobWrapper}>
                   <h2>Accepted</h2>
@@ -201,16 +217,28 @@ export default function Categories({ user }: UserTypes) {
                   {category.jobs
                     .filter((job) => job.status.toLowerCase() === "accepted")
                     .map((job: Job) => {
-                      return <JobListElement job={job} />;
+                      if (job) {
+                        return <JobListElement job={job} />;
+                      }
+                      return null;
                     })}
+                  {category.jobs.filter(
+                    (job) => job.status.toLowerCase() === "accepted"
+                  ).length === 0 && <p>Nothing to display</p>}
                 </div>
                 <div className={styles.jobWrapper}>
                   <h2>Rejected</h2>
                   {category.jobs
                     .filter((job) => job.status.toLowerCase() === "rejected")
                     .map((job: Job) => {
-                      return <JobListElement job={job} />;
+                      if (job) {
+                        return <JobListElement job={job} />;
+                      }
+                      return null;
                     })}
+                  {category.jobs.filter(
+                    (job) => job.status.toLowerCase() === "rejected"
+                  ).length === 0 && <p>Nothing to display</p>}
                 </div>
               </>
             ) : (
@@ -224,8 +252,8 @@ export default function Categories({ user }: UserTypes) {
         {/* Pass in the handleDelete function and also the id. */}
         <DangerModal
           show={showModal}
-          handleDeleteCategory={handleDeleteCategory}
-          currentCategoryId={currentCategoryId}
+          handleDelete={handleDeleteCategory}
+          currentId={currentCategoryId}
           setShow={setShowModal}
         />
       </div>

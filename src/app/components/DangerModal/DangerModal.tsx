@@ -3,16 +3,16 @@ import { Button, Modal } from "react-bootstrap";
 import styles from "./DangerModal.module.scss";
 type DangerModalTypes = {
   show: boolean;
-  handleDeleteCategory: (e: any, id: string) => void;
+  handleDelete: (e: any, id: string) => void;
   setShow: Dispatch<SetStateAction<boolean>>;
-  currentCategoryId: string;
+  currentId: string;
 };
 
 export default function DangerModal({
   show,
   setShow,
-  handleDeleteCategory,
-  currentCategoryId,
+  handleDelete,
+  currentId,
 }: DangerModalTypes) {
   return (
     <>
@@ -21,7 +21,8 @@ export default function DangerModal({
         onHide={() => setShow(false)}
         backdrop="static"
         keyboard={false}
-        key={currentCategoryId}
+        key={currentId}
+        style={{ border: "0 !important" }}
       >
         <Modal.Header closeButton className={styles.modalWrapper}>
           <Modal.Title
@@ -36,7 +37,6 @@ export default function DangerModal({
           style={{
             color: "#11e0c0",
             backgroundColor: "#494949",
-            // border: "solid #494949",
           }}
         >
           You are about to delete this forever, are you sure you want to
@@ -52,7 +52,7 @@ export default function DangerModal({
           <Button
             variant="primary"
             onClick={(e) => {
-              handleDeleteCategory(e, currentCategoryId);
+              handleDelete(e, currentId);
               setShow(false);
             }}
             style={{
