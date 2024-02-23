@@ -1,0 +1,19 @@
+@use "../../utilities/variables" as var;
+
+.modalWrapper {
+  color: var.$accent-blue !important;
+  background-color: var.$black-gray !important;
+  .title {
+    background-color: transparent !important;
+  }
+  .body {
+    background-color: var.$black-gray !important;
+    color: var.$accent-blue !important;
+  }
+  //   button {
+  //     color: var.$accent-blue !important;
+  //   }
+  .footer {
+    background-color: var.$black-gray !important;
+  }
+}

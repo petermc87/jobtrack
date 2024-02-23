@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { Button, Modal } from "react-bootstrap";
-
+import styles from "./DangerModal.module.scss";
 type DangerModalTypes = {
   show: boolean;
   handleDeleteCategory: (e: any, id: string) => void;
@@ -14,9 +14,6 @@ export default function DangerModal({
   handleDeleteCategory,
   currentCategoryId,
 }: DangerModalTypes) {
-  //Check items passed in.
-  // Pass in the event to the function here to satisfy the delete method params.
-  console.log(show, currentCategoryId);
   return (
     <>
       <Modal
@@ -26,14 +23,29 @@ export default function DangerModal({
         keyboard={false}
         key={currentCategoryId}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Danger!</Modal.Title>
+        <Modal.Header closeButton className={styles.modalWrapper}>
+          <Modal.Title
+            className={styles.title}
+            style={{ border: "solid #494949" }}
+          >
+            Danger!
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body
+          className={styles.body}
+          style={{
+            color: "#11e0c0",
+            backgroundColor: "#494949",
+            // border: "solid #494949",
+          }}
+        >
           You are about to delete this forever, are you sure you want to
           continue?
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer
+          className={styles.footer}
+          style={{ backgroundColor: "#494949" }}
+        >
           <Button variant="secondary" onClick={() => setShow(false)}>
             Cancel
           </Button>
@@ -42,6 +54,11 @@ export default function DangerModal({
             onClick={(e) => {
               handleDeleteCategory(e, currentCategoryId);
               setShow(false);
+            }}
+            style={{
+              backgroundColor: "#11e0c0",
+              color: "#494949",
+              border: "none",
             }}
           >
             Delete
