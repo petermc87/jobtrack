@@ -1,8 +1,13 @@
+import { Job } from "@prisma/client";
 import { Container } from "react-bootstrap";
-import { GrDocumentUpload } from "react-icons/gr";
-import { MdOutlineDownloadForOffline, MdPreview } from "react-icons/md";
+import { MdPreview } from "react-icons/md";
 import styles from "./ResumeUploadButton.module.scss";
-export default function ResumeUpload() {
+
+type ResumeUploadTypes = {
+  job: Job;
+};
+
+export default function ResumeUpload({ job }: ResumeUploadTypes) {
   return (
     <>
       <Container className={styles.buttonContainer}>
@@ -10,18 +15,8 @@ export default function ResumeUpload() {
         <Container className={styles.viewContainer}>
           <MdPreview className={styles.buttonWrapper} id={styles.eye} />
           <div className={styles.viewTextWrapper}>
-            <p>
-              resume_placeholderasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
-            </p>
+            <p>{job.resumeLink}</p>
           </div>
-        </Container>
-        {/* BOTTOM BUTTON CONTAINER */}
-        <Container className={styles.bottomContainer}>
-          <GrDocumentUpload
-            className={styles.buttonWrapper}
-            id={styles.upload}
-          />
-          <MdOutlineDownloadForOffline className={styles.buttonWrapper} />
         </Container>
       </Container>
     </>

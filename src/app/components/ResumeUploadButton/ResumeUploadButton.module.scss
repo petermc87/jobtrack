@@ -18,13 +18,13 @@ $padding: 1rem;
 .viewContainer {
   border: $line green;
   background-color: var.$gray;
-  border-bottom: solid var.$accent-blue;
   border-width: var.$thin-seperator;
-  border-radius: 0.5rem 0.5rem 0 0;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   padding: $padding 0 $padding 0;
   text-align: center;
+  margin-bottom: 0.5rem;
 
   // View button (eye)
   #eye {
@@ -67,16 +67,16 @@ $padding: 1rem;
   }
 }
 
-// Upload and download container
-.bottomContainer {
-  border: $line pink;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var.$gray;
-  padding: $padding 0 $padding 0;
-  border-radius: 0 0 0.5rem 0.5rem;
-}
+// // Upload and download container
+// .bottomContainer {
+//   border: $line pink;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   background-color: var.$gray;
+//   padding: $padding 0 $padding 0;
+//   border-radius: 0 0 0.5rem 0.5rem;
+// }
 
 // Individual button styling
 .buttonWrapper {
@@ -86,7 +86,7 @@ $padding: 1rem;
   background-color: var.$gray;
 }
 
-#upload {
-  border: $line blue;
-  border-radius: 0;
-}
+// #upload {
+//   border: $line blue;
+//   border-radius: 0;
+// }

@@ -237,7 +237,7 @@ export default function JobListElement({ job }: JobTypes) {
             <div className={styles.bottomRow}>
               <h2>Resume</h2>
               <div className={styles.right} id={styles.resumeUpload}>
-                <ResumeUpload />
+                <ResumeUpload job={job} />
               </div>
               <ExpandSmall
                 buttonChoice={showJobDetails}
