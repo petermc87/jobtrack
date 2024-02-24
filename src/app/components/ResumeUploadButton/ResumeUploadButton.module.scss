@@ -67,17 +67,6 @@ $padding: 1rem;
   }
 }
 
-// // Upload and download container
-// .bottomContainer {
-//   border: $line pink;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   background-color: var.$gray;
-//   padding: $padding 0 $padding 0;
-//   border-radius: 0 0 0.5rem 0.5rem;
-// }
-
 // Individual button styling
 .buttonWrapper {
   @extend %buttonStyles;
@@ -85,8 +74,3 @@ $padding: 1rem;
   width: 1.5rem;
   background-color: var.$gray;
 }
-
-// #upload {
-//   border: $line blue;
-//   border-radius: 0;
-// }

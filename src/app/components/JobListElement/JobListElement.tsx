@@ -34,6 +34,7 @@ export default function JobListElement({ job }: JobTypes) {
 
   // Show danger modal
   const [showModal, setShowModal] = useState(false);
+
   // UpdateJob Mutation
   const [updateJob, { loading, error }] = useMutation(UPDATE_JOB, {
     refetchQueries: [GET_USER, "GetUser"],
@@ -237,7 +238,12 @@ export default function JobListElement({ job }: JobTypes) {
             <div className={styles.bottomRow}>
               <h2>Resume</h2>
               <div className={styles.right} id={styles.resumeUpload}>
-                <ResumeUpload job={job} />
+                <ResumeUpload
+                  job={job}
+                  handleUpdate={handleUpdate}
+                  currentJob={currentJob}
+                  setCurrentJob={setCurrentJob}
+                />
               </div>
               <ExpandSmall
                 buttonChoice={showJobDetails}
