@@ -20,6 +20,8 @@ export default function JobListElement({ job }: JobTypes) {
   // Title input container state.
   const [editTitle, setEditTitle] = useState(false);
 
+  // Summary input container
+  const [editSummary, setEditSummary] = useState(false);
   // Current job
   const [currentJob, setCurrentJob] = useState<Job | null>(null);
 
@@ -40,6 +42,9 @@ export default function JobListElement({ job }: JobTypes) {
     refetchQueries: [GET_USER, "GetUser"],
   });
 
+  // Update text
+  const [updateText, setUpdateText] = useState("");
+
   // DeleteJob Mutation
   const [deleteJob] = useMutation(DELETE_JOB, {
     refetchQueries: [GET_USER, "GetUser"],
@@ -53,9 +58,10 @@ export default function JobListElement({ job }: JobTypes) {
     if (loading) return <p>Updating...</p>;
     if (error) return <p>Update Error: {error.message}</p>;
 
+    console.log(passedType, editedValue, currentJob);
     updateJob({
       variables: {
-        updateJobId: job.id,
+        updateJobId: currentJob?.id,
         newValue: editedValue,
         type: passedType,
       },
@@ -74,6 +80,30 @@ export default function JobListElement({ job }: JobTypes) {
   };
   // Array of status types.
   const status = ["Added", "Applied", "Accepted", "Rejected"];
+
+  // console.log(updateText)
+
+  // Test with a different handler
+
+  const handleUpdateTextarea = (
+    e: any,
+    passedType: string
+    // editedValue: string,
+    // id: string
+  ) => {
+    e.preventDefault();
+    // if (currentJob) console.log(passedType, currentJob.title);
+    if (loading) return <p>Updating...</p>;
+    if (error) return <p>Update Error: {error.message}</p>;
+
+    updateJob({
+      variables: {
+        updateJobId: currentJobId,
+        newValue: updateText,
+        type: passedType,
+      },
+    });
+  };
   return (
     <>
       <Container className={styles.formWrapper}>
@@ -218,8 +248,17 @@ export default function JobListElement({ job }: JobTypes) {
               </div>
               <div className={styles.right}>
                 <h2>Job Summary</h2>
-                <div className={styles.summaryPoints}>
-                  <ul>
+                <div
+                  className={styles.summaryPoints}
+                  onClick={() => {
+                    setEditSummary(true);
+                    // setUpdateText(job.jobDescription);
+                    setCurrentJob(job);
+                    setCurrentJobId(job.id);
+                    setUpdateText(job.jobDescription);
+                  }}
+                >
+                  {/* <ul>
                     <li>
                       <p>Here is a point.</p>
                     </li>
@@ -229,7 +268,29 @@ export default function JobListElement({ job }: JobTypes) {
                     <li>
                       <p>Here is a point.</p>
                     </li>
-                  </ul>
+                  </ul> */}
+                  {!editSummary ? (
+                    <p> - {job.jobDescription}</p>
+                  ) : (
+                    <Form
+                      onSubmit={(e) => {
+                        setEditSummary(false);
+                        handleUpdateTextarea(e, "jobDescription");
+                      }}
+                    >
+                      <Form.Group>
+                        <Form.Control
+                          // as="textarea"
+                          typeof="submit"
+                          value={updateText}
+                          onChange={(e) => {
+                            setUpdateText(e.target.value);
+                          }}
+                        />
+                        {/* <Button type="submit">Submit</Button> */}
+                      </Form.Group>
+                    </Form>
+                  )}
                 </div>
               </div>
             </div>
@@ -263,4 +324,73 @@ export default function JobListElement({ job }: JobTypes) {
       />
     </>
   );
+}
+
+// --> UPDATE DESCRIPTION TYPE 1<--//
+// <Form
+//   onSubmit={(e) => {
+//     e.preventDefault();
+//     // if (currentJob) {
+//     handleUpdate(
+//       e,
+//       "jobDescription",
+//       currentJob?.jobDescription
+//     );
+//     // }
+//     setEditSummary(false);
+//   }}
+// >
+//   <Form.Group>
+//     <Form.Control
+//       // as="textarea"
+
+//       // typeof="submit"
+//       value={currentJob?.jobDescription}
+//       onChange={(e) => {
+//         // console.log(e.target.value);
+//         // e.preventDefault();
+//         // if (currentJob) {
+//         setUpdateText({
+//           ...currentJob,
+//           jobDescription: e.target.value,
+//         });
+//       }}
+//     />
+//   </Form.Group>
+//   <Button type="submit">
+//     {/* <FaCircleCheck /> */}
+//     submit
+//   </Button>
+// </Form>
+//
+// --> UPDATE DESCRIPTION TYPE 2 <--//
+{
+  /* <Form
+onSubmit={(e) => {
+  setEditSummary(false);
+  if (currentJob)
+    handleUpdate(
+      e,
+      "jobDescription",
+      currentJob.jobDescription
+    );
+}}
+>
+<Form.Group>
+  <Form.Control
+    // as="textarea"
+    value={currentJob ? currentJob.jobDescription : ""}
+    onChange={(e) => {
+      if (currentJob) {
+        setCurrentJob({
+          ...currentJob,
+          jobDescription: e.target.value,
+        });
+      }
+    }}
+    // typeof="submit"
+  />
+
+</Form.Group>
+</Form> */
 }

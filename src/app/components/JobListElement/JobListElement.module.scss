@@ -91,6 +91,10 @@ $background: var.$black-gray;
   width: 43%;
   padding-left: 0.5rem;
   background-color: var.$black-gray;
+  p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
 }
 
 // Delete Button Styling
@@ -117,16 +121,16 @@ $background: var.$black-gray;
 .summaryPoints {
   border-radius: 0.3rem;
   background-color: var.$gray;
-  ul {
-    background-color: transparent;
-
-    li {
-      background-color: transparent;
-
-      &::marker {
-        color: white;
-      }
-    }
+  border: $line rgb(255, 0, 174);
+  word-break: break-all;
+  &:hover {
+    cursor: pointer;
+    @include fade-in-animation(
+      background-color,
+      var.$gray,
+      var.$dark-gray,
+      0.2s
+    );
   }
 }
 

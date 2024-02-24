@@ -28,27 +28,16 @@ export default function ResumeUpload({
       <Container className={styles.buttonContainer}>
         {/* VIEW CONTAINER */}
         <Container className={styles.viewContainer}>
-          {/* <MdPreview
-            className={styles.buttonWrapper}
-            id={styles.eye}
-            onClick={() => {
-              if (job) {
-                router.push(job.resumeLink);
-              }
-            }}
-          /> */}
-          <Link href={job.resumeLink} passHref>
-            <a target="_blank" rel="noopener noreferrer">
-              <MdPreview
-                className={styles.buttonWrapper}
-                id={styles.eye}
-                onClick={() => {
-                  if (job) {
-                    router.push(job.resumeLink);
-                  }
-                }}
-              />
-            </a>
+          <Link href={job.resumeLink} target="_blank" rel="noreferrer">
+            <MdPreview
+              className={styles.buttonWrapper}
+              id={styles.eye}
+              onClick={() => {
+                if (job) {
+                  router.push(job.resumeLink);
+                }
+              }}
+            />
           </Link>
 
           <div
