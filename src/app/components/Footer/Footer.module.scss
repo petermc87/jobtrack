@@ -5,20 +5,25 @@ $line: none;
   border: $line red;
   z-index: -1;
   display: flex;
+  flex-direction: column;
+
   position: relative;
-  bottom: -10rem;
+  bottom: -15rem;
   width: 100%;
   text-align: center;
-  justify-content: center;
-  padding-top: 10rem;
+
+  justify-content: space-around;
   //   padding-top: 10rem;
-  background: linear-gradient(
-    to bottom,
-    var.$dark-gray 55%,
-    // var.$accent-green 60%,
-    var.$accent-blue 90%
-  );
+  //   padding-top: 10rem;
+  //   background: linear-gradient(
+  //     to bottom,
+  //     var.$dark-gray 1%,
+  //     // var.$accent-green 60%,
+  //     var.$accent-blue 20%
+  //   );
+  background: rgba(17, 224, 192, 0.6);
   h2 {
+    padding-top: 5rem;
     font-size: 0.9rem;
     color: var.$dark-gray;
     background-color: transparent !important;
