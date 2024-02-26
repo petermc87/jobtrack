@@ -1,0 +1,34 @@
+@use "../../utilities/variables" as var;
+$line: none;
+
+.footerWrapper {
+  border: $line red;
+  z-index: -1;
+  display: flex;
+  position: relative;
+  bottom: -10rem;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  padding-top: 10rem;
+  //   padding-top: 10rem;
+  background: linear-gradient(
+    to bottom,
+    var.$dark-gray 5%,
+    // var.$accent-green 60%,
+    var.$accent-blue 100%
+  );
+  h2 {
+    font-size: 0.9rem;
+    color: var.$dark-gray;
+    background-color: transparent !important;
+    span {
+      text-decoration: underline;
+      color: var.$dark-gray;
+      background-color: transparent !important;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "./components/Footer/Footer";
 import LoginSignupLarge from "./components/LoginSignupButton/LoginSignupButtonLarge";
 import LoginSignupForm from "./components/LoginSignupForm/LoginSignupForm";
 import NavBar from "./components/NavBar/NavBar";
@@ -25,8 +26,10 @@ export default function Home() {
         />
         <br />
         <br />
+
         <LoginSignupLarge buttonChoice="signup" />
       </div>
+      <Footer />
     </div>
   );
 }

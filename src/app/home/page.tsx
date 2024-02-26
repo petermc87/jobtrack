@@ -8,6 +8,7 @@ import { NEW_CATEGORY } from "../../../graphql/mutations";
 import { GET_USER } from "../../../graphql/queries";
 import AddButton from "../components/AddButton/AddButton";
 import Categories from "../components/Categories/Categories";
+import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar/NavBar";
 import TitleText from "../components/TitleText/TitleText";
 import styles from "./page.module.scss";
@@ -80,6 +81,7 @@ export default function Home() {
           <Categories user={data?.user} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
