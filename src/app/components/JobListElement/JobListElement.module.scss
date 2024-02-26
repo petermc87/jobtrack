@@ -95,6 +95,24 @@ $background: var.$black-gray;
     text-overflow: ellipsis;
     overflow: hidden;
   }
+  .linkWrapper {
+    border: $line red;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .eye {
+      border: $line rgb(15, 150, 150);
+      height: 2rem;
+      width: 2rem;
+      border-radius: 0;
+      color: var.$accent-blue;
+      background-color: transparent !important;
+      &:hover {
+        cursor: pointer;
+        color: var.$accent-green;
+      }
+    }
+  }
 }
 
 // Delete Button Styling

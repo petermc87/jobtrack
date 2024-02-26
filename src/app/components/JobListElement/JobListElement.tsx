@@ -1,7 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { Job } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Container, Form } from "react-bootstrap";
+import { MdPreview } from "react-icons/md";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import { DELETE_JOB, UPDATE_JOB } from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
@@ -10,6 +12,7 @@ import ExpandSmall from "../ExpandButtons/ExpandButtonSmall";
 import RadioButton from "../RadioButton/RadioButton";
 import ResumeUpload from "../ResumeUploadButton/ResumeUploadButton";
 import styles from "./JobListElement.module.scss";
+
 // NOTE: Using regular divs here to avoid having to
 // change styling for a react-bootstrap container.
 type JobTypes = {
@@ -81,7 +84,8 @@ export default function JobListElement({ job }: JobTypes) {
   // Array of status types.
   const status = ["Added", "Applied", "Accepted", "Rejected"];
 
-  // console.log(updateText)
+  // Route handler for clicking on job link
+  const router = useRouter();
 
   // Test with a different handler
 
@@ -154,7 +158,15 @@ export default function JobListElement({ job }: JobTypes) {
               )}
             </div>
             <div className={styles.right}>
-              <h2>Link</h2>
+              <div className={styles.linkWrapper}>
+                <h2>Link</h2>
+                <MdPreview
+                  className={styles.eye}
+                  onClick={() => {
+                    router.push(job.link);
+                  }}
+                />
+              </div>
               {!editLink ? (
                 <p
                   className={styles.editText}
@@ -258,17 +270,6 @@ export default function JobListElement({ job }: JobTypes) {
                     setUpdateText(job.jobDescription);
                   }}
                 >
-                  {/* <ul>
-                    <li>
-                      <p>Here is a point.</p>
-                    </li>
-                    <li>
-                      <p>Here is a point.</p>
-                    </li>
-                    <li>
-                      <p>Here is a point.</p>
-                    </li>
-                  </ul> */}
                   {!editSummary ? (
                     <p> - {job.jobDescription}</p>
                   ) : (
