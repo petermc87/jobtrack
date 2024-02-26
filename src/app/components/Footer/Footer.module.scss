@@ -7,29 +7,26 @@ $line: none;
   display: flex;
   flex-direction: column;
 
+  //   margin: 0 0.5rem 0 0.5rem;
   position: relative;
   bottom: -15rem;
   width: 100%;
   text-align: center;
 
   justify-content: space-around;
-  //   padding-top: 10rem;
-  //   padding-top: 10rem;
-  //   background: linear-gradient(
-  //     to bottom,
-  //     var.$dark-gray 1%,
-  //     // var.$accent-green 60%,
-  //     var.$accent-blue 20%
-  //   );
-  background: rgba(17, 224, 192, 0.6);
+
+  background: rgba(17, 224, 192, 0.1);
+  border-top: solid var.$accent-blue;
+  border-width: 0.5px;
   h2 {
     padding-top: 5rem;
     font-size: 0.9rem;
-    color: var.$dark-gray;
+    // color: var.$dark-gray;
+    color: var.$accent-blue;
     background-color: transparent !important;
     span {
       text-decoration: underline;
-      color: var.$dark-gray;
+      color: var.$accent-blue;
       background-color: transparent !important;
       &:hover {
         cursor: pointer;
