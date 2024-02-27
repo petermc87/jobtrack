@@ -61,10 +61,9 @@ export default function JobListElement({ job }: JobTypes) {
     if (loading) return <p>Updating...</p>;
     if (error) return <p>Update Error: {error.message}</p>;
 
-    console.log(passedType, editedValue, currentJob);
     updateJob({
       variables: {
-        updateJobId: currentJob?.id,
+        updateJobId: job?.id,
         newValue: editedValue,
         type: passedType,
       },
@@ -99,6 +98,8 @@ export default function JobListElement({ job }: JobTypes) {
     // if (currentJob) console.log(passedType, currentJob.title);
     if (loading) return <p>Updating...</p>;
     if (error) return <p>Update Error: {error.message}</p>;
+
+    console.log(passedType, currentJobId, updateText);
 
     updateJob({
       variables: {
@@ -242,10 +243,12 @@ export default function JobListElement({ job }: JobTypes) {
                       <>
                         <div
                           className={styles.radioPair}
-                          onClick={(e) =>
-                            handleUpdate(e, "status", item.toLowerCase())
-                          }
+                          onClick={(e) => {
+                            handleUpdate(e, "status", item.toLowerCase());
+                          }}
                         >
+                          {/* Button selection will check if the current job status is equal to the */}
+                          {/* mapped item */}
                           <RadioButton
                             buttonChoice={
                               job.status === item.toLowerCase() ? true : false
