@@ -238,8 +238,10 @@ export default function JobListElement({ job }: JobTypes) {
                 <h2>Status</h2>
                 <div className={styles.radioContainer}>
                   {/* On click will call the useMutation function for updating the job. */}
+                  {/* <StatusSelector /> */}
                   {status.map((item: string) => {
                     return (
+                      //TODO: Render the StatusSelector component here.
                       <>
                         <div
                           className={styles.radioPair}
