@@ -1,0 +1,17 @@
+$line: none;
+
+// Radio buttons
+.radioContainer {
+  border: $line blue;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.radioPair {
+  border: $line white;
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  text-align: center;
+}

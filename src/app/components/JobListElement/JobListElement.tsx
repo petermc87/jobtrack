@@ -9,8 +9,8 @@ import { DELETE_JOB, UPDATE_JOB } from "../../../../graphql/mutations";
 import { GET_USER } from "../../../../graphql/queries";
 import DangerModal from "../DangerModal/DangerModal";
 import ExpandSmall from "../ExpandButtons/ExpandButtonSmall";
-import RadioButton from "../RadioButton/RadioButton";
 import ResumeUpload from "../ResumeUploadButton/ResumeUploadButton";
+import StatusSelector from "../StatusSelector/StatusSelector";
 import styles from "./JobListElement.module.scss";
 
 // NOTE: Using regular divs here to avoid having to
@@ -98,8 +98,6 @@ export default function JobListElement({ job }: JobTypes) {
     // if (currentJob) console.log(passedType, currentJob.title);
     if (loading) return <p>Updating...</p>;
     if (error) return <p>Update Error: {error.message}</p>;
-
-    console.log(passedType, currentJobId, updateText);
 
     updateJob({
       variables: {
@@ -241,24 +239,11 @@ export default function JobListElement({ job }: JobTypes) {
                   {/* <StatusSelector /> */}
                   {status.map((item: string) => {
                     return (
-                      //TODO: Render the StatusSelector component here.
-                      <>
-                        <div
-                          className={styles.radioPair}
-                          onClick={(e) => {
-                            handleUpdate(e, "status", item.toLowerCase());
-                          }}
-                        >
-                          {/* Button selection will check if the current job status is equal to the */}
-                          {/* mapped item */}
-                          <RadioButton
-                            buttonChoice={
-                              job.status === item.toLowerCase() ? true : false
-                            }
-                          />{" "}
-                          <p>{item}</p>
-                        </div>
-                      </>
+                      <StatusSelector
+                        job={job}
+                        item={item}
+                        handleUpdate={handleUpdate}
+                      />
                     );
                   })}
                 </div>
