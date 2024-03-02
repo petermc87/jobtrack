@@ -1,3 +1,4 @@
+import { Uuid } from "@/app/helpers/uuid";
 import { useMutation, useQuery } from "@apollo/client";
 import { Job, User } from "@prisma/client";
 import { useState } from "react";
@@ -185,7 +186,7 @@ export default function Categories({ user }: UserTypes) {
                     .filter((job) => job.status.toLowerCase() === "added")
                     .map((job: Job) => {
                       if (job) {
-                        return <JobListElement job={job} key={job.id} />;
+                        return <JobListElement job={job} key={Uuid()} />;
                       }
                       return null;
                     })}
@@ -199,7 +200,7 @@ export default function Categories({ user }: UserTypes) {
                     .filter((job) => job.status.toLowerCase() === "applied")
                     .map((job: Job) => {
                       if (job) {
-                        return <JobListElement job={job} key={job.id} />;
+                        return <JobListElement job={job} key={Uuid()} />;
                       }
                       return null;
                     })}
@@ -218,7 +219,7 @@ export default function Categories({ user }: UserTypes) {
                     .filter((job) => job.status.toLowerCase() === "accepted")
                     .map((job: Job) => {
                       if (job) {
-                        return <JobListElement job={job} key={job.id} />;
+                        return <JobListElement job={job} key={Uuid()} />;
                       }
                       return null;
                     })}
@@ -232,7 +233,7 @@ export default function Categories({ user }: UserTypes) {
                     .filter((job) => job.status.toLowerCase() === "rejected")
                     .map((job: Job) => {
                       if (job) {
-                        return <JobListElement job={job} key={job.id} />;
+                        return <JobListElement job={job} key={Uuid()} />;
                       }
                       return null;
                     })}

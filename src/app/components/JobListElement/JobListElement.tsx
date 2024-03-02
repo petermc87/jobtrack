@@ -1,3 +1,4 @@
+import { Uuid } from "@/app/helpers/uuid";
 import { useMutation } from "@apollo/client";
 import { Job } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -243,7 +244,7 @@ export default function JobListElement({ job }: JobTypes) {
                         job={job}
                         item={item}
                         handleUpdate={handleUpdate}
-                        key={job.id}
+                        key={Uuid()}
                       />
                     );
                   })}
