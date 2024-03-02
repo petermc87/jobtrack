@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "sst bind next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -36,6 +36,9 @@
     "eslint-config-next": "14.1.0",
     "prisma": "^5.9.1",
     "sass": "^1.70.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "sst": "^2.40.6",
+    "aws-cdk-lib": "2.124.0",
+    "constructs": "10.3.0"
   }
 }

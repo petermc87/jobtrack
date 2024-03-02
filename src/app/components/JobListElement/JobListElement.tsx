@@ -243,6 +243,7 @@ export default function JobListElement({ job }: JobTypes) {
                         job={job}
                         item={item}
                         handleUpdate={handleUpdate}
+                        key={job.id}
                       />
                     );
                   })}

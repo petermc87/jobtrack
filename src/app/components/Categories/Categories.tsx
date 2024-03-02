@@ -185,7 +185,7 @@ export default function Categories({ user }: UserTypes) {
                     .filter((job) => job.status.toLowerCase() === "added")
                     .map((job: Job) => {
                       if (job) {
-                        return <JobListElement job={job} />;
+                        return <JobListElement job={job} key={job.id} />;
                       }
                       return null;
                     })}
@@ -199,7 +199,7 @@ export default function Categories({ user }: UserTypes) {
                     .filter((job) => job.status.toLowerCase() === "applied")
                     .map((job: Job) => {
                       if (job) {
-                        return <JobListElement job={job} />;
+                        return <JobListElement job={job} key={job.id} />;
                       }
                       return null;
                     })}
@@ -218,7 +218,7 @@ export default function Categories({ user }: UserTypes) {
                     .filter((job) => job.status.toLowerCase() === "accepted")
                     .map((job: Job) => {
                       if (job) {
-                        return <JobListElement job={job} />;
+                        return <JobListElement job={job} key={job.id} />;
                       }
                       return null;
                     })}
@@ -232,7 +232,7 @@ export default function Categories({ user }: UserTypes) {
                     .filter((job) => job.status.toLowerCase() === "rejected")
                     .map((job: Job) => {
                       if (job) {
-                        return <JobListElement job={job} />;
+                        return <JobListElement job={job} key={job.id} />;
                       }
                       return null;
                     })}
