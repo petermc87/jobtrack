@@ -7,12 +7,15 @@ export default function NavBar() {
   const { data } = useSession();
 
   return (
-    <div className={styles.NavWrapper}>
+    <div className={styles.NavWrapper} id={styles.desktop}>
       <Logo />
 
       {/* IMPORTANT: Render a login and signup button, otherwise just one  */}
       {/* logout. To do this, check the session data. */}
 
+      {/* <div className={styles.desktop}> */}
+      {/* TODO: Add in a ternary to check the difference between desktop */}
+      {/* and mobile. */}
       {!data ? (
         <div className={styles.buttonContainer}>
           <LoginButtonSignUpButton buttonChoice="signup" />
@@ -24,5 +27,6 @@ export default function NavBar() {
         </div>
       )}
     </div>
+    // </div>
   );
 }
