@@ -9,7 +9,7 @@ export default function GraphQlProvider({
 }) {
   const client = new ApolloClient({
     // Graph server address
-    uri: "http://localhost:3000/api/graphql",
+    uri: "https://jobtrack-jade.vercel.app/api/graphql",
     // Data cached from ApolloServer.
     cache: new InMemoryCache(),
   });
