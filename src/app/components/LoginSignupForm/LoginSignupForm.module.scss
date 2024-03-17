@@ -49,6 +49,7 @@ $common-background: var.$black-gray;
   display: flex;
   flex-direction: column;
   background-color: $common-background;
+  padding-bottom: 1rem;
   h2 {
     margin-top: 1rem;
     background-color: $common-background;
@@ -142,4 +143,17 @@ $common-background: var.$black-gray;
   padding: 0.3rem;
   border-radius: 5px;
   margin-bottom: 1rem;
+}
+
+// Test account
+.testContainer {
+  padding: 1rem 0 0.5rem 0;
+  border: $line yellow;
+  border-top: solid var.$accent-blue;
+  border-width: 1px;
+  width: 100%;
+  background-color: var.$black-gray;
+  h2 {
+    background-color: transparent;
+  }
 }

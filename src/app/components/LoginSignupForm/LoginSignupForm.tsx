@@ -132,7 +132,6 @@ export default function LoginSignupForm() {
       <div className={styles.closeButton}>
         <IoIosCloseCircleOutline />
       </div>
-
       <Form
         ref={formRef}
         className={styles.formWrapper}
@@ -193,6 +192,7 @@ export default function LoginSignupForm() {
         ) : (
           <LoginButtonSignUpButton buttonChoice="login" />
         )}
+
         <h1 className={styles.heading}>OR</h1>
         <Form.Group className={styles.bottomContainer}>
           <GoogleButton />
@@ -209,7 +209,12 @@ export default function LoginSignupForm() {
               {isOpen === "signup" ? "Log In" : "Sign Up"}
             </span>
           </h2>
+          {/* Test account */}
         </Form.Group>
+        <div className={styles.testContainer}>
+          <h2>Sign in with our test account:</h2>
+          <LoginButtonSignUpButton buttonChoice="test" />
+        </div>
       </Form>
     </div>
   );
