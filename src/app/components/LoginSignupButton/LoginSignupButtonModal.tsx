@@ -37,7 +37,7 @@ export default function LoginButtonSignUpButton({
           onClick={() => {
             if (buttonChoice === "login") handleOpenLogin("login");
             else if (buttonChoice === "signup") handleOpenLogin("signup");
-            else handleOpenLogin("signup");
+            else handleOpenLogin("demo");
           }}
         >
           {/* Add in third button choice (i.e. test login) */}
@@ -45,7 +45,7 @@ export default function LoginButtonSignUpButton({
             ? "Log In"
             : buttonChoice === "signup"
             ? "Sign Up"
-            : "Test"}
+            : "Demo"}
         </Button>
       ) : (
         // data --> Log out

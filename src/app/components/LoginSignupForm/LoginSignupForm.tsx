@@ -93,19 +93,31 @@ export default function LoginSignupForm() {
           password: password,
         },
       });
+    } else if (isOpen === "login") {
+      await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect: false,
+      }).then(({ ok, status }: any) => {
+        if (ok === true) {
+          router.push("/home");
+        } else {
+          setMessage(status + ": Incorrect login credentials");
+        }
+      });
+    } else {
+      await signIn("credentials", {
+        email: "test@mail.com",
+        password: "12345",
+        redirect: false,
+      }).then(({ ok, status }: any) => {
+        if (ok === true) {
+          router.push("/home");
+        } else {
+          setMessage(status + "Incorrect login credentials");
+        }
+      });
     }
-
-    await signIn("credentials", {
-      email: email,
-      password: password,
-      redirect: false,
-    }).then(({ ok, status }: any) => {
-      if (ok === true) {
-        router.push("/home");
-      } else {
-        setMessage(status + ": Incorrect login credentials");
-      }
-    });
   };
 
   // Handling 'click outside' of the form to close it
@@ -212,8 +224,8 @@ export default function LoginSignupForm() {
           {/* Test account */}
         </Form.Group>
         <div className={styles.testContainer}>
-          <h2>Sign in with our test account:</h2>
-          <LoginButtonSignUpButton buttonChoice="test" />
+          <h2>Sign in with our demo account:</h2>
+          <LoginButtonSignUpButton buttonChoice="demo" />
         </div>
       </Form>
     </div>

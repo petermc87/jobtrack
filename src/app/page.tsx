@@ -18,7 +18,11 @@ export default function Home() {
   return (
     <div>
       <NavBar />
-      {isOpen === "signup" || isOpen === "login" ? <LoginSignupForm /> : ""}
+      {isOpen === "signup" || isOpen === "login" || isOpen === "demo" ? (
+        <LoginSignupForm />
+      ) : (
+        ""
+      )}
       <div className={styles.landingWrapper}>
         <TitleText
           text="An easy way to track your job applications"
