@@ -64,10 +64,11 @@ export default function LoginSignupForm() {
 
     if (loading) console.log("loading...");
     if (error) console.error("Submission Error!: ", error);
-    // TODO: Refactor this code to consider the difference
-    // between Login and Signup. Login will not need name and
-    // username.
 
+    // TODO: Make this a helper function. The event (e) that
+    // gets passed into the handler function is either going
+    // to be the demo button or the login details passed into the
+    // input fields.
     let name: string = "";
     let username: string = "";
     if (target.name || target.username) {
@@ -175,6 +176,7 @@ export default function LoginSignupForm() {
             name="email"
             className={styles.inputWrapper}
             required
+            value={isOpen === "demo" && "test@mail.com"}
           />
           <InputGroup id={styles.groupWrapper}>
             <Form.Control
@@ -182,6 +184,7 @@ export default function LoginSignupForm() {
               type={showPassword ? "password" : "text"}
               name="password"
               className={styles.inputWrapper}
+              value={isOpen === "demo" && "12345"}
               required
             />
             <Button
