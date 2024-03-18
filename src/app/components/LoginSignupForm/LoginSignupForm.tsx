@@ -171,22 +171,44 @@ export default function LoginSignupForm() {
               />
             </>
           )}
-          <Form.Control
-            placeholder="EMAIL"
-            name="email"
-            className={styles.inputWrapper}
-            required
-            value={isOpen === "demo" ? "test@mail.com" : ""}
-          />
-          <InputGroup id={styles.groupWrapper}>
+          {/* If its the demo button, then the value is set before
+           anything is entered by the user.*/}
+          {isOpen === "demo" ? (
             <Form.Control
-              placeholder="PASSWORD"
-              type={showPassword ? "password" : "text"}
-              name="password"
+              placeholder="EMAIL"
+              name="email"
               className={styles.inputWrapper}
-              value={isOpen === "demo" ? "12345" : ""}
+              required
+              value={"test@mail.com"}
+            />
+          ) : (
+            <Form.Control
+              placeholder="EMAIL"
+              name="email"
+              className={styles.inputWrapper}
               required
             />
+          )}
+          <InputGroup id={styles.groupWrapper}>
+            {isOpen === "demo" ? (
+              <Form.Control
+                placeholder="PASSWORD"
+                type={showPassword ? "password" : "text"}
+                name="password"
+                className={styles.inputWrapper}
+                required
+                value={"12345"}
+              />
+            ) : (
+              <Form.Control
+                placeholder="PASSWORD"
+                type={showPassword ? "password" : "text"}
+                name="password"
+                className={styles.inputWrapper}
+                required
+              />
+            )}
+
             <Button
               variant="outline-secondary"
               id="button-addon2"
