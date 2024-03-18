@@ -1,9 +1,9 @@
 "use client";
 
+import Login from "@/app/helpers/login";
 import { openForm } from "@/app/redux/features/signupSlice";
 import { AppDispatch, useAppSelector } from "@/app/redux/store";
 import { useMutation } from "@apollo/client";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
@@ -83,29 +83,8 @@ export default function LoginSignupForm() {
     // is either login or signup.
 
     // Signing up the new user.
-    // try {
-    // ---> Sign Up User
-    if (isOpen === "signup") {
-      await newUser({
-        variables: {
-          name: name,
-          username: username,
-          email: email,
-          password: password,
-        },
-      });
-    }
-    await signIn("credentials", {
-      email: email,
-      password: password,
-      redirect: false,
-    }).then(({ ok, status }: any) => {
-      if (ok === true) {
-        router.push("/home");
-      } else {
-        setMessage(status + ": Incorrect login credentials");
-      }
-    });
+
+    Login({ email, password, username, name, setMessage });
   };
 
   // Handling 'click outside' of the form to close it
@@ -244,7 +223,8 @@ export default function LoginSignupForm() {
   );
 }
 
-// --> ORIGINAL SIGNIN/SINGUP FOR HANDLE SUBMIT <--//
+// --> OLD SIGNIN/SIGNUP CODE <--//
+// ---> Sign Up User
 // if (isOpen === "signup") {
 //   await newUser({
 //     variables: {
@@ -254,28 +234,15 @@ export default function LoginSignupForm() {
 //       password: password,
 //     },
 //   });
-// } else if (isOpen === "login") {
-//   await signIn("credentials", {
-//     email: email,
-//     password: password,
-//     redirect: false,
-//   }).then(({ ok, status }: any) => {
-//     if (ok === true) {
-//       router.push("/home");
-//     } else {
-//       setMessage(status + ": Incorrect login credentials");
-//     }
-//   });
-// } else {
-//   await signIn("credentials", {
-//     email: "test@mail.com",
-//     password: "12345",
-//     redirect: false,
-//   }).then(({ ok, status }: any) => {
-//     if (ok === true) {
-//       router.push("/home");
-//     } else {
-//       setMessage(status + "Incorrect login credentials");
-//     }
-//   });
 // }
+// await signIn("credentials", {
+//   email: email,
+//   password: password,
+//   redirect: false,
+// }).then(({ ok, status }: any) => {
+//   if (ok === true) {
+//     router.push("/home");
+//   } else {
+//     setMessage(status + ": Incorrect login credentials");
+//   }
+// });
