@@ -176,7 +176,7 @@ export default function LoginSignupForm() {
             name="email"
             className={styles.inputWrapper}
             required
-            value={isOpen === "demo" && "test@mail.com"}
+            value={isOpen === "demo" ? "test@mail.com" : ""}
           />
           <InputGroup id={styles.groupWrapper}>
             <Form.Control
@@ -184,7 +184,7 @@ export default function LoginSignupForm() {
               type={showPassword ? "password" : "text"}
               name="password"
               className={styles.inputWrapper}
-              value={isOpen === "demo" && "12345"}
+              value={isOpen === "demo" ? "12345" : ""}
               required
             />
             <Button
